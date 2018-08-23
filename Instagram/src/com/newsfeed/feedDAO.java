@@ -35,7 +35,7 @@ private Connection getConnection() {
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE ");
-		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follo ");
+		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
 		sql.append("WHERE user_id = ?) p ");
 		sql.append("ON n.user_id = p.following ");
 		sql.append("ORDER BY n.feed_date DESC");
@@ -95,6 +95,7 @@ private Connection getConnection() {
 			{
 				String id = rs.getString("user_id");
 				String contents = rs.getString("contents");
+				System.out.println(id+" ggg "+contents);
 				map.get(feedid).getReplys().add(new reply(id,contents));
 			}
 		} catch (SQLException e) {

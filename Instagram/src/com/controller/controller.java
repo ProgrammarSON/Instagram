@@ -15,7 +15,7 @@ import com.command.*;
 /**
  * Servlet implementation class controller
  */
-@WebServlet("/controller")
+@WebServlet("*.do")
 public class controller extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -56,6 +56,10 @@ public class controller extends HttpServlet {
 			command = new writenewsfeedCommand();
 			command.execute(request, response);
 			viewPage = "writenewsfeed.jsp";
+		}else if(com.equals("/viewnewsfeed.do")) {
+			command = new viewnewsfeedCommand();
+			command.execute(request, response);
+			viewPage = "viewnewsfeed.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

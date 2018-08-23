@@ -1,18 +1,21 @@
-INSERT INTO follo VALUES('1','4');
+INSERT INTO newsfeed
+VALUES(newsfeed_seq.nextval,'sjw',sysdate,'my first newsfeed');
 
 INSERT INTO newsfeed
-VALUES(newsfeed_seq.nextval, '4',sysdate,'num4 newsfeed');
-commit;
+VALUES(newsfeed_seq.nextval,'sjw',sysdate,'my second newsfeed');
 
-SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE
-FROM NEWSFEED n JOIN (SELECT following FROM follo
-                      WHERE user_id = '100') P
-ON n.user_id = p.following;
+INSERT INTO newsfeed
+VALUES(newsfeed_seq.nextval,'ronaldo',sysdate,'ronaldo first feed');
 
-INSERT INTO reply
-VALUES(reply_seq.nextval,'3','23',sysdate,'youtoo');
-commit;
+INSERT INTO newsfeed
+VALUES(newsfeed_seq.nextval,'manchester',sysdate,'manchester first feed');
 
-SELECT user_id,contents FROM reply
-WHERE NEWSFEED_ID = 23
-ORDER BY reply_date;
+INSERT INTO newsfeed
+VALUES(newsfeed_seq.nextval,'real',sysdate,'real first feed');
+
+INSERT INTO newsfeed
+VALUES(newsfeed_seq.nextval,'real',sysdate,'real second feed');
+
+INSERT INTO newsfeed
+VALUES(newsfeed_seq.nextval,'juventus',sysdate,'juventus first feed');
+

@@ -17,3 +17,8 @@ CREATE TABLE reply(
   reply_date DATE,
   contents VARCHAR2(2000)
 );
+
+CREATE TABLE likes(
+  newsfeed_id NUMBER,
+  user_id VARCHAR2(100)
+);
