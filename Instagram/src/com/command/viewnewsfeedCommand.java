@@ -12,8 +12,8 @@ public class viewnewsfeedCommand implements Command{
 		String user_id = request.getParameter("user_id");
 		feedDAO dao = new feedDAO();
 		LinkedHashMap<String,feedDTO> map = dao.getNewsFeed(user_id);
-		for(String key : map.keySet())
-			dao.getReply(map, key);
+		//for(String key : map.keySet())
+		//	dao.getReply(map, key);
 		
 		request.setAttribute("map",map);
 	}

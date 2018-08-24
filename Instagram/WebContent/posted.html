@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+    <script src="ckeditor5/11.0.1/inline/ckeditor.js"></script>
+    <script src="ckeditor5/11.0.1/translations/ko.js"></script>
+
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+    <title>포스트</title>
+    
+    <script>
+         var httpRequest = null;
+        
+        // httpRequest 객체 생성
+        function getXMLHttpRequest()
+        {
+            var httpRequest = null;
+        
+            if(window.ActiveXObject){
+                try{
+                    httpRequest = new ActiveXObject("Msxml2.XMLHTTP");    
+                } catch(e) {
+                    try{
+                        httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+                    } catch (e2) { httpRequest = null; }
+                }
+            }
+            else if(window.XMLHttpRequest){
+                httpRequest = new window.XMLHttpRequest();
+            }
+            return httpRequest;    
+        }
+        
+        // 댓글 등록
+        function writeCmt()
+        {
+            var form = document.getElementById("writeCommentForm");
+            
+            var board = form.comment_board.value
+            var id = form.comment_id.value
+            var content = form.comment_content.value;
+            
+            if(!content)
+            {
+                alert("내용을 입력하세요.");
+                return false;
+            }
+            else
+            {    
+                var param="comment_board="+board+"&comment_id="+id+"&comment_content="+content;
+                    
+                httpRequest = getXMLHttpRequest();
+                httpRequest.onreadystatechange = checkFunc;
+                httpRequest.open("POST", "writenewsfeed.do", true);    
+                httpRequest.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded;charset=EUC-KR'); 
+                httpRequest.send(param);
+            }
+        }
+        
+        function checkFunc(){
+            if(httpRequest.readyState == 4){
+                // 결과값을 가져온다.
+                var resultText = httpRequest.responseText;
+                if(resultText == 1){ 
+                    document.location.reload(); // 상세보기 창 새로고침
+                }
+            }
+        }
+        
+	</script>
+</head>
+
+<body>
+    <div class="ui container">
+        <a class="" href="#">
+            <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
+        </a>
+
+        <div class="ui huge secondary pointing stackable menu violet">
+            <a class="item">새 포스트</a>
+            <a class="item">좋아한 글</a>
+            <a class="item">태그</a>
+            <div class="right menu">
+                <div class="item">
+                    <div class="ui small input">
+                        <input placeholder="검색" type="text" />
+                    </div>
+                </div>
+                <a class="ui item">로그아웃</a>
+            </div>
+        </div>
+
+        <div class="ui segment">
+            <h1>제목란입니다.</h1>
+            <div class="ui divider"></div>
+            <div class="container">
+                <img class="ui image fluid" src="images/crowd.jpg" alt="">
+                <p>글 내용란입니다.</p>
+            </div>
+        </div>
+
+
+        <div class="ui segment">
+            <div class="container">
+                <form class="ui reply form" id="writeCommentForm">
+                     <input type="hidden" name="comment_board" value="${board.board_num}">
+                	<input type="hidden" name="comment_id" value="${sessionScope.sessionID}">
+                    
+                    <div class="field">
+                        <textarea placeholder="댓글을 작성해보세요." rows="3"></textarea>
+                    </div>
+                    <div class="ui right aligned container">
+                        <button class="ui button violet" onclick="writeCmt()">작성하기</button>
+                    </div>
+                </form>
+            </div>
+
+
+            <div class="ui threaded comments">
+                <h3 class="ui dividing header">#개의 댓글</h3>
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="/images/avatar/small/matt.jpg">
+                      </a>
+                    <div class="content">
+                        <a class="author">Matt</a>
+                        <div class="metadata">
+                            <span class="date">오늘 오후 5:42</span>
+                        </div>
+                        <div class="text">
+                            쩐다!
+                        </div>
+                        <div class="actions">
+                            <a class="reply">댓글쓰기</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="comment">
+                    <a class="avatar">
+                        <img src="images/avatar/small/elliot.jpg">
+                      </a>
+                    <div class="content">
+                        <a class="author">Elliot Fu</a>
+                        <div class="metadata">
+                            <span class="date">어제 오전 12:30</span>
+                        </div>
+                        <div class="text">
+                            <p>이건 내 연구에 엄청 도움돼. 고마워!</p>
+                        </div>
+                        <div class="actions">
+                            <a class="reply">댓글쓰기</a>
+                        </div>
+                    </div>
+                    <div class="comments">
+                        <div class="comment">
+                            <a class="avatar">
+                            <img src="images/avatar/small/jenny.jpg">
+                          </a>
+                            <div class="content">
+                                <a class="author">Jenny Hess</a>
+                                <div class="metadata">
+                                    <span class="date">방금 전</span>
+                                </div>
+                                <div class="text">
+                                    	친구 넌 항상 옳아 :)
+                                </div>
+                                <div class="actions">
+                                    <a class="reply">댓글쓰기</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+</html>

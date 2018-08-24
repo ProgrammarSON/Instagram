@@ -7,8 +7,8 @@ public class feedDTO {
 	private String contents;
 	private String date;
 	private List<reply> replys;	
-		
 	
+
 	public List<reply> getReplys() {
 		return replys;
 	}

@@ -75,42 +75,7 @@ private Connection getConnection() {
 		return map;
 	}
 	
-	public void getReply(LinkedHashMap<String,feedDTO> map, String feedid) {
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT user_id, contents ");
-		sql.append("FROM reply ");
-		sql.append("WHERE NEWSFEED_ID = ? ");
-		sql.append("ORDER BY reply_date");
-		
-		try {
-			conn = getConnection();
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, feedid);
-			rs = pstmt.executeQuery();
-			
-			while(rs.next())
-			{
-				String id = rs.getString("user_id");
-				String contents = rs.getString("contents");
-				System.out.println(id+" ggg "+contents);
-				map.get(feedid).getReplys().add(new reply(id,contents));
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}finally {
-			try {
-				if(rs != null) rs.close();
-				if(conn != null) conn.close();
-				if(pstmt != null) pstmt.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-		}		
-		
-	}
+	
+	
+	
 }

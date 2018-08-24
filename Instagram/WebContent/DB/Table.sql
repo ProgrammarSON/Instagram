@@ -10,11 +10,11 @@ CREATE TABLE newsfeed(
   contents VARCHAR2(4000)
 );
 
-CREATE TABLE reply(
-  reply_id NUMBER,
+CREATE TABLE comments(
+  comment_id NUMBER,
   user_id VARCHAR2(100),
   newsfeed_id NUMBER,
-  reply_date DATE,
+  comment_date DATE,
   contents VARCHAR2(2000)
 );
 

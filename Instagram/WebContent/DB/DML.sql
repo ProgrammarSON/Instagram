@@ -1,3 +1,15 @@
+INSERT INTO FOLLOW VALUES('sjw','real');
+INSERT INTO FOLLOW VALUES('sjw','chelsea');
+INSERT INTO FOLLOW VALUES('sjw','manchester');
+INSERT INTO FOLLOW VALUES('sjw','ronaldo');
+INSERT INTO FOLLOW VALUES('ronaldo','real');
+INSERT INTO FOLLOW VALUES('ronaldo','manchester');
+INSERT INTO FOLLOW VALUES('ronaldo','juventus');
+INSERT INTO FOLLOW VALUES('real','ronaldo');
+INSERT INTO FOLLOW VALUES('juventus','ronaldo');
+
+
+
 INSERT INTO newsfeed
 VALUES(newsfeed_seq.nextval,'sjw',sysdate,'my first newsfeed');
 

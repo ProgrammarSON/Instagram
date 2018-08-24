@@ -59,7 +59,15 @@ public class controller extends HttpServlet {
 		}else if(com.equals("/viewnewsfeed.do")) {
 			command = new viewnewsfeedCommand();
 			command.execute(request, response);
-			viewPage = "viewnewsfeed.jsp";
+			viewPage = "temp.jsp";
+		}else if(com.equals("/writecomment.do")) {
+			command = new writeCommentCommand();
+			command.execute(request, response);
+			viewPage = "comment_check.jsp";
+		}else if(com.equals("/viewcomment.do")) {
+			command = new viewCommentCommand();
+			command.execute(request, response);
+			viewPage = "viewcomment.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);
