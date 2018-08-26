@@ -71,7 +71,7 @@ public class commentDAO {
 		ResultSet rs = null;
 		List<commentDTO> list = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT user_id, comment_date, contents ");
+		sql.append("SELECT comment_id, user_id, comment_date, contents ");
 		sql.append("FROM comments ");
 		sql.append("WHERE NEWSFEED_ID = ? ");
 		sql.append("ORDER BY comment_date");
@@ -85,6 +85,7 @@ public class commentDAO {
 			while(rs.next())
 			{
 				commentDTO dto = new commentDTO();
+				dto.setComment_id(rs.getString("comment_id"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setComment_date(rs.getString("comment_date"));
 				dto.setContent(rs.getString("contents"));
@@ -108,5 +109,77 @@ public class commentDAO {
 		}		
 		return list;
 	}
-
+	
+	public int insertReply(replyDTO dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer();
+		int check=0;
+		sql.append("INSERT INTO reply ");
+		sql.append("VALUES(reply_seq.nextval, ?, ?, ?)");
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getComment_id());
+			pstmt.setString(2, dto.getUser_id());
+			pstmt.setString(3, dto.getContents());
+			check = pstmt.executeUpdate();
+				
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return check;	
+	}
+	
+	public List<replyDTO> getReply(String comment_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<replyDTO> list = new ArrayList<>();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT user_id, contents ");
+		sql.append("FROM reply WHERE comment_id = ?");
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, comment_id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				replyDTO dto = new replyDTO();
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setContents(rs.getString("comments"));
+				list.add(dto);
+				//System.out.println(id+" ggg "+contents);
+				//map.get(feedid).getReplys().add(new reply(id,contents));
+			
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}		
+		return list;
+	}
+	
 }

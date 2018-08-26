@@ -63,11 +63,13 @@ public class controller extends HttpServlet {
 		}else if(com.equals("/writecomment.do")) {
 			command = new writeCommentCommand();
 			command.execute(request, response);
-			viewPage = "comment_check.jsp";
+			viewPage = "check_comment.jsp";
 		}else if(com.equals("/viewcomment.do")) {
 			command = new viewCommentCommand();
 			command.execute(request, response);
 			viewPage = "viewcomment.jsp";
+		}else if(com.equals("/writereply.do")) {
+			
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

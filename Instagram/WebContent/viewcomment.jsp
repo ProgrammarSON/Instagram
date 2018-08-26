@@ -19,7 +19,28 @@
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
     <title>포스트</title>
-    
+   
+   <c:forEach items="${list}" var="dto"> 
+	<script>
+	
+	$(document).ready(function(){
+    	 $("#${dto.getComment_id()}").hide();
+    	 $("#${dto.getComment_id()}_reply_hide").hide();
+    	     	 
+    	$("#${dto.getComment_id()}_reply_write").click(function(){
+        	$("#${dto.getComment_id()}").show();
+    		$("#${dto.getComment_id()}_reply_write").hide();
+    		$("#${dto.getComment_id()}_reply_hide").show();
+        });
+    	$("#${dto.getComment_id()}_reply_hide").click(function(){
+        	$("#${dto.getComment_id()}").hide();
+        	$("#${dto.getComment_id()}_reply_write").show();
+        	$("#${dto.getComment_id()}_reply_hide").hide();
+    	});
+	});
+	
+	</script>
+	</c:forEach>
    
 </head>
 
@@ -102,10 +123,33 @@
                             <p>${dto.getContent()}</p>
                         </div>
                         <div class="actions">
-                            <a class="reply">댓글쓰기</a>
+                            <a class="reply" id="${dto.getComment_id()}_reply_write">댓글쓰기</a>
+                        	<a class="reply" id="${dto.getComment_id()}_reply_hide">댓글숨기기</a>
                         </div>
+                           <div class="field" id="${dto.getComment_id()}">
+                        	<textarea placeholder="댓글을 작성해보세요." rows="2" name="comment_content"></textarea>
+                    		<button class="ui button violet" type="submit" id="ha">작성하기</button>
+                   	 	  	  
+                   	 	  	  <div class="comments">
+                        		<div class="comment">
+                            		<a class="avatar">
+                            		<img src="images/avatar/small/jenny.jpg">
+                          			</a>
+                            		<div class="content">
+                                		<a class="author">Jenny Hess</a>
+                                			<div class="metadata">
+                                    			<span class="date">방금 전</span>
+                                			</div>
+                                		<div class="text">
+                                    		친구 넌 항상 옳아 :)
+                                		</div>
+                              		</div>
+                        		</div>
+                    		   </div>
+                    		   
+                   	 	  </div>
                     </div>
-                    
+                   </div> 
                 </c:forEach>    
                     <div class="comments">
                         <div class="comment">
@@ -124,14 +168,13 @@
                                     <a class="reply">댓글쓰기</a>
                                 </div>
                             </div>
-                        </div>
+                       </div>
                     </div>
                 </div>
               
             </div>
         </div>
 
-    </div>
 
 </body>
 

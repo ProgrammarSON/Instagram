@@ -1,6 +1,10 @@
+<%
+	String feed_id = (String) request.getAttribute("feed_id");
+%>
+
 <script language="javascript">
 		alert("등록 완료");
-		document.location.href="viewcomment.do";
+		document.location.href="viewcomment.do?feed_id=<%=feed_id%>";
 </script>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
