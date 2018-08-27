@@ -160,7 +160,7 @@ public class commentDAO {
 			{
 				replyDTO dto = new replyDTO();
 				dto.setUser_id(rs.getString("user_id"));
-				dto.setContents(rs.getString("comments"));
+				dto.setContents(rs.getString("contents"));
 				list.add(dto);
 				//System.out.println(id+" ggg "+contents);
 				//map.get(feedid).getReplys().add(new reply(id,contents));

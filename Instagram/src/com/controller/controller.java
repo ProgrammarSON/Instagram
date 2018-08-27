@@ -68,10 +68,18 @@ public class controller extends HttpServlet {
 			command = new viewCommentCommand();
 			command.execute(request, response);
 			viewPage = "viewcomment.jsp";
+		}else if(com.equals("/viewreply.do")) {
+			command = new viewReplyCommand();
+			command.execute(request, response);
+			return;
+			//viewPage = "viewcomment.jsp";
 		}else if(com.equals("/writereply.do")) {
-			
+			command = new writeReplyCommand();
+			command.execute(request, response);
+			return;
 		}
 		
+		System.out.println("dispatcher.......");
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);
 	}
