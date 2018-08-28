@@ -1,4 +1,4 @@
-CREATE TABLE follo(
+CREATE TABLE follow(
   user_id VARCHAR2(100),
   following VARCHAR2(100)
 );
