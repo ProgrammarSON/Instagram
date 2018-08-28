@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+
+    <!-- jcrop -->
+    <link rel="stylesheet" type="text/css" href="jcrop/jquery.Jcrop.min.css">
+    <script src="jcrop/jquery.Jcrop.min.js"></script>
+
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="script.js"></script>
+    <title>이미지 자르기</title>
+</head>
+
+<body>
+    <div class="ui container">
+        <a class="" href="#">
+                <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
+            </a>
+
+        <div class="ui huge secondary pointing stackable menu violet">
+            <a class="item">새 포스트</a>
+            <a class="item">좋아한 글</a>
+            <a class="item">태그</a>
+            <div class="right menu">
+                <div class="item">
+                    <div class="ui small input">
+                        <input placeholder="검색" type="text" />
+                    </div>
+                </div>
+                <a class="ui item">로그아웃</a>
+            </div>
+        </div>
+
+<form action="post_image.html" method="post" onsubmit="return checkCoords();">
+        <div class="ui segment">
+            <img class="ui image jcrop-target" src="./images/crowd.jpg">
+            
+            <input type="hidden" id="x" name="x" />
+            <input type="hidden" id="y" name="y" />
+            <input type="hidden" id="w" name="w" />
+            <input type="hidden" id="h" name="h" />
+        </div>    
+        <div class="ui right aligned container">
+            <button type="submit" class="ui button violet">자르기</button>
+        </div>
+</form>
+
+    </div>
+
+
+<script>
+// Jcrop
+$(function(){
+    $('.jcrop-target').Jcrop({
+        aspectRatio: 1,
+        onSelect: updateCoords
+    });
+
+    function updateCoords(c) {
+        $('#x').val(c.x);
+        $('#y').val(c.y);
+        $('#w').val(c.w);
+        $('#h').val(c.h);
+    };
+
+    function checkCoords() {
+        if (parseInt($('#w').val())) return true;
+        alert('자를 영역을 선택하고 자르기를 실행해주세요.');
+        return false;
+    };
+})
+</script>
+</body>
+
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
+    <script src="semantic/dist/semantic.min.js"></script>
+
+    <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="login.css">
+    <script src="script.js"></script>
+    <title>로그인</title>
+</head>
+
+<body>
+    <div class="ui middle aligned center aligned grid">
+        <div class="column">
+            <div class="ui image">
+                <img src="images/yestagram-icon.png" class="image">
+            </div>
+            <h2 class="ui header violet">
+                <div class="content">
+                    로그인하세요.
+                </div>
+            </h2>
+            <form class="ui large form">
+                <div class="ui stacked segment">
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" name="email" placeholder="이메일 형식 아이디">
+                        </div>
+                    </div>
+                    <div class="field">
+                        <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="비밀번호">
+                        </div>
+                    </div>
+                    <div class="ui fluid large submit button violet">로그인</div>
+                </div>
+
+                <div class="ui error message"></div>
+
+            </form>
+
+            <div class="ui message">
+                계정이 없으신가요? <a href="#">가입하기</a>
+            </div>
+        </div>
+    </div>
+    
+</body>
+
+</html>
