@@ -51,7 +51,8 @@
              <img class="ui avatar image" src="./images/avatar/large/elliot.jpg"> <%=map.get(key).getUser_id()%>
        </div>
              <div class="image">
-                <img src="./images/avatar/large/elliot.jpg">
+                <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
+             
              </div>
                 <div class="content">
                     <div class="description">

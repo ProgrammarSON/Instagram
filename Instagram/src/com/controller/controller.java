@@ -53,7 +53,7 @@ public class controller extends HttpServlet {
 		String com = uri.substring(conPath.length());
 		
 		if(com.equals("/writenewsfeed.do")) {
-			command = new writenewsfeedCommand();
+			command = new writeNewsfeedCommand();
 			command.execute(request, response);
 			viewPage = "writenewsfeed.jsp";
 		}else if(com.equals("/viewnewsfeed.do")) {
@@ -77,6 +77,10 @@ public class controller extends HttpServlet {
 			command = new writeReplyCommand();
 			command.execute(request, response);
 			return;
+		}else if(com.equals("/writenewsfeed.do")) {
+			command = new writeNewsfeedCommand();
+			command.execute(request, response);
+			viewPage  = "check_newsfeed.jsp";
 		}
 		
 		System.out.println("dispatcher.......");
