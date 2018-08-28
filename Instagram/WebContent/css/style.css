@@ -2,7 +2,6 @@
   margin-top: 14px;
 }
 
-li {
-  list-style-type: none;
-  text-decoration: none;
+#header_user {
+  font-weight: 200;
 }

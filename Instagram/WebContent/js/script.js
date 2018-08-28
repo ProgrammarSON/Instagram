@@ -120,4 +120,8 @@ $(document).ready(function() {
             }
         }
     });
+
+    $('#choice_avatar.image').dimmer({
+        on: 'hover'
+    });
 });
