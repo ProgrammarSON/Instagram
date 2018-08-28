@@ -6,9 +6,16 @@ public class feedDTO {
 	private String user_id;
 	private String contents;
 	private String date;
+	private String image_path;
 	private List<reply> replys;	
 	
 
+	public String getImage_path() {
+		return image_path;
+	}
+	public void setImage_path(String image_path) {
+		this.image_path = image_path;
+	}
 	public List<reply> getReplys() {
 		return replys;
 	}
@@ -26,9 +33,7 @@ public class feedDTO {
 	}
 	public void setContents(String contents) {
 		this.contents = contents;
-	}
-	
-
+	}	
 	public String getDate() {
 		return date;
 	}

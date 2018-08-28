@@ -12,6 +12,12 @@ import javax.sql.DataSource;
 
 public class feedDAO {
 	
+	private static feedDAO instance = new feedDAO();
+	
+	public static feedDAO getinstance() {
+		return instance;
+	}
+	
 private Connection getConnection() {
 		
 		Context context = null;
@@ -34,7 +40,7 @@ private Connection getConnection() {
 		ResultSet rs = null;
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE ");
+		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path ");
 		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
 		sql.append("WHERE user_id = ?) p ");
 		sql.append("ON n.user_id = p.following ");
@@ -56,6 +62,7 @@ private Connection getConnection() {
 				System.out.println(rs.getString("contents"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDate(rs.getString("feed_date"));
+				dto.setImage_path(rs.getString("image_path"));
 				dto.setReplys(new ArrayList<>());
 				map.put(rs.getString("newsfeed_id"), dto);
 			}
@@ -75,7 +82,26 @@ private Connection getConnection() {
 		return map;
 	}
 	
-	
-	
+	public int insertNewsFeed(feedDTO dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer();
+		int check = 0;
+		sql.append("INSERT INTO newsfeed ");
+		sql.append("VALUES(newsfeed_seq.nextval,?,sysdate,?,?)");
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getUser_id());
+			pstmt.setString(2, dto.getContents());
+			pstmt.setString(3,dto.getImage_path());
+			check = pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
 	
 }

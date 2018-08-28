@@ -35,12 +35,21 @@
     		
    			});
     	
+    	$("#${dto.getComment_id()}_reply_hide").click(function(){
+    		$("#${dto.getComment_id()}").hide();
+    		$("#${dto.getComment_id()}_reply_show").show();
+    		$("#${dto.getComment_id()}_reply_hide").hide();
+		});
+    	
     	$.ajax({url:"viewreply.do?comment_id=${dto.getComment_id()}",
 		    success : function(result){
 		    	var datas = JSON.parse(result);
 		    	//console.log(dates[0].contents);
 		    	for(i=0; i<datas.length; i++){
 		    	//	$("#${dto.getComment_id()}").html("hhhhhhhh"+datas[0].contents);
+		    		console.log(datas[i].contents);
+		    		
+		    		
 		    		$("#${dto.getComment_id()}_reply_id").append(
 		    		"<div class='comment'>" +
 		    		" <a class='avatar'> " +
@@ -99,14 +108,7 @@
 						);
 						$("#${dto.getComment_id()}_reply_contents").val("");
 			}});
-    		
-    		$("#${dto.getComment_id()}_reply_hide").click(function(){
-        		$("#${dto.getComment_id()}").hide();
-        		$("#${dto.getComment_id()}_reply_show").show();
-        		$("#${dto.getComment_id()}_reply_hide").hide();
-    		});
-    	
-        	
+              	
 		});
 	});	
 	
@@ -121,8 +123,7 @@
 </head>
 
 <body>
-	<div id="nnn">kkkkkkkkkkkkkkkkkk</div>
-
+	
     <div class="ui container">
         <a class="" href="#">
             <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
