@@ -1,0 +1,15 @@
+body {
+  background-color: #fafafa;
+}
+
+body>.grid {
+  height: 100%;
+}
+
+.image {
+  margin-top: -48px;
+}
+
+.column {
+  max-width: 450px;
+}
