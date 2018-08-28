@@ -6,10 +6,19 @@ body {
   margin-top: 108px;
 }
 
-.column {
+#signup_header {
+  margin-bottom: 20px;
+}
+
+.fixed_col {
   max-width: 360px;
 }
 
-.segment {
+.signup_form {
   height: 332px;
+}
+
+.error.message {
+  width: 450px;
+  min-width: 360px;
 }

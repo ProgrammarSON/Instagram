@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
-sdz<head>
+
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
@@ -10,11 +11,12 @@ sdz<head>
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="css/signup.css">
     <script src="js/script.js"></script>
+    <script src="js/signup.js"></script>
     <title>가입하기</title>
 </head>
 
 <body>
-    <div class="ui middle aligned center aligned grid">
+    <div class="ui middle aligned center aligned grid" id="signup_header">
         <div class="column">
             <div class="ui image brand">
                 <img src="images/yestagram-icon.png" class="image">
@@ -27,56 +29,59 @@ sdz<head>
         </div>
     </div>
 
-
-    <div class="ui center aligned grid">
-        <div class="sixteen wide mobile eight wide computer column">
-            <div class="ui center aligned segment">
-                <div class="ui bordered medium image" id="choice_avatar">
-                    <div class="ui dimmer">
-                        <button class="ui inverted button violet">사진 선택</button>
+    <form class="ui form signup_form">
+        <div class="ui center aligned grid">
+            <div class="row">
+                <div class="sixteen wide mobile eight wide computer column fixed_col">
+                    <div class="ui center aligned segment signup_form">
+                        <div class="ui bordered medium image" id="choice_avatar">
+                            <div class="ui dimmer">
+                                <button class="ui inverted button violet">사진 선택</button>
+                            </div>
+                            <img class="image" src="images/avatar/large/matthew.png">
+                        </div>
                     </div>
-                    <img class="image" src="images/avatar/large/matthew.png">
                 </div>
 
+                <div class="sixteen wide mobile eight wide computer column fixed_col">
+                    <div class="ui segment">
+                        <div class="field">
+                            <input placeholder="아이디 : 이메일 형식" name="email" type="email">
+                        </div>
+
+                        <div class="field">
+                            <input placeholder="이름 : 최소 2자 이상의 한글" name="username" type="text">
+                        </div>
+
+                        <div class="field">
+                            <input placeholder="별명 : 영문 및 숫자" name="user_id" type="text">
+                        </div>
+
+                        <div class="field">
+                            <input type="password" name="password" placeholder="비밀번호 : 영문 및 숫자, 특수 기호">
+                        </div>
+
+                        <div class="field">
+                            <input type="password" name="password-check" placeholder="비밀번호 확인">
+                        </div>
+
+                        <div class="ui fluid large submit button violet">가입하기</div>
+                    </div>
+                </div>
             </div>
-        </div>
-
-        <div class="sixteen wide mobile eight wide computer column">
-            <form class="ui form segment error">
-                <div class="field">
-                    <input placeholder="아이디 : 이메일 형식" name="email" type="email">
+        
+            <div class="row">
+                <div class="ui segment">
+                    이미 계정이 있으신가요? <a href="#">로그인하기</a>
                 </div>
+                
+            </div>
 
-                <div class="field">
-                    <input placeholder="이름 : 최소 2자 이상의 한글" name="username" type="text">
-                </div>
-
-                <div class="field">
-                    <input placeholder="별명 : 영문 및 숫자" name="user_id" type="text">
-                </div>
-
-                <div class="field">
-                    <input type="password" name="password" placeholder="비밀번호 : 영문 및 숫자, 특수 기호">
-                </div>
-
-                <div class="field">
-                    <input type="password" name="password-check" placeholder="비밀번호 확인">
-                </div>
-
-                <div class="ui fluid large submit button violet">가입하기</div>
+            <div class="row">
                 <div class="ui error message"></div>
-            </form>
-        </div>
-    </div>
-
-    <div class="ui center aligned grid">
-        <div class="column">
-            <div class="ui message">
-                이미 계정이 있으신가요? <a href="#">로그인하기</a>
             </div>
         </div>
-    </div>
-
+    </form>
 
 </body>
 
