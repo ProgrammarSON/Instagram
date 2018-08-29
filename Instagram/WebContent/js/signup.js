@@ -36,7 +36,7 @@ $(document).ready(function() {
                 identifier: 'password-check',
                 rules: [{
                         type: 'empty',
-                        prompt: '한 번 더 입력하세요.'
+                        prompt: '비밀번호를 한 번 더 입력하세요.'
                     },
                     {
                         type: 'match[password]',
@@ -51,12 +51,8 @@ $(document).ready(function() {
                         prompt: '이름을 입력하세요.'
                     },
                     {
-                        type: 'minLength[2]',
-                        prompt: '적어도 2자 이상이어야 합니다.'
-                    },
-                    {
-                        type: 'regExp[^([가-힣])+$]',
-                        prompt: '한글만 입력할 수 있습니다.'
+                        type: 'regExp[^([가-힣]){2,}$]',
+                        prompt: '한글만, 최소 2자 입력할 수 있습니다.'
                     }
                 ]
             },

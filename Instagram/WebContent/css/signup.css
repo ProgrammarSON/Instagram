@@ -18,7 +18,11 @@ body {
   height: 332px;
 }
 
-.error.message {
+.user_box {
+  width: 332px;
+}
+
+/* .error.message {
   width: 450px;
   min-width: 360px;
-}
+} */
