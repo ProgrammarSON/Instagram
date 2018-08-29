@@ -59,7 +59,7 @@ public class controller extends HttpServlet {
 		}else if(com.equals("/viewnewsfeed.do")) {
 			command = new viewnewsfeedCommand();
 			command.execute(request, response);
-			viewPage = "temp.jsp";
+			viewPage = "viewnewsfeed.jsp";
 		}else if(com.equals("/writecomment.do")) {
 			command = new writeCommentCommand();
 			command.execute(request, response);
@@ -81,6 +81,10 @@ public class controller extends HttpServlet {
 			command = new writeNewsfeedCommand();
 			command.execute(request, response);
 			viewPage  = "check_newsfeed.jsp";
+		}else if(com.equals("/login.do")) {
+			command = new loginMemberCommand();
+			command.execute(request, response);
+			viewPage = "/member/check_login.jsp";
 		}
 		
 		System.out.println("dispatcher.......");

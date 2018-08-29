@@ -2,6 +2,7 @@ package com.command;
 
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
 import java.util.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,16 @@ public class writeReplyCommand implements Command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
+		try {
+			request.setCharacterEncoding("UTF-8");
+			
+			response.setContentType("text/xml; charset=utf-8");
+			response.setCharacterEncoding("utf-8");
+			
+		} catch (UnsupportedEncodingException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		String user_id = request.getParameter("user_id");
 		String comment_id = request.getParameter("comment_id");

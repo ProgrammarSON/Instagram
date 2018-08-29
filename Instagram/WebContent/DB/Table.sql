@@ -30,3 +30,11 @@ CREATE TABLE reply(
   user_id VARCHAR2(100),
   contents VARCHAR2(2000)
 );
+
+CREATE TABLE member(
+  email VARCHAR2(100),
+  username VARCHAR2(100),
+  user_id VARCHAR2(100),
+  password VARCHAR2(100),
+  profileimg_path VARCHAR2(200)
+);
