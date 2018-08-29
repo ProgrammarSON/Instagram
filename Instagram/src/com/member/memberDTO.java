@@ -5,15 +5,7 @@ public class memberDTO {
 	private String username;
 	private String user_id;
 	private String password;
-	private String profileImg_path;
-	
-	
-	public String getProfileImg_path() {
-		return profileImg_path;
-	}
-	public void setProfileImg_path(String profileImg_path) {
-		this.profileImg_path = profileImg_path;
-	}
+		
 	public String getEmail() {
 		return email;
 	}

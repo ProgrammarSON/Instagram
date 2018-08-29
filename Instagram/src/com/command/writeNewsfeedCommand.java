@@ -66,7 +66,11 @@ public class writeNewsfeedCommand implements Command{
 		        dto.setUser_id(user_id);
 		        dto.setContents(contents);
 		        dto.setImage_path(image_path);
-		        dao.insertNewsFeed(dto);
+		        check = dao.insertNewsFeed(dto);
+		        
+		        if(check > 0) {
+		        	check = dao.updateMyFeedNum(user_id);
+		        }
 		        
 		        request.setAttribute("user_id",user_id);
 		    }catch(Exception e){

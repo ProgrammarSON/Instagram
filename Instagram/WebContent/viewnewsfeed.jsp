@@ -37,8 +37,6 @@
 
 </head>
 
-
-
 <body>
    <div class="ui container">
         <a class="" href="#">
@@ -46,7 +44,7 @@
         </a>
 
         <div class="ui huge secondary pointing stackable menu violet">
-            <a class="item">새 포스트</a>
+            <a class="item" href="viewmyfeed.do?user_id=<%="puhahason"%>">새 포스트</a>
             <a class="item">좋아한 글</a>
             <a class="item">태그</a>
             <div class="right menu">
@@ -68,7 +66,11 @@
              <a href="#"><%=map.get(key).getUser_id()%></a>
        </div>
              <div class="image">
+             <%if(map.get(key).getImage_path() == null){ %>
+              	<img src="./feed_image/null.jpg"><br>
+              <%}else{ %>
                 <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
+              <%} %>
               </div>
                 <div class="content">
                     <div class="description">

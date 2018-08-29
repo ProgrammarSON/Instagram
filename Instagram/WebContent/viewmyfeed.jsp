@@ -1,4 +1,9 @@
-<!DOCTYPE html>
+<%@ page import="com.myfeed.*" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
+<%myfeedDTO dto = (myfeedDTO)request.getAttribute("dto"); %>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
     <meta charset="utf-8">
@@ -44,39 +49,33 @@
             <div class="eleven wide column">
                 
                 <h1 class="ui header" id="header_user">
-                    programmerSON_official
+                    <%=dto.getUser_id() %>
                 </h1>
             
                 <div class="ui relaxed horizontal list">
                     <div class="item">
                         <div class="content">
-                            게시물 <span>63</span>
+                            게시물 <span><%=dto.getFeed_num() %></span>
                         </div>
                     </div>
 
                     <div class="item">
                         <div class="content">
-                            팔로워 <span>1,236</span>
+                            팔로워 <span><%=dto.getFollower_num() %></span>
                         </div>
                     </div>
 
                     <div class="item">
                         <div class="content">
-                            팔로우 <span>676</span>
+                            팔로우 <span><%=dto.getFollowing_num() %></span>
                         </div>
                     </div>
                 </div>
 
                 <div class="ui column">
                     <p>
-                        프로그래머 손입니다.<br>
-                        반갑습니다.<br>
-                        프로그래머 손입니다.<br>
-                        반갑습니다.<br>
-                        프로그래머 손입니다.<br>
-                        반갑습니다.<br>
-                        프로그래머 손입니다.<br>
-                        반갑습니다.<br>
+                        <%=dto.getContents() %><br>
+                     
                     </p>
                 </div>
                 

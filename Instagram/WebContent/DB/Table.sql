@@ -36,5 +36,13 @@ CREATE TABLE member(
   username VARCHAR2(100),
   user_id VARCHAR2(100),
   password VARCHAR2(100),
-  profileimg_path VARCHAR2(200)
+);
+
+CREATE TABLE myfeed(
+  user_id VARCHAR2(100),
+  feed_num NUMBER,
+  follower_num NUMBER,
+  following_num NUMBER,
+  contents VARCHAR2(2000),
+  profile_img VARCHAR2(200)
 );

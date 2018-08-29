@@ -46,7 +46,7 @@ public class memberDAO {
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO member VALUES (?,?,?,?,?)";
+		String sql = "INSERT INTO member VALUES (?,?,?,?)";
 		
 		try {
 			conn = getConnection();
@@ -55,7 +55,6 @@ public class memberDAO {
 			pstmt.setString(2, dto.getUsername());
 			pstmt.setString(3, dto.getUser_id());
 			pstmt.setString(4, dto.getPassword());
-			pstmt.setString(5, dto.getProfileImg_path());
 			ri = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -71,7 +70,9 @@ public class memberDAO {
 		return ri;
 	}
 	
-	public int confirmId(String id) {
+	
+	
+/*	public int confirmId(String id) {
 		int ri = 0;
 		
 		Connection conn = null;
@@ -102,7 +103,7 @@ public class memberDAO {
 		}
 		
 		return ri;
-	}
+	}*/
 	
 	public int checkMember(String email, String pw) {
 		int ri = 0;
@@ -146,7 +147,7 @@ public class memberDAO {
 		return ri;
 	}
 	
-	public int updateMember(String id, String pw) {
+	/*public int updateMember(String id, String pw) {
 		Connection conn=null;
 		PreparedStatement pstmt = null;
 		int state=0;
@@ -170,7 +171,7 @@ public class memberDAO {
 			}
 		}	
 		return state;
-	}
+	}*/
 	
 	public String getUserid(String email) {
 		Connection conn = null;

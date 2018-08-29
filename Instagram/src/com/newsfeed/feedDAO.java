@@ -59,12 +59,12 @@ private Connection getConnection() {
 			{
 				feedDTO dto = new feedDTO();
 				dto.setContents(rs.getString("contents"));
-				System.out.println(rs.getString("contents"));
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDate(rs.getString("feed_date"));
 				dto.setImage_path(rs.getString("image_path"));
-				dto.setReplys(new ArrayList<>());
 				map.put(rs.getString("newsfeed_id"), dto);
+				//System.out.println(rs.getString("contents"));
+				//System.out.println(rs.getString("image_path"));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -96,6 +96,27 @@ private Connection getConnection() {
 			pstmt.setString(1, dto.getUser_id());
 			pstmt.setString(2, dto.getContents());
 			pstmt.setString(3,dto.getImage_path());
+			check = pstmt.executeUpdate();			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return check;
+	}
+	
+	public int updateMyFeedNum(String user_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer();
+		int check = 0;
+		sql.append("UPDATE myfeed ");
+		sql.append("SET feed_num = feed_num + 1 ");
+		sql.append("WHERE user_id = ?");
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, user_id);
 			check = pstmt.executeUpdate();			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

@@ -5,9 +5,12 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import com.member.*;
+
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
+
+import com.member.*;
+import com.myfeed.*;
 
 public class joinMemberCommand implements Command{
 
@@ -19,9 +22,13 @@ public class joinMemberCommand implements Command{
 		String user_id = "";
 		String password = "";
 		String profilePath = "";
+		String contents = "";
 		
-		memberDTO dto = new memberDTO();
-		memberDAO dao = memberDAO.getInstance();
+		memberDTO member_dto = new memberDTO();
+		memberDAO member_dao = memberDAO.getInstance();
+		
+		myfeedDTO myfeed_dto = new myfeedDTO();
+		myfeedDAO myfeed_dao = myfeedDAO.getinstance();
 		
 		String uploadPath = request.getRealPath("/profile_image");
 			 	
@@ -46,6 +53,8 @@ public class joinMemberCommand implements Command{
 	        username = multi.getParameter("username");
 	        user_id = multi.getParameter("user_id");
 	        password = multi.getParameter("password");
+	        contents = multi.getParameter("contents");
+	        
 	        // name="subject" 인 녀석 value를 가져옴
 	        	         
 	        // 전송한 전체 파일이름들을 가져옴
@@ -66,13 +75,20 @@ public class joinMemberCommand implements Command{
 	            fileSize = file.length();
 	        }
 	        
-	        dto.setEmail(email);
-	        dto.setUsername(username);
-	        dto.setUser_id(user_id);
-	        dto.setPassword(password);
-	        dto.setProfileImg_path(profilePath);
+	        member_dto.setEmail(email);
+	        member_dto.setUsername(username);
+	        member_dto.setUser_id(user_id);
+	        member_dto.setPassword(password);
+	       // dto.setProfileImg_path(profilePath);
 	        
-	        check = dao.insertMember(dto);
+	        myfeed_dto.setUser_id(user_id);
+	        myfeed_dto.setContents(contents);
+	        myfeed_dto.setProfile_img(profilePath);
+	        
+	        check = member_dao.insertMember(member_dto);
+	        if(check > 0) {
+	        	check = myfeed_dao.insertMyfeed(myfeed_dto);
+	        }
 	        
 	        request.setAttribute("state", check);
 	        

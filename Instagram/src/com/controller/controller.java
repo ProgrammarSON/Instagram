@@ -89,7 +89,11 @@ public class controller extends HttpServlet {
 			command = new joinMemberCommand();
 			command.execute(request, response);
 			viewPage = "/member/check_join.jsp";
-		}else if(com.equals(""))
+		}else if(com.equals("/viewmyfeed.do")) {
+			command = new viewMyFeedCommand();
+			command.execute(request, response);
+			viewPage = "viewmyfeed.jsp";
+		}
 		
 		System.out.println("dispatcher.......");
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

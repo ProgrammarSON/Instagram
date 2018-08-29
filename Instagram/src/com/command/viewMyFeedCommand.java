@@ -2,20 +2,19 @@ package com.command;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.*;
-import com.newsfeed.*;
-public class viewnewsfeedCommand implements Command{
+import com.myfeed.*;
+
+public class viewMyFeedCommand implements Command{
 
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 		String user_id = request.getParameter("user_id");
-		feedDAO dao = new feedDAO();
-		LinkedHashMap<String,feedDTO> map = dao.getNewsFeed(user_id);
-		//for(String key : map.keySet())
-		//	dao.getReply(map, key);
-				
-		request.setAttribute("map",map);
+		
+		myfeedDAO dao = myfeedDAO.getinstance();
+		myfeedDTO dto = dao.getMyFeed(user_id);
+		
+		request.setAttribute("dto", dto);
 	}
 
 }
