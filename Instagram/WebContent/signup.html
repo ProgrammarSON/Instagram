@@ -14,14 +14,14 @@
     <script src="js/signup.js"></script>
     <title>가입하기</title>
     
- <script type="text/javascript">
+ <script>
 	function readURL(input){ 
 		if (input.files && input.files[0]) { 
 			var reader = new FileReader(); 
 			reader.onload = function (e) { 
 				$('#blah').attr('src', e.target.result); 
 			} 
-				reader.readAsDataURL(input.files[0]); 
+                reader.readAsDataURL(input.files[0]);
 			} 
 		} 
 </script>
@@ -47,10 +47,10 @@
             <div class="row">
                 <div class="sixteen wide mobile eight wide computer column fixed_col">
                     <div class="ui center aligned segment signup_form">
-                        <div class="ui bordered medium image" id="choice_avatar">
+                        <div class="bordered image centered-and-cropped" id="choice_avatar">
                             <div class="ui dimmer">
-                            	<!-- <button class="ui inverted button violet" id="choice_pic">사진 선택</button> -->
-                                <input type="file" class="ui inverted button violet" name="profilePath" value="사진 선택" onchange="readURL(this);">
+                            	<label for="profilePath" class="ui inverted button violet">사진 선택</label>
+                                <input type="file" name="profilePath" id="profilePath" onchange="readURL(this);">
                             </div>
                             <img class="image centered-and-cropped" id="blah" src="images/avatar/large/matthew.png">
                         </div>
