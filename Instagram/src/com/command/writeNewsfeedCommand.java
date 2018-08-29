@@ -17,11 +17,7 @@ public class writeNewsfeedCommand implements Command{
 	
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		   	//String uploadPath = "C:\\JSP\\Instagram\\Instagram\\WebContent\\feed_image";
-		 	//String image_path = request.getRealPath("/feed_image");
-		 	//String uploadPath = "D:\\java\\git\\Instagram\\Instagram\\WebContent\\feed_image";
 			String uploadPath = request.getRealPath("/feed_image");
-			System.out.println(uploadPath);
 			int maxSize = 1024 * 1024 * 10; // �ѹ��� �ø� �� �ִ� ���� �뷮 : 10M�� ����
 		     
 		    int check = 0;

@@ -29,14 +29,15 @@
         </div>
     </div>
 
-    <form class="ui form signup_form">
+    <form class="ui form signup_form" action="join.do" method="post" enctype="Multipart/form-data">
         <div class="ui center aligned grid">
             <div class="row">
                 <div class="sixteen wide mobile eight wide computer column fixed_col">
                     <div class="ui center aligned segment signup_form">
                         <div class="ui bordered medium image" id="choice_avatar">
                             <div class="ui dimmer">
-                                <button class="ui inverted button violet">사진 선택</button>
+                            	<!-- <button class="ui inverted button violet" id="choice_pic">사진 선택</button> -->
+                                <input type="file" class="ui inverted button violet" name="profilePath" value="사진 선택">
                             </div>
                             <img class="image" src="images/avatar/large/matthew.png">
                         </div>
@@ -65,7 +66,7 @@
                             <input type="password" name="password-check" placeholder="비밀번호 확인">
                         </div>
 
-                        <div class="ui fluid large submit button violet">가입하기</div>
+                        <button class="ui fluid large submit button violet" type="submit">가입하기</button>
                     </div>
                 </div>
             </div>
@@ -80,8 +81,11 @@
             <div class="row">
                 <div class="ui sixteen wide mobile eight wide computer error message"></div>
             </div>
+
         </div>
+        
     </form>
+
 
 </body>
 
