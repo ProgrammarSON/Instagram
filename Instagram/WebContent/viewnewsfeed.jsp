@@ -64,7 +64,8 @@
     <div class="card">
        <div class="content">
           <div class="right floated meta">14h</div>
-             <img class="ui avatar image" src="./images/avatar/large/elliot.jpg"> <%=map.get(key).getUser_id()%>
+             <img class="ui avatar image" src="./images/avatar/large/elliot.jpg"> 
+             <a href="#"><%=map.get(key).getUser_id()%></a>
        </div>
              <div class="image">
                 <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
