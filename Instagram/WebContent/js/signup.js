@@ -1,6 +1,6 @@
 // Signup
 $(document).ready(function() {
-    $('.ui.form').form({
+  /*  $('.ui.form').form({
         // inline : true,
         // on     : 'blur',
         fields: {
@@ -73,7 +73,7 @@ $(document).ready(function() {
                 ]
             }
         }
-    });
+    });*/
 
     $('#choice_avatar.image').dimmer({
         on: 'hover'

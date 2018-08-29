@@ -41,20 +41,21 @@ public class memberDAO {
 		return connection;
 	}
 	
-	/*public int insertMember(memberDTO dto) {
+	public int insertMember(memberDTO dto) {
 		int ri = 0;
 		
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO member VALUES (?,?,?,?)";
+		String sql = "INSERT INTO member VALUES (?,?,?,?,?)";
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1, dto.getId());
-			pstmt.setString(2, dto.getName());
-			pstmt.setString(3,dto.getPassword());
-			pstmt.setString(4, dto.getSex());
+			pstmt.setString(1, dto.getEmail());
+			pstmt.setString(2, dto.getUsername());
+			pstmt.setString(3, dto.getUser_id());
+			pstmt.setString(4, dto.getPassword());
+			pstmt.setString(5, dto.getProfileImg_path());
 			ri = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
@@ -68,7 +69,7 @@ public class memberDAO {
 			}
 		}
 		return ri;
-	}*/
+	}
 	
 	public int confirmId(String id) {
 		int ri = 0;
