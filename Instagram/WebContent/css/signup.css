@@ -23,13 +23,9 @@ body {
 }
 
 .centered-and-cropped {
-  /*width: 200px;
-  height: 200px;
-   border-radius: 50%; */
+
+  width: 300px;
+  height: 300px;
   object-fit: cover;
 }
 
-/* .error.message {
-  width: 450px;
-  min-width: 360px;
-} */
