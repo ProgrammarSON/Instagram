@@ -24,7 +24,7 @@ CREATE TABLE likes(
   user_id VARCHAR2(100)
 );
 
-CREATE TABLE reply
+CREATE TABLE reply(
   reply_id NUMBER,
   comment_id NUMBER,
   user_id VARCHAR2(100),

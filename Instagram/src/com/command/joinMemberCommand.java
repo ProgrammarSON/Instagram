@@ -6,8 +6,6 @@ import java.util.Enumeration;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import com.member.*;
-import com.newsfeed.feedDAO;
-import com.newsfeed.feedDTO;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 
@@ -28,35 +26,35 @@ public class joinMemberCommand implements Command{
 		String uploadPath = request.getRealPath("/profile_image");
 			 	
 		System.out.println(uploadPath);
-		int maxSize = 1024 * 1024 * 10; // ÇÑ¹ø¿¡ ¿Ã¸± ¼ö ÀÖ´Â ÆÄÀÏ ¿ë·® : 10M·Î Á¦ÇÑ
+		int maxSize = 1024 * 1024 * 10; // ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ë·® : 10Mï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
 	    int check = 0;
 	    	    
-	    String fileName1 = ""; // Áßº¹Ã³¸®µÈ ÀÌ¸§
-	    String originalName1 = ""; // Áßº¹ Ã³¸®Àü ½ÇÁ¦ ¿øº» ÀÌ¸§
-	    long fileSize = 0; // ÆÄÀÏ »çÀÌÁî
-	    String fileType = ""; // ÆÄÀÏ Å¸ÀÔ
+	    String fileName1 = ""; // ï¿½ßºï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	    String originalName1 = ""; // ï¿½ßºï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
+	    long fileSize = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+	    String fileType = ""; // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
 	     
 	    
 	    MultipartRequest multi = null;
 	     
 	    try{
-	        // request,ÆÄÀÏÀúÀå°æ·Î,¿ë·®,ÀÎÄÚµùÅ¸ÀÔ,Áßº¹ÆÄÀÏ¸í¿¡ ´ëÇÑ ±âº» Á¤Ã¥
+	        // request,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ë·®,ï¿½ï¿½ï¿½Úµï¿½Å¸ï¿½ï¿½,ï¿½ßºï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½Ã¥
 	        multi = new MultipartRequest(request,uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 	         
-	        // form³»ÀÇ input name="name" ÀÎ ³à¼® value¸¦ °¡Á®¿È
+	        // formï¿½ï¿½ï¿½ï¿½ input name="name" ï¿½ï¿½ ï¿½à¼® valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        email = multi.getParameter("email");
 	        username = multi.getParameter("username");
 	        user_id = multi.getParameter("user_id");
 	        password = multi.getParameter("password");
-	        // name="subject" ÀÎ ³à¼® value¸¦ °¡Á®¿È
+	        // name="subject" ï¿½ï¿½ ï¿½à¼® valueï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        	         
-	        // Àü¼ÛÇÑ ÀüÃ¼ ÆÄÀÏÀÌ¸§µéÀ» °¡Á®¿È
+	        // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½Ã¼ ï¿½ï¿½ï¿½ï¿½ï¿½Ì¸ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	        Enumeration files = multi.getFileNames();
 	         
 	        while(files.hasMoreElements())
 	        {
-	            // form ÅÂ±×¿¡¼­ <input type="file" name="¿©±â¿¡ ÁöÁ¤ÇÑ ÀÌ¸§" />À» °¡Á®¿Â´Ù.
-	            String file1 = (String)files.nextElement(); // ÆÄÀÏ input¿¡ ÁöÁ¤ÇÑ ÀÌ¸§À» °¡Á®¿È
+	            // form ï¿½Â±×¿ï¿½ï¿½ï¿½ <input type="file" name="ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½" />ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
+	            String file1 = (String)files.nextElement(); // ï¿½ï¿½ï¿½ï¿½ inputï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
 	            
 	            profilePath= multi.getFilesystemName(file1);
 	            //image_path = image_path + "\\" + multi.getFilesystemName(file1);
@@ -81,6 +79,5 @@ public class joinMemberCommand implements Command{
 	    }catch(Exception e){
 	        e.printStackTrace();
 	    }
-			
 	}	
 }
