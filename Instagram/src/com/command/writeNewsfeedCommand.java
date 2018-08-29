@@ -17,10 +17,8 @@ public class writeNewsfeedCommand implements Command{
 	
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		   	//String uploadPath = "C:\\JSP\\Instagram\\Instagram\\WebContent\\feed_image";
-		 	//String image_path = request.getRealPath("/feed_image");
-		 	String uploadPath = "C:\\JSP\\Instagram\\Instagram\\WebContent\\feed_image";
-		    int maxSize = 1024 * 1024 * 10; // 한번에 올릴 수 있는 파일 용량 : 10M로 제한
+			String uploadPath = request.getRealPath("/feed_image");
+			int maxSize = 1024 * 1024 * 10; // 한번에 올릴 수 있는 파일 용량 : 10M로 제한
 		     
 		    int check = 0;
 		    

@@ -25,9 +25,10 @@ public class joinMemberCommand implements Command{
 		memberDTO dto = new memberDTO();
 		memberDAO dao = memberDAO.getInstance();
 		
-		
-	 	String uploadPath = "C:\\Users\\User\\git\\Instagram\\Instagram\\WebContent\\profile_image";
-	    int maxSize = 1024 * 1024 * 10; // 한번에 올릴 수 있는 파일 용량 : 10M로 제한
+		String uploadPath = request.getRealPath("/profile_image");
+			 	
+		System.out.println(uploadPath);
+		int maxSize = 1024 * 1024 * 10; // 한번에 올릴 수 있는 파일 용량 : 10M로 제한
 	    int check = 0;
 	    	    
 	    String fileName1 = ""; // 중복처리된 이름
