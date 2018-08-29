@@ -8,35 +8,22 @@
 %>
 
 <%
-	if(state == memberDAO.MEMBER_EXISTENT) {
+	if(state >0) {
 %>
 		<script language="javascript">
-			alert("아이디가 이미 존재 합니다.");
-			history.back();
+			alert("회원가입 완료");
+			document.location.href="login.html";
 		</script>
 <%
-		} else {
-			if(state == memberDAO.MEMBER_JOIN_SUCCESS) {
+		} else {	
 %>
-			<script language="javascript">
-				alert("회원가입을 축하 합니다.");
-				document.location.href="login.html";				
-			</script>
-			
-<%			//response.sendRedirect("main.jsp");				
-			} else {
-%>
-			<script language="javascript">
-				alert("회원가입에 실패했습니다.");
-				document.location.href="login.html";
-			</script>
+		<script language="javascript">
+			alert("회원가입에 실패했습니다.");
+			history.goback();
+		</script>
 <%
-			}
 		}
 %>
-
-
-
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

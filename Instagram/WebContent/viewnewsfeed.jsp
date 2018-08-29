@@ -21,7 +21,23 @@
 <link rel="stylesheet" type="text/css" href="style.css">
 <script src="script.js"></script>
 <title>Yestagram</title>
+
+<script type="text/javascript">
+	function readURL(input){ 
+		if (input.files && input.files[0]) { 
+			var reader = new FileReader(); 
+			reader.onload = function (e) { 
+				$('#blah').attr('src', e.target.result); 
+			} 
+				reader.readAsDataURL(input.files[0]); 
+			} 
+		} 
+</script>
+
+
 </head>
+
+
 
 <body>
    <div class="ui container">
