@@ -18,7 +18,7 @@ public class feedDAO {
 		return instance;
 	}
 	
-private Connection getConnection() {
+	private Connection getConnection() {
 		
 		Context context = null;
 		DataSource dataSource = null;

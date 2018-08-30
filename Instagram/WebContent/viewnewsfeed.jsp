@@ -4,8 +4,7 @@
 <%@ page import="java.util.*" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
-	//feedDAO dao = new feedDAO();
-	//LinkedHashMap<String,feedDTO> map = dao.getNewsFeed("sjw");
+	String user_id = (String)session.getAttribute("id");
 	LinkedHashMap<String,feedDTO> map =(LinkedHashMap<String,feedDTO>) request.getAttribute("map"); 
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -44,7 +43,7 @@
         </a>
 
         <div class="ui huge secondary pointing stackable menu violet">
-            <a class="item" href="viewmyfeed.do?user_id=<%="puhahason"%>">새 포스트</a>
+            <a class="item" href="viewmyfeed.do?user_id=<%=user_id%>">새 포스트</a>
             <a class="item">좋아한 글</a>
             <a class="item">태그</a>
             <div class="right menu">
@@ -63,7 +62,7 @@
        <div class="content">
           <div class="right floated meta">14h</div>
              <img class="ui avatar image" src="./images/avatar/large/elliot.jpg"> 
-             <a href="#"><%=map.get(key).getUser_id()%></a>
+             <a href="viewfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
        </div>
              <div class="image">
              <%if(map.get(key).getImage_path() == null){ %>
