@@ -12,7 +12,7 @@
         <div class="right menu">
             <div class="item">
                 <div class="ui small input">
-                    <input placeholder="검색" type="text" />
+                    <input placeholder="검색" type="text" id="searchid" />
                 </div>
             </div>
             <a class="ui item" href="./member/logout.jsp">로그아웃</a>

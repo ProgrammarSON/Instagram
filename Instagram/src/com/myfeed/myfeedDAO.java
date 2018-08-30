@@ -201,4 +201,44 @@ public class myfeedDAO {
 		}
 		return check;
 	}
+	
+	public List<myfeedDTO> getSearch(String user_id){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		myfeedDTO dto = null;
+		List<myfeedDTO> list = new ArrayList<>();
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT * FROM myfeed ");
+		//sql.append("WHERE user_id = ?");
+		
+		
+		try {
+			conn =getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			//pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			
+			while(rs.next())
+			{
+				dto = new myfeedDTO();
+				dto.setUser_id(rs.getString("user_id"));
+				list.add(dto);
+			}		
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+				if(rs != null) rs.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 }

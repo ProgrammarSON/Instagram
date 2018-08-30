@@ -16,7 +16,11 @@
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
-
+	
+	<script src="http://code.jquery.com/jquery-1.7.js" type="text/javascript"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
+	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
+ 
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -64,6 +68,10 @@
             	}
         	})
     	})
+    	
+    /* 	$("#searchid").autocomplete({
+    		source : 
+    	}) */
     	
     	
     });
