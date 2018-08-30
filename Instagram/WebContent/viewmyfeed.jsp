@@ -8,7 +8,7 @@
 	String user_id = (String)session.getAttribute("id");
 	String follow_id = dto.getUser_id();
 %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8">
@@ -18,6 +18,7 @@
     <script src="semantic/dist/semantic.min.js"></script>
 
     <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
     <title>Yestagram</title>
@@ -71,23 +72,7 @@
 
 <body>
     <div class="ui container">
-        <a class="" href="#">
-            <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
-        </a>
-
-        <div class="ui huge secondary pointing stackable menu violet">
-            <a class="item" href="./writenewsfeed.jsp">새 포스트</a>
-            <a class="item">좋아한 글</a>
-            <a class="item">태그</a>
-            <div class="right menu">
-                <div class="item">
-                    <div class="ui small input">
-                        <input placeholder="검색" type="text" />
-                    </div>
-                </div>
-                <a class="ui item" href="./member/logout.jsp">로그아웃</a>
-            </div>
-        </div>
+        <jsp:include page="navbar.jsp"/>
 
         <div class="ui grid container">
 
@@ -194,6 +179,4 @@
         </div>
     </div>
 
-</body>
-
-</html>
+	<jsp:include page="footer.jsp"/>

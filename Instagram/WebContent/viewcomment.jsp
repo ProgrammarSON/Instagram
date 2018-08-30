@@ -5,23 +5,22 @@
 	String feed_id = (String)request.getAttribute("feed_id");
 	String user_id = (String)session.getAttribute("id");
 %>    
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
-    <script src="ckeditor5/11.0.1/inline/ckeditor.js"></script>
-    <script src="ckeditor5/11.0.1/translations/ko.js"></script>
 
     <!-- Custom -->
+    <link rel="stylesheet" type="text/css" href="common.css">
     <link rel="stylesheet" type="text/css" href="style.css">
     <script src="script.js"></script>
     <title>포스트</title>
    
-   <c:forEach items="${list}" var="dto"> 
+    <c:forEach items="${list}" var="dto"> 
 	<script>
 	
 	$(document).ready(function(){
@@ -116,33 +115,12 @@
 	</script>
 	</c:forEach>
    
-   <script>
-    
-	</script>
-	
-	
 </head>
 
 <body>
 	
     <div class="ui container">
-        <a class="" href="#">
-            <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
-        </a>
-
-        <div class="ui huge secondary pointing stackable menu violet">
-            <a class="item">새 포스트</a>
-            <a class="item">좋아한 글</a>
-            <a class="item">태그</a>
-            <div class="right menu">
-                <div class="item">
-                    <div class="ui small input">
-                        <input placeholder="검색" type="text" />
-                    </div>
-                </div>
-                <a class="ui item">로그아웃</a>
-            </div>
-        </div>
+        <jsp:include page="navbar.jsp"/>
 
         <div class="ui segment">
             <h1>제목란입니다.</h1>
@@ -240,6 +218,4 @@
             </div>
         </div>
 
-</body>
-
-</html>
+	<jsp:include page="footer.jsp"/>
