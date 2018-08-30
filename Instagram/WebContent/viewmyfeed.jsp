@@ -25,7 +25,7 @@
         </a>
 
         <div class="ui huge secondary pointing stackable menu violet">
-            <a class="item">새 포스트</a>
+            <a class="item" href="./writenewsfeed.jsp">새 포스트</a>
             <a class="item">좋아한 글</a>
             <a class="item">태그</a>
             <div class="right menu">
@@ -34,16 +34,14 @@
                         <input placeholder="검색" type="text" />
                     </div>
                 </div>
-                <a class="ui item">로그아웃</a>
+                <a class="ui item" href="./member/logout.jsp">로그아웃</a>
             </div>
         </div>
-
-
 
         <div class="ui grid container">
 
             <div class="five wide column">
-                <img class="ui image small circular centered" src="./images/avatar/large/elliot.jpg">
+                <img class="ui image small circular centered" src="./profile_image/<%=dto.getProfile_img() %>">
             </div>
 
             <div class="eleven wide column">
@@ -75,7 +73,14 @@
                 <div class="ui column">
                     <p>
                         <%=dto.getContents() %><br>
-                     
+                    </p>
+                </div>
+                <div class="ui column">
+                    <p>
+                    <form>
+                    	<input type="hidden" value="">
+                        <button type="button" type="submit" >팔로우</button>
+                    </form>
                     </p>
                 </div>
                 
