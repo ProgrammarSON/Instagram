@@ -97,6 +97,10 @@ public class controller extends HttpServlet {
 			command = new followingCommand();
 			command.execute(request, response);
 			return;
+		}else if(com.equals("/searchid.do")) {
+			command = new searchUserIDCommand();
+			command.execute(request, response);
+			return;
 		}
 		
 		System.out.println("dispatcher.......");
