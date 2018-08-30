@@ -4,35 +4,17 @@ $(document).ready(function() {
         $(this).addClass('active');
     });
 
-
-InlineEditor
-    .create(document.querySelector('#editor'), {
-        toolbar: {
-            items: [
-                'heading',
-                '|',
-                'bold',
-                'italic',
-                'link',
-                'bulletedList',
-                'numberedList',
-                'imageUpload',
-                'blockQuote',
-                'undo',
-                'redo'
-            ]
-        },
-        image: {
-            toolbar: [
-                'imageStyle:full',
-                'imageStyle:side',
-                '|',
-                'imageTextAlternative'
-            ]
-        },
-        language: 'ko'
-    })
-    .catch(error => {
-        console.error(error);
+    $('#dimmer_pic.image').dimmer({
+        on: 'hover'
     });
 });
+
+function readURL(input){ 
+    if (input.files && input.files[0]) { 
+        var reader = new FileReader(); 
+        reader.onload = function (e) { 
+            $('.dim_pic').attr('src', e.target.result); 
+        } 
+        reader.readAsDataURL(input.files[0]);
+    } 
+}

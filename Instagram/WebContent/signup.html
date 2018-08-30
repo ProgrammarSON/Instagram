@@ -13,18 +13,6 @@
     <script src="js/script.js"></script>
     <script src="js/signup.js"></script>
     <title>가입하기</title>
-    
- <script>
-	function readURL(input){ 
-		if (input.files && input.files[0]) { 
-			var reader = new FileReader(); 
-			reader.onload = function (e) { 
-				$('#blah').attr('src', e.target.result); 
-			} 
-                reader.readAsDataURL(input.files[0]);
-			} 
-		} 
-</script>
 </head>
 
 <body>
@@ -51,7 +39,7 @@
                             	<label for="profilePath" class="ui inverted button violet">사진 선택</label>
                                 <input type="file" name="profilePath" id="profilePath" onchange="readURL(this);">
                             </div>
-                            <img class="image centered-and-cropped" id="blah" src="images/avatar/large/matthew.png">
+                            <img class="image centered-and-cropped dim_pic" src="images/avatar/large/matthew.png">
                         </div>
                     </div>
                 </div>

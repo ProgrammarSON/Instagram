@@ -5,3 +5,7 @@
 #header_user {
   font-weight: 200;
 }
+
+input[type="file"] {
+  display: none;
+}
