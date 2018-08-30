@@ -15,3 +15,12 @@ input[type="file"] {
   height: 100%;
   object-fit: cover;
 }
+
+#feed_image {
+  width: 45px; height: 45px;
+  object-fit: cover;
+}
+
+.ui.custom.popup {
+  min-width: 400px;
+}
