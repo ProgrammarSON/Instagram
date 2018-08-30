@@ -3,6 +3,7 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String feed_id = (String)request.getAttribute("feed_id");
+	String user_id = (String)session.getAttribute("id");
 %>    
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -69,7 +70,7 @@
 		    }});
 		
 		$("#${dto.getComment_id()}_reply_write").click(function(){
-			var user_id = 'ronaldo';
+			var user_id = <%=user_id%>;
 			var contents = $("#${dto.getComment_id()}_reply_contents").val();
 			$.ajax({url:"writereply.do?comment_id=${dto.getComment_id()}&user_id="+user_id+"&contents="+contents,
 					success : function(result){

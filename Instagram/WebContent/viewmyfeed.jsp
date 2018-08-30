@@ -4,8 +4,9 @@
 
 <% 
 	myfeedDTO dto = (myfeedDTO)request.getAttribute("dto"); 
+	int check = (int)request.getAttribute("check");
 	String user_id = (String)session.getAttribute("id");
-	
+	String follow_id = dto.getUser_id();
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -20,6 +21,52 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
     <title>Yestagram</title>
+    
+    <script>
+    $(document).ready(function(){
+    	var id = "<%=user_id %>";
+    	var follow = "<%=follow_id %>";
+    	var state = <%=check%>
+    	
+    	if(state == -1)
+    	{
+    		$("#following").show();
+    		$("#followingjung").hide();
+    		$("#modify").hide();
+    	}else if(state == 0){
+    		$("#following").hide();
+    		$("#followingjung").hide();
+    		$("#modify").show();
+    	}else{
+    		$("#following").hide();
+    		$("#followingjung").show();
+    		$("#modify").hide();
+    	}   	
+    	
+    	
+    	$("#following").click(function(){
+        	$.ajax({
+            	url: "following.do?user_id=<%=user_id%>&follow_id=<%=follow_id%>",
+            	success : function(result){
+                	var check = JSON.parse(result);
+					console.log(check);                
+            	}
+        	})
+    	})
+    	
+    	$("#followingjung").click(function(){
+        	$.ajax({
+            	url: "following.do?user_id=<%=user_id%>&follow_id=<%=follow_id%>",
+            	success : function(result){
+                	var check = JSON.parse(result);
+					console.log(check);                
+            	}
+        	})
+    	})
+    	
+    	
+    });
+    </script>
 </head>
 
 <body>
@@ -51,7 +98,7 @@
             <div class="eleven wide column">
                 
                 <h1 class="ui header" id="header_user">
-                    <%=dto.getUser_id() %>
+                    <%=follow_id %>
                 </h1>
             
                 <div class="ui relaxed horizontal list">
@@ -82,8 +129,9 @@
                 <div class="ui column">
                     <p>
                     <form>
-                    	<input type="hidden" value="">
-                        <button type="button" type="submit" >팔로우</button>
+                    	<button type="button" id="following">팔로우</button>
+                    	<button type="button" id="followingjung">팔로잉중</button>
+                    	<button type="button" id="modify">프로필 수정</button>
                     </form>
                     </p>
                 </div>

@@ -93,6 +93,10 @@ public class controller extends HttpServlet {
 			command = new viewMyFeedCommand();
 			command.execute(request, response);
 			viewPage = "viewmyfeed.jsp";
+		}else if(com.equals("/following.do")) {
+			command = new followingCommand();
+			command.execute(request, response);
+			return;
 		}
 		
 		System.out.println("dispatcher.......");

@@ -6,6 +6,7 @@
 <%
 	String user_id = (String)session.getAttribute("id");
 	LinkedHashMap<String,feedDTO> map =(LinkedHashMap<String,feedDTO>) request.getAttribute("map"); 
+	int check;
 %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -21,6 +22,11 @@
 <script src="script.js"></script>
 <title>Yestagram</title>
 
+<script>
+	
+</script>
+
+
 <script type="text/javascript">
 	function readURL(input){ 
 		if (input.files && input.files[0]) { 
@@ -30,7 +36,7 @@
 			} 
 				reader.readAsDataURL(input.files[0]); 
 			} 
-		} 
+		}
 </script>
 
 
@@ -62,7 +68,7 @@
        <div class="content">
           <div class="right floated meta">14h</div>
              <img class="ui avatar image" src="./images/avatar/large/elliot.jpg"> 
-             <a href="viewfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
+             <a href="viewmyfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
        </div>
              <div class="image">
              <%if(map.get(key).getImage_path() == null){ %>
