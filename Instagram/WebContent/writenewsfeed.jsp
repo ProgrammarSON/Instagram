@@ -41,12 +41,12 @@
             <div class="ui divider"></div>
             
 			<input type="hidden" name="user_id" value="<%=user_id %>">
-			<div class="bordered image" id="dimmer_pic">
+			<div class="bordered image centered-and-cropped" id="dimmer_pic">
 				<div class="ui dimmer">
 					<label for="button_pic" class="ui inverted button violet">사진 선택</label>
 					<input type="file" name="fileName1" id="button_pic" onchange="readURL(this);">
 				</div>
-				<img class="ui image dim_pic" src="images/wireframe/image.png">
+				<img class="ui centered image dim_pic" src="images/wireframe/upload_image.png">
 			</div>
         </div>
         <div class="ui segment">
