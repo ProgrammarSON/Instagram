@@ -24,3 +24,10 @@ input[type="file"] {
 .ui.custom.popup {
   min-width: 400px;
 }
+
+.ui.reply.form textarea:not([rows]) {
+	/* height: 5em; */
+	min-height: 75px;
+	max-height: 75px;
+	height: 75px;
+}

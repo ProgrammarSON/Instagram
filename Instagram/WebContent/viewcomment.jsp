@@ -5,11 +5,12 @@
 	String feed_id = (String)request.getAttribute("feed_id");
 	String user_id = (String)session.getAttribute("id");
 
-%>    
+%>
 <!DOCTYPE html>
 <html>
+
 <head>
-	<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
@@ -20,11 +21,11 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
     <title>포스트</title>
-   
-    <c:forEach items="${list}" var="dto"> 
-	<script>
-	
-	$(document).ready(function(){
+
+    <c:forEach items="${list}" var="dto">
+        <script>
+
+            $(document).ready(function(){
     	 $("#${dto.getComment_id()}").hide();
     	 $("#${dto.getComment_id()}_reply_hide").hide();
     	     	 
@@ -99,14 +100,14 @@
 	});	
 	
 	</script>
-	</c:forEach>
-   
+    </c:forEach>
+
 </head>
 
 <body>
-	
+
     <div class="ui container">
-        <jsp:include page="navbar.jsp"/>
+        <jsp:include page="navbar.jsp" />
 
         <div class="ui segment">
             <h1>제목란입니다.</h1>
@@ -120,10 +121,10 @@
 
         <div class="ui segment">
             <div class="container">
-                <form class="ui reply form" action = "writecomment.do">
-                     <input type="hidden" name="comment_feed_id" value=<%=feed_id%>>
-                	<input type="hidden" name="comment_user_id" value="sjw">
-                    
+                <form class="ui reply form" action="writecomment.do">
+                    <input type="hidden" name="comment_feed_id" value=<%=feed_id%>>
+                    <input type="hidden" name="comment_user_id" value="sjw">
+
                     <div class="field">
                         <textarea placeholder="댓글을 작성해보세요." rows="3" name="comment_content"></textarea>
                     </div>
@@ -136,7 +137,7 @@
 
             <div class="ui threaded comments">
                 <h3 class="ui dividing header">#개의 댓글</h3>
-      <!--           <div class="comment">
+                <!--           <div class="comment">
                     <a class="avatar">
                         <img src="/images/avatar/small/matt.jpg">
                       </a>
@@ -153,55 +154,59 @@
                         </div>
                     </div>
                 </div> -->
-               <c:forEach items="${list}" var="dto">
-                <div class="comment">
-                    <a class="avatar">
-                        <img src="images/avatar/small/elliot.jpg">
-                      </a>
-                    <div class="content">
-                        <a class="author">${dto.getUser_id()}</a>	<!-- 사용자 이름 -->
-                        <div class="metadata">
-                            <span class="date">${dto.getComment_date()}</span>
-                        </div>
-                        <div class="text">
-                            <p>${dto.getContent()}</p>
-                        </div>
-                        <div class="actions">
-                            <a class="reply" id="${dto.getComment_id()}_reply_show">댓글보이기</a>
-                        	<a class="reply" id="${dto.getComment_id()}_reply_hide">댓글숨기기</a>
-                        </div>
-                           <div class="field" id="${dto.getComment_id()}">
-                           	<textarea placeholder="댓글을 작성해보세요." rows="2" id="${dto.getComment_id()}_reply_contents"></textarea>
-                    		<button class="ui button violet" type="submit" id="${dto.getComment_id()}_reply_write">작성하기</button>
-                   	 	  	  
-                   	 	  	  <div class="comments" id="${dto.getComment_id()}_reply_id"> </div>
-                         		   
-                   	 	  	</div>
-                    </div>
-                   </div> 
-                </c:forEach>    
-                    <div class="comments" id="reply_id">
-                        <div class="comment">
-                            <a class="avatar">
-                            <img src="images/avatar/small/jenny.jpg">
-                          </a>
-                            <div class="content">
-                                <a class="author">Jenny Hess</a>
-                                <div class="metadata">
-                                    <span class="date">방금 전</span>
-                                </div>
-                                <div class="text">
-                                    	친구 넌 항상 옳아 :)
-                                </div>
-                                <div class="actions">
-                                    <a class="reply">댓글쓰기</a>
+                <c:forEach items="${list}" var="dto">
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="images/avatar/small/elliot.jpg">
+                        </a>
+                        <div class="content">
+                            <a class="author">${dto.getUser_id()}</a> <!-- 사용자 이름 -->
+                            <div class="metadata">
+                                <span class="date">${dto.getComment_date()}</span>
+                            </div>
+                            <div class="text">
+                                <p>${dto.getContent()}</p>
+                            </div>
+                            <div class="actions">
+                                <a class="reply" id="${dto.getComment_id()}_reply_show">댓글 보기</a>
+                                <a class="reply" id="${dto.getComment_id()}_reply_hide">댓글 숨기기</a>
+                            </div>
+                            <div class="field" id="${dto.getComment_id()}">
+                                <div class="ui reply form">
+                                    <textarea placeholder="댓글을 작성해보세요." id="${dto.getComment_id()}_reply_contents"></textarea>
+									<div class="ui right aligned container">
+                                    	<button class="ui tiny button violet" type="submit" id="${dto.getComment_id()}_reply_write">작성하기</button>
+									</div>
+                                    <div class="comments" id="${dto.getComment_id()}_reply_id"></div>
                                 </div>
                             </div>
-                       </div>
+                        </div>
+                    </div>
+                </c:forEach>
+                
+                
+                <div class="comments" id="reply_id">
+                    <div class="comment">
+                        <a class="avatar">
+                            <img src="images/avatar/small/jenny.jpg">
+                        </a>
+                        <div class="content">
+                            <a class="author">Jenny Hess</a>
+                            <div class="metadata">
+                                <span class="date">방금 전</span>
+                            </div>
+                            <div class="text">
+                                친구 넌 항상 옳아 :)
+                            </div>
+                            <div class="actions">
+                                <a class="reply">댓글쓰기</a>
+                            </div>
+                        </div>
                     </div>
                 </div>
-              
             </div>
-        </div>
 
-	<jsp:include page="footer.jsp"/>
+        </div>
+    </div>
+
+    <jsp:include page="footer.jsp" />
