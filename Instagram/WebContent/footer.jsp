@@ -2,17 +2,13 @@
 /* navbar 좋아한 글 */
 $(function(){
     $.ajax({
-        async: false,
         url: "likesfeed.html",
         type: "GET",
         dataType: "html",
         success: function(data) {
             $("#liked").popup({
                 popup: $(".custom.popup").html(data),
-                on: 'click',
-                delay: {
-                    show: 300, hide: 800
-                }
+                on: 'click'
             });
         },
         error: function(err, val, msg) {
