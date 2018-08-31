@@ -9,7 +9,11 @@ body {
 }
 
 #likes_feed .item:first-child {
-	padding-top: 14px;
+	padding-top: 12px;
+}
+
+#likes_feed .item:last-child {
+	padding-bottom: 12px;
 }
 
 .btn_follow {
