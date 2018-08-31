@@ -4,6 +4,14 @@ body {
     font-family: "Noto Sans", sans-serif;
 }
 
+#likes_feed {
+	margin-top: 0;
+}
+
+#likes_feed .item:first-child {
+	padding-top: 14px;
+}
+
 .btn_follow {
     padding-left: 1em !important;
     padding-right: 1em !important;
