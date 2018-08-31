@@ -82,6 +82,53 @@ public class feedDAO {
 		return map;
 	}
 	
+	public LinkedHashMap<String,feedDTO> getMyFeed(String id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		LinkedHashMap<String,feedDTO> map = null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT contents, user_id, NEWSFEED_ID, FEED_DATE, image_path ");
+		sql.append("FROM NEWSFEED ");
+		sql.append("WHERE user_id = ? ");
+		sql.append("ORDER BY feed_date DESC");
+		
+		System.out.println(sql.toString());
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, id);
+			rs = pstmt.executeQuery();
+			map = new LinkedHashMap<>();
+			
+			while(rs.next())
+			{
+				feedDTO dto = new feedDTO();
+				dto.setContents(rs.getString("contents"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setDate(rs.getString("feed_date"));
+				dto.setImage_path(rs.getString("image_path"));
+				map.put(rs.getString("newsfeed_id"), dto);
+				//System.out.println(rs.getString("contents"));
+				//System.out.println(rs.getString("image_path"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	
 	public int insertNewsFeed(feedDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

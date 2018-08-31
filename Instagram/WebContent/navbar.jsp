@@ -1,6 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+	<script>
+	$(document).ready(function() {
+		$.ajax({
+			url : "searchid.do",
+			success : function(result){
+				var datas = JSON.parse(result);
+				var datajson = JSON.stringify(datas);
+				console.log(datajson);
+				var resulttag;
+				console.log(datas);
+				resulttag += "<table border='1'>";
+				for(i=0; i<datas.length; i++){
+					resulttag += "<tr><td><a href=viewmyfeed.do?user_id="+datas[i].user_id+">"
+					+datas[i].user_id
+					+"</a></td></tr>";
+				}
+				
+				resulttag += "</table>";
+				$("#viewsearch").html(resulttag);
+			}
+		});
+				
+		$("#searchid").on("keyup",function(){
+			var value = $(this).val().toLowerCase();
+			$("table tr").filter(function(){
+				$(this).toggle($(this).text().toLowerCase().indexOf(value) > -1);
+			});
+		});		
+	});	
+	</script>
 	<a class="" href="#">
         <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
     </a>
@@ -14,6 +44,11 @@
                 <div class="ui small input">
                     <input placeholder="검색" type="text" id="searchid" />
                 </div>
+                
+                <div id="viewsearch">
+                
+                </div>
+                
             </div>
             <a class="ui item" href="./member/logout.jsp">로그아웃</a>
         </div>

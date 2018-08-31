@@ -106,7 +106,7 @@ public class myfeedDAO {
 		return ri;
 	}
 	
-	public int insertFollowing(String user_id, String follow_id) {
+	public int insertFollow(String user_id, String follow_id) {
 		int ri = 0;
 		
 		Connection conn = null;
@@ -133,13 +133,72 @@ public class myfeedDAO {
 		return ri;
 	}
 	
+	public int deleteFollow(String user_id, String follow_id) {
+		int ri = 0;
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer(); 
+		sql.append("DELETE FROM follow ");
+		sql.append("WHERE user_id = ? AND following = ?");
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, follow_id);
+			ri = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return ri;
+	}
+	
 	public int updateFollowNum(String user_id, String follow_id) {
 		Connection conn = null;
 		CallableStatement cstmt = null;
 		int check=0;
 		try {
 			conn = getConnection();		
-			cstmt = conn.prepareCall("{call myfeed_proc(?,?)}");
+			cstmt = conn.prepareCall("{call following_proc(?,?)}");
+			cstmt.setString(1, user_id);
+			cstmt.setString(2, follow_id);
+						
+			check = cstmt.executeUpdate();
+						
+			if(check == 0) System.out.println("No Data");
+			else System.out.println("Success");
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(cstmt != null) cstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return check;
+	}
+	
+	public int updateunFollowNum(String user_id, String follow_id) {
+		Connection conn = null;
+		CallableStatement cstmt = null;
+		int check=0;
+		try {
+			conn = getConnection();		
+			cstmt = conn.prepareCall("{call unfollow_proc(?,?)}");
 			cstmt.setString(1, user_id);
 			cstmt.setString(2, follow_id);
 						

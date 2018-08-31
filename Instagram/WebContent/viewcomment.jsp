@@ -4,6 +4,7 @@
 <%
 	String feed_id = (String)request.getAttribute("feed_id");
 	String user_id = (String)session.getAttribute("id");
+
 %>    
 <!DOCTYPE html>
 <html>
@@ -15,9 +16,9 @@
     <script src="semantic/dist/semantic.min.js"></script>
 
     <!-- Custom -->
-    <link rel="stylesheet" type="text/css" href="common.css">
-    <link rel="stylesheet" type="text/css" href="style.css">
-    <script src="script.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/common.css">
+    <link rel="stylesheet" type="text/css" href="css/style.css">
+    <script src="js/script.js"></script>
     <title>포스트</title>
    
     <c:forEach items="${list}" var="dto"> 
@@ -41,15 +42,15 @@
     		$("#${dto.getComment_id()}_reply_hide").hide();
 		});
     	
-    	$.ajax({url:"viewreply.do?comment_id=${dto.getComment_id()}",
+    	$.ajax({
+    		url:"viewreply.do?comment_id=${dto.getComment_id()}",
 		    success : function(result){
 		    	var datas = JSON.parse(result);
 		    	//console.log(dates[0].contents);
 		    	for(i=0; i<datas.length; i++){
 		    	//	$("#${dto.getComment_id()}").html("hhhhhhhh"+datas[0].contents);
 		    		console.log(datas[i].contents);
-		    		
-		    		
+		    				    		
 		    		$("#${dto.getComment_id()}_reply_id").append(
 		    		"<div class='comment'>" +
 		    		" <a class='avatar'> " +
@@ -69,36 +70,21 @@
 		    }});
 		
 		$("#${dto.getComment_id()}_reply_write").click(function(){
-			var user_id = <%=user_id%>;
+			var id = "<%=user_id%>";
 			var contents = $("#${dto.getComment_id()}_reply_contents").val();
-			$.ajax({url:"writereply.do?comment_id=${dto.getComment_id()}&user_id="+user_id+"&contents="+contents,
+			$.ajax({
+					url:"writereply.do?comment_id=${dto.getComment_id()}&user_id="+id+"&contents="+contents,
 					success : function(result){
 						var datas = JSON.parse(result);
 						
-				/* 		for(i=0; i<datas.length; i++){
-							$("#reply_id").append(
-						    		"<div class='comment'>" +
-						    		" <a class='avatar'> " +
-			                        " <img src='images/avatar/small/jenny.jpg'> "+
-			                      	" </a> " +
-			                      	"<div class='content'> "+
-			                      		"<a class='author'> " + datas[i].user_id + "</a>" +
-			                      	"<div class='metadata'>" +
-			            				"<span class='date'>방금 전</span> " +
-			  	      				"</div> " +
-			        				"<div class='text'> " + datas[i].contents + "</div>" +
-			            			"</div>"+
-									"</div>"
-							);
-						} */
-						
+						console.log()
 						$("#${dto.getComment_id()}_reply_id").append(
 					    		"<div class='comment'>" +
 					    		" <a class='avatar'> " +
 		                        " <img src='images/avatar/small/jenny.jpg'> "+
 		                      	" </a> " +
 		                      	"<div class='content'> "+
-		                      		"<a class='author'> " + user_id + "</a>" +
+		                      		"<a class='author'> " + id + "</a>" +
 		                      	"<div class='metadata'>" +
 		            				"<span class='date'>방금 전</span> " +
 		  	      				"</div> " +
@@ -190,7 +176,7 @@
                    	 	  	  
                    	 	  	  <div class="comments" id="${dto.getComment_id()}_reply_id"> </div>
                          		   
-                   	 	  </div>
+                   	 	  	</div>
                     </div>
                    </div> 
                 </c:forEach>    

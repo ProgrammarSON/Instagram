@@ -17,16 +17,9 @@ public class writeReplyCommand implements Command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		try {
-			request.setCharacterEncoding("UTF-8");
-			
-			response.setContentType("text/xml; charset=utf-8");
-			response.setCharacterEncoding("utf-8");
-			
-		} catch (UnsupportedEncodingException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
+	
+//		response.setContentType("text/html;charset=UTF-8");
+//		response.setCharacterEncoding("UTF-8");
 		
 		String user_id = request.getParameter("user_id");
 		String comment_id = request.getParameter("comment_id");
@@ -45,6 +38,10 @@ public class writeReplyCommand implements Command{
 			List<replyDTO> list = dao.getReply(comment_id);
 			PrintWriter out;
 			try {
+//				request.setCharacterEncoding("UTF-8");
+				response.setContentType("text/html; charset=utf-8");
+				response.setCharacterEncoding("utf-8");
+				
 				out = response.getWriter();
 				out.print(JSONArray.fromObject(list).toString());		
 			} catch (IOException e) {
