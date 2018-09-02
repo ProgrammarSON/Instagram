@@ -22,6 +22,7 @@
     <script src="js/script.js"></script>
     <title>포스트</title>
 
+	<!-- 대댓글  -->
     <c:forEach items="${list}" var="dto">
         <script>
 
@@ -55,7 +56,7 @@
 		    		$("#${dto.getComment_id()}_reply_id").append(
 		    		"<div class='comment'>" +
 		    		" <a class='avatar'> " +
-                    " <img src='images/avatar/small/jenny.jpg'> "+
+                    " <img src='profile_image/"+ datas[i].img_path+"'> "+
                   	" </a> " +
                   	"<div class='content'> "+
                   		"<a class='author'> " + datas[i].user_id + "</a>" +
@@ -97,8 +98,7 @@
 			}});
               	
 		});
-	});	
-	
+	});		
 	</script>
     </c:forEach>
 
@@ -157,7 +157,13 @@
                 <c:forEach items="${list}" var="dto">
                     <div class="comment">
                         <a class="avatar">
-                            <img src="images/avatar/small/elliot.jpg">
+                        	<c:if test="${dto.getImg_path() ne null}">
+                            	<img src="profile_image/${dto.getImg_path()}">
+                            </c:if>
+                            
+                            <c:if test="${dto.getImg_path() eq null}">
+                            	<img src="profile_image/null.jpg">
+                            </c:if>
                         </a>
                         <div class="content">
                             <a class="author">${dto.getUser_id()}</a> <!-- 사용자 이름 -->
@@ -178,7 +184,7 @@
                                     	<button class="ui tiny button violet" type="submit" id="${dto.getComment_id()}_reply_write">작성하기</button>
 									</div>
                                     <div class="comments" id="${dto.getComment_id()}_reply_id"></div>
-                                </div>
+                              </div>
                             </div>
                         </div>
                     </div>

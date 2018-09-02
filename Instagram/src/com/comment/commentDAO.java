@@ -71,11 +71,12 @@ public class commentDAO {
 		ResultSet rs = null;
 		List<commentDTO> list = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT comment_id, user_id, comment_date, contents ");
-		sql.append("FROM comments ");
-		sql.append("WHERE NEWSFEED_ID = ? ");
+		sql.append("SELECT comment_id, c.user_id, comment_date, c.contents, profile_img ");
+		sql.append("FROM comments c JOIN myfeed m ");
+		sql.append("ON c.user_id = m.user_id ");
+		sql.append("WHERE c.NEWSFEED_ID = ? ");
 		sql.append("ORDER BY comment_date");
-		
+		System.out.println(sql.toString());
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
@@ -89,6 +90,7 @@ public class commentDAO {
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setComment_date(rs.getString("comment_date"));
 				dto.setContent(rs.getString("contents"));
+				dto.setImg_path(rs.getString("profile_img"));
 				list.add(dto);
 				//System.out.println(id+" ggg "+contents);
 				//map.get(feedid).getReplys().add(new reply(id,contents));
@@ -147,8 +149,10 @@ public class commentDAO {
 		ResultSet rs = null;
 		List<replyDTO> list = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT user_id, contents ");
-		sql.append("FROM reply WHERE comment_id = ?");
+		sql.append("SELECT r.user_id, r.contents, profile_img ");
+		sql.append("FROM reply r JOIN myfeed m ");
+		sql.append("ON r.user_id = m.user_id ");
+		sql.append("WHERE r.comment_id = ?");
 		
 		try {
 			conn = getConnection();
@@ -161,6 +165,7 @@ public class commentDAO {
 				replyDTO dto = new replyDTO();
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setContents(rs.getString("contents"));
+				dto.setImg_path(rs.getString("profile_img"));
 				list.add(dto);
 				//System.out.println(id+" ggg "+contents);
 				//map.get(feedid).getReplys().add(new reply(id,contents));

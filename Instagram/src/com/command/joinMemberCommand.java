@@ -31,7 +31,7 @@ public class joinMemberCommand implements Command{
 		myfeedDAO myfeed_dao = myfeedDAO.getinstance();
 		
 		String uploadPath = request.getRealPath("/profile_image");
-			 	
+		 	 	
 		System.out.println(uploadPath);
 		int maxSize = 1024 * 1024 * 10; // 한번에 올릴 수 있는 파일 용량 : 10M로 제한
 	    int check = 0;
@@ -60,20 +60,23 @@ public class joinMemberCommand implements Command{
 	        // 전송한 전체 파일이름들을 가져옴
 	        Enumeration files = multi.getFileNames();
 	         
-	        while(files.hasMoreElements())
-	        {
-	            // form 태그에서 <input type="file" name="여기에 지정한 이름" />을 가져온다.
-	            String file1 = (String)files.nextElement(); // 파일 input에 지정한 이름을 가져옴
+	        if(files != null)
+	        	while(files.hasMoreElements())
+	        	{
+	        	// form 태그에서 <input type="file" name="여기에 지정한 이름" />을 가져온다.
+	        	String file1 = (String)files.nextElement(); // 파일 input에 지정한 이름을 가져옴
 	            
-	            profilePath= multi.getFilesystemName(file1);
-	            //image_path = image_path + "\\" + multi.getFilesystemName(file1);
-	            originalName1 = multi.getOriginalFileName(file1);
-	            System.out.println(profilePath);
+	        	profilePath= multi.getFilesystemName(file1);
+	        	if(profilePath == null) profilePath = "null.jpg";
+	        	//image_path = image_path + "\\" + multi.getFilesystemName(file1);
+	        	originalName1 = multi.getOriginalFileName(file1);
+	        	System.out.println(profilePath);
 	           
-	            File file = multi.getFile(file1);
+	        	File file = multi.getFile(file1);
 	            
-	            fileSize = file.length();
-	        }
+	        	fileSize = file.length();
+	        } 
+	        
 	        
 	        member_dto.setEmail(email);
 	        member_dto.setUsername(username);

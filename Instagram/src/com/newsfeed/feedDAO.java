@@ -40,10 +40,12 @@ public class feedDAO {
 		ResultSet rs = null;
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path ");
+		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG ");
 		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
 		sql.append("WHERE user_id = ?) p ");
 		sql.append("ON n.user_id = p.following ");
+		sql.append("JOIN myfeed m ");
+		sql.append("ON m.user_id = n.user_id ");
 		sql.append("ORDER BY n.feed_date DESC");
 		
 		System.out.println(sql.toString());
@@ -62,6 +64,7 @@ public class feedDAO {
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDate(rs.getString("feed_date"));
 				dto.setImage_path(rs.getString("image_path"));
+				dto.setProfile_img(rs.getString("profile_img"));
 				map.put(rs.getString("newsfeed_id"), dto);
 				//System.out.println(rs.getString("contents"));
 				//System.out.println(rs.getString("image_path"));
@@ -172,4 +175,5 @@ public class feedDAO {
 		return check;
 	}
 	
+
 }

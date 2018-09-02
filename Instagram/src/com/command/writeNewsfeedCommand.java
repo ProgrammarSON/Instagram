@@ -6,6 +6,7 @@ import com.newsfeed.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
@@ -22,7 +23,8 @@ public class writeNewsfeedCommand implements Command{
 		     
 		    int check = 0;
 		    
-		    String user_id = "";
+		    HttpSession session = request.getSession();
+		    String user_id = (String)session.getAttribute("id");
 		    String contents = "";
 		    String image_path="";
 		    feedDTO dto = new feedDTO();
@@ -39,10 +41,7 @@ public class writeNewsfeedCommand implements Command{
 		    try{
 		        // request,����������,�뷮,���ڵ�Ÿ��,�ߺ����ϸ� ���� �⺻ ��å
 		        multi = new MultipartRequest(request,uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
-		         
-		        // form���� input name="name" �� �༮ value�� ������
-		        user_id = multi.getParameter("user_id");
-		        // name="subject" �� �༮ value�� ������
+		       		    
 		        contents = multi.getParameter("contents");
 		         
 		        // ������ ��ü �����̸����� ������

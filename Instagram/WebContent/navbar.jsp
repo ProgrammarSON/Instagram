@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%String id = (String)session.getAttribute("id"); %>
 	<script>
 	$(document).ready(function() {
 		$.ajax({
@@ -16,8 +16,7 @@
 					resulttag += "<tr><td><a href=viewmyfeed.do?user_id="+datas[i].user_id+">"
 					+datas[i].user_id
 					+"</a></td></tr>";
-				}
-				
+				}				
 				resulttag += "</table>";
 				$("#viewsearch").html(resulttag);
 			}
@@ -31,8 +30,8 @@
 		});		
 	});	
 	</script>
-	<a class="" href="#">
-        <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
+	<a class="" href="viewnewsfeed.do">
+	      <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
     </a>
 
     <div class="ui huge secondary pointing stackable menu violet">
@@ -45,9 +44,7 @@
                     <input placeholder="검색" type="text" id="searchid" />
                 </div>
                 
-                <div id="viewsearch">
-                
-                </div>
+                <div id="viewsearch"></div>
                 
             </div>
             <a class="ui item" href="./member/logout.jsp">로그아웃</a>

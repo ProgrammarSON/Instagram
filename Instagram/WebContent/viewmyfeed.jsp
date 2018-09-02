@@ -9,6 +9,7 @@
 	int check = (int)request.getAttribute("check");
 	String user_id = (String)session.getAttribute("id");
 	String follow_id = dto.getUser_id();
+	String profile_img = (String)request.getAttribute("profile_img");
 	LinkedHashMap<String,feedDTO> map =(LinkedHashMap<String,feedDTO>) request.getAttribute("map");
 %>
 
@@ -143,7 +144,11 @@
     <div class="card">
        <div class="content">
           <div class="right floated meta">14h</div>
-             <img class="ui avatar image" src="./images/avatar/large/elliot.jpg"> 
+          	<%if(profile_img == null){ %>	
+             	<img class="ui avatar image" src="profile_image/null.jpg"> 
+             <%} else {%>
+             	<img class="ui avatar image" src="profile_image/<%=profile_img%>">
+             <%} %>
              <a href="viewmyfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
        </div>
              <div class="image">

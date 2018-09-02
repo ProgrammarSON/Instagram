@@ -238,12 +238,9 @@ public class myfeedDAO {
 			pstmt.setString(2, follow_id);
 			rs = pstmt.executeQuery();
 			
-			if(rs.next())
-			{
-				check = 1;
-			}else {
-				check = -1;
-			}
+			if(rs.next()) check = 1;
+			else check = -1;
+			
 			
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -299,5 +296,41 @@ public class myfeedDAO {
 			}
 		}
 		return list;
+	}
+	
+	public String getProfieImg(String user_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String img = null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT profile_img FROM myfeed ");
+		sql.append("WHERE user_id = ?");
+		
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				img = rs.getString("profile_img");
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return img;
 	}
 }

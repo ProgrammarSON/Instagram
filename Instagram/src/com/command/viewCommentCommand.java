@@ -14,6 +14,7 @@ public class viewCommentCommand implements Command {
 		List<commentDTO> list = null;
 		commentDAO dao = commentDAO.getinstance();
 		list = dao.getComments(feed_id);
+		System.out.println("feed id -> " +feed_id);
 		
 		request.setAttribute("feed_id", feed_id);
 		request.setAttribute("list", list);

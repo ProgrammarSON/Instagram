@@ -5,7 +5,15 @@ public class replyDTO {
 	String comment_id;
 	String user_id;
 	String contents;
+	String img_path;
 	
+	
+	public String getImg_path() {
+		return img_path;
+	}
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
+	}
 	public String getReply_id() {
 		return reply_id;
 	}

@@ -4,9 +4,7 @@
 <% request.setCharacterEncoding("UTF-8"); %>
 <%
 	int state = (int)request.getAttribute("state");
-	String id = (String)request.getAttribute("id");
 	String user_id = (String)request.getAttribute("user_id");
-	System.out.println(user_id);
 %>
 
 <%
@@ -34,7 +32,7 @@
 		//response.sendRedirect("main.jsp");
 %>		
 		<script language="javascript">
-			document.location.href="viewnewsfeed.do?user_id=<%=user_id%>";
+			document.location.href="viewnewsfeed.do";
 		</script>	
 	
 <% }%>

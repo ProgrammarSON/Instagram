@@ -6,9 +6,15 @@ public class commentDTO{
 	String feed_id;
 	String comment_date;
 	String content;
+	String img_path;
 	
 	
-	
+	public String getImg_path() {
+		return img_path;
+	}
+	public void setImg_path(String img_path) {
+		this.img_path = img_path;
+	}
 	public String getFeed_id() {
 		return feed_id;
 	}

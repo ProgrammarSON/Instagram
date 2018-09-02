@@ -7,9 +7,17 @@ public class feedDTO {
 	private String contents;
 	private String date;
 	private String image_path;
+	private String profile_img;
 	private List<reply> replys;	
 	
+	
 
+	public String getProfile_img() {
+		return profile_img;
+	}
+	public void setProfile_img(String profile_img) {
+		this.profile_img = profile_img;
+	}
 	public String getImage_path() {
 		return image_path;
 	}
