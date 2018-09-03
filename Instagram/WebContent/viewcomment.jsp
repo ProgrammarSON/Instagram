@@ -129,7 +129,9 @@
 
         for(var word in splited)
         {
-            word = splited[word];
+            console.log(word);
+        	word = splited[word];
+        	console.log(word);
              if(word.indexOf('#') == 0) // # 문자를 찾는다.
              {
                  word = '<a href="#">'+word+'</a>'; 

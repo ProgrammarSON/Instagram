@@ -62,6 +62,20 @@ public class writeNewsfeedCommand implements Command{
 		            fileSize = file.length();
 		        }
 		        
+		        
+		        String array[] = contents.split(" ");
+		        
+		        for(int i=0;i<array.length;i++)
+		        {
+		        	int idx = array[i].indexOf("#");
+		        	if(idx > -1)
+		        	{
+		        		System.out.println(array[i].substring(idx+1));
+		        		//DB에 어떻게 효율적으로 넣을까?
+		        	}
+		        }
+		        	
+		        
 		        dto.setUser_id(user_id);
 		        dto.setContents(contents);
 		        dto.setImage_path(image_path);
