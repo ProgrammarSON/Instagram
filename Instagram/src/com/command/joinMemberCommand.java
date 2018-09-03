@@ -64,18 +64,18 @@ public class joinMemberCommand implements Command{
 	        	while(files.hasMoreElements())
 	        	{
 	        	// form 태그에서 <input type="file" name="여기에 지정한 이름" />을 가져온다.
-	        	String file1 = (String)files.nextElement(); // 파일 input에 지정한 이름을 가져옴
+	        		String file1 = (String)files.nextElement(); // 파일 input에 지정한 이름을 가져옴
 	            
-	        	profilePath= multi.getFilesystemName(file1);
-	        	if(profilePath == null) profilePath = "null.jpg";
+	        		profilePath= multi.getFilesystemName(file1);
+	        		if(profilePath == null) profilePath = "null.jpg";
 	        	//image_path = image_path + "\\" + multi.getFilesystemName(file1);
-	        	originalName1 = multi.getOriginalFileName(file1);
-	        	System.out.println(profilePath);
+	        		originalName1 = multi.getOriginalFileName(file1);
+	        		System.out.println(profilePath);
 	           
-	        	File file = multi.getFile(file1);
+	        		File file = multi.getFile(file1);
 	            
-	        	fileSize = file.length();
-	        } 
+	        		fileSize = file.length();
+	        	} 
 	        
 	        
 	        member_dto.setEmail(email);
@@ -91,6 +91,7 @@ public class joinMemberCommand implements Command{
 	        check = member_dao.insertMember(member_dto);
 	        if(check > 0) {
 	        	check = myfeed_dao.insertMyfeed(myfeed_dto);
+	        	check = myfeed_dao.insertFollow(user_id, user_id);
 	        }
 	        
 	        request.setAttribute("state", check);

@@ -1,10 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page  import ="com.newsfeed.*"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%
 	String feed_id = (String)request.getAttribute("feed_id");
 	String user_id = (String)session.getAttribute("id");
-
+	feedDTO dto = (feedDTO)request.getAttribute("dto");
 %>
 <!DOCTYPE html>
 <html>
@@ -98,10 +99,11 @@
 			}});
               	
 		});
-	});		
-	</script>
+	});
+            
+ 	</script>
     </c:forEach>
-
+    
 </head>
 
 <body>
@@ -113,10 +115,29 @@
             <h1>제목란입니다.</h1>
             <div class="ui divider"></div>
             <div class="container">
-                <img class="ui image fluid" src="images/crowd.jpg" alt="">
-                <p>글 내용란입니다.</p>
+                <img class="ui image fluid" src="feed_image/<%=dto.getImage_path() %>" alt="">
+                 <div id="feed_contents"><%=dto.getContents() %></div>
+            	 <div id="feed_hashtag"></div>
             </div>
         </div>
+        
+      <script>     
+         //var content = document.querySelector("#hoho");
+		var content = document.getElementById("feed_contents").innerHTML;
+        var splited = content.split(' ');
+        var linked='';
+
+        for(var word in splited)
+        {
+            word = splited[word];
+             if(word.indexOf('#') == 0) // # 문자를 찾는다.
+             {
+                 word = '<a href="#">'+word+'</a>'; 
+             }
+                 linked += word+' ';
+         }
+        document.getElementById('feed_contents').innerHTML = linked;
+	</script>
 
 
         <div class="ui segment">

@@ -175,5 +175,34 @@ public class feedDAO {
 		return check;
 	}
 	
+	public feedDTO getOneFeed(String feed_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		feedDTO dto = new feedDTO();
+		sql.append("SELECT image_path, contents ");
+		sql.append("FROM newsfeed ");
+		sql.append("WHERE newsfeed_id = ?");
+		
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, feed_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto.setImage_path(rs.getString("image_path"));
+				dto.setContents(rs.getString("contents"));				
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return dto;
+	}
+	
 
 }
