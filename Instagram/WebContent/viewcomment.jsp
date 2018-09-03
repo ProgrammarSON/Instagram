@@ -144,8 +144,7 @@
             <div class="container">
                 <form class="ui reply form" action="writecomment.do">
                     <input type="hidden" name="comment_feed_id" value=<%=feed_id%>>
-                    <input type="hidden" name="comment_user_id" value="sjw">
-
+                    
                     <div class="field">
                         <textarea placeholder="댓글을 작성해보세요." rows="3" name="comment_content"></textarea>
                     </div>
