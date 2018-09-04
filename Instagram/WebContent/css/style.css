@@ -21,6 +21,25 @@ input[type="file"] {
   object-fit: cover;
 }
 
+#my_profile_img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+
+.div-profile {
+	margin: 0 auto;
+}
+
+.div-profile-img {
+	border-radius: 50%;
+	box-sizing: border-box;
+	overflow: hidden;
+	position: relative;
+	height: 100%;
+	width: 100%;
+}
+
 .ui.custom.popup {
   min-width: 400px;
 }
@@ -30,4 +49,17 @@ input[type="file"] {
 	min-height: 75px;
 	max-height: 75px;
 	height: 75px;
+}
+
+@media (max-width: 767px) {
+  .div-profile {
+    width: 96px;
+    height: 96px;
+  }
+}
+@media (min-width: 768px) {
+  .div-profile {
+    width: 152px;
+    height: 152px;
+  }
 }

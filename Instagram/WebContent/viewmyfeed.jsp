@@ -88,8 +88,14 @@
 
         <div class="ui grid container">
 
-            <div class="five wide column">
-                <img class="ui image small circular centered" src="./profile_image/<%=dto.getProfile_img() %>">
+            <div class="five wide column center aligned">
+	            <div class="div-profile">
+	            	<div class="div-profile-img">
+	               		<img id="my_profile_img" class="image" src="./profile_image/<%=dto.getProfile_img() %>">
+	               	</div>
+	            </div>
+            
+            
             </div>
 
             <div class="eleven wide column">
@@ -126,9 +132,9 @@
                 <div class="ui column">
                     <p>
                     <form>
-                    	<button type="button" id="following_btn">팔로우</button>
-                    	<button type="button" id="followingjung_btn">팔로잉중</button>
-                    	<button type="button" id="modify_btn">프로필 수정</button>
+                    	<button class="ui tiny button violet" id="following_btn">팔로우</button>
+                    	<button class="ui tiny button violet" id="followingjung_btn">팔로잉중</button>
+                    	<button class="ui tiny button violet" id="modify_btn">프로필 수정</button>
                     </form>
                     </p>
                 </div>
