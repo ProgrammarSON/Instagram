@@ -21,6 +21,10 @@ input[type="file"] {
   object-fit: cover;
 }
 
+#posted_image {
+  margin-bottom: 12px;
+}
+
 #my_profile_img {
 	height: 100%;
 	width: 100%;
@@ -38,6 +42,11 @@ input[type="file"] {
 	position: relative;
 	height: 100%;
 	width: 100%;
+}
+
+.div-comments {
+  display: block;
+  margin: 1.5em 0em 5em;
 }
 
 .ui.custom.popup {
