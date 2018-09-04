@@ -46,3 +46,9 @@ CREATE TABLE myfeed(
   contents VARCHAR2(2000),
   profile_img VARCHAR2(200)
 );
+
+CREATE TABLE HASHTAG(
+  hashtag_contents VARCHAR2(2000),
+  newsfeed_id NUMBER
+);
+

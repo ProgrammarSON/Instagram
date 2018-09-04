@@ -1,5 +1,6 @@
 package com.newsfeed;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -134,24 +135,33 @@ public class feedDAO {
 	
 	public int insertNewsFeed(feedDTO dto) {
 		Connection conn = null;
-		PreparedStatement pstmt = null;
-		StringBuffer sql = new StringBuffer();
-		int check = 0;
-		sql.append("INSERT INTO newsfeed ");
-		sql.append("VALUES(newsfeed_seq.nextval,?,sysdate,?,?)");
+		CallableStatement cstmt = null;
 		
+		int check = 0;
+		int newsfeed_id = 0;
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getUser_id());
-			pstmt.setString(2, dto.getContents());
-			pstmt.setString(3,dto.getImage_path());
-			check = pstmt.executeUpdate();			
+			cstmt = conn.prepareCall("{call newsfeed_proc(?,?,?,?)");
+			cstmt.setString(1, dto.getUser_id());
+			cstmt.setString(2, dto.getContents());
+			cstmt.setString(3,dto.getImage_path());
+			cstmt.registerOutParameter(4, java.sql.Types.INTEGER);
+			
+			cstmt.executeUpdate();			
+			newsfeed_id = cstmt.getInt(4);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(cstmt != null) cstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
-		return check;
+		return newsfeed_id;
 	}
 	
 	public int updateMyFeedNum(String user_id) {
@@ -171,6 +181,14 @@ public class feedDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return check;
 	}
@@ -200,9 +218,51 @@ public class feedDAO {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 		return dto;
 	}
 	
+	public void insertHashTag(Set<String> set, int feed_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("INSERT INTO hashtag VALUES(?,?)");
+			
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			Iterator it = set.iterator();
+			
+			while(it.hasNext())
+			{
+				pstmt.setString(1, (String)it.next());
+				pstmt.setInt(2, feed_id);
+				pstmt.addBatch();
+				pstmt.clearParameters();
+			}
+			pstmt.executeBatch();
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+	}
 
 }

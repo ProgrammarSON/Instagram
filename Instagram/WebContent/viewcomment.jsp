@@ -104,6 +104,29 @@
  	</script>
     </c:forEach>
     
+    <script>     
+         //var content = document.querySelector("#hoho");
+        $(document).ready(function(){
+			var content = document.getElementById("feed_contents").innerHTML;
+        	var splited = content.split(' ');
+        	var linked='';
+
+        	for(var word in splited)
+        	{
+            	console.log(word);
+        		word = splited[word];
+        		console.log(word);
+             	if(word.indexOf('#') == 0) // # 문자를 찾는다.
+             	{
+                	 word = '<a href="#">'+word+'</a>'; 
+               	}
+             	
+              	linked += word+' ';
+           	}
+        	document.getElementById('feed_contents').innerHTML = linked;
+        });
+     </script>
+    
 </head>
 
 <body>
@@ -120,26 +143,7 @@
             	 <div id="feed_hashtag"></div>
             </div>
         </div>
-        
-      <script>     
-         //var content = document.querySelector("#hoho");
-		var content = document.getElementById("feed_contents").innerHTML;
-        var splited = content.split(' ');
-        var linked='';
-
-        for(var word in splited)
-        {
-            console.log(word);
-        	word = splited[word];
-        	console.log(word);
-             if(word.indexOf('#') == 0) // # 문자를 찾는다.
-             {
-                 word = '<a href="#">'+word+'</a>'; 
-             }
-                 linked += word+' ';
-         }
-        document.getElementById('feed_contents').innerHTML = linked;
-	</script>
+            
 
 
         <div class="ui segment">

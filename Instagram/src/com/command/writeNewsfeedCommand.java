@@ -1,7 +1,7 @@
 package com.command;
 
 import java.io.File;
-import java.util.Enumeration;
+import java.util.*;
 import com.newsfeed.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -19,9 +19,8 @@ public class writeNewsfeedCommand implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 			String uploadPath = request.getRealPath("/feed_image");
-			int maxSize = 1024 * 1024 * 10; // ï¿½Ñ¹ï¿½ï¿½ï¿½ ï¿½Ã¸ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ë·® : 10Mï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
-		     
-		    int check = 0;
+			int maxSize = 1024 * 1024 * 10; 
+		    int newsfeed_id = 0;
 		    
 		    HttpSession session = request.getSession();
 		    String user_id = (String)session.getAttribute("id");
@@ -29,17 +28,18 @@ public class writeNewsfeedCommand implements Command{
 		    String image_path="";
 		    feedDTO dto = new feedDTO();
 		    feedDAO dao =feedDAO.getinstance();
+		    Set<String> set = new HashSet<>();
 		    
-		    String fileName1 = ""; // ï¿½ßºï¿½Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
-		    String originalName1 = ""; // ï¿½ßºï¿½ Ã³ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½
-		    long fileSize = 0; // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
-		    String fileType = ""; // ï¿½ï¿½ï¿½ï¿½ Å¸ï¿½ï¿½
+		    String fileName1 = ""; 
+		    String originalName1 = ""; 
+		    long fileSize = 0; 
+		    String fileType = ""; 
 		     
 		    
 		    MultipartRequest multi = null;
 		     
 		    try{
-		        // request,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ë·®,ï¿½ï¿½ï¿½Úµï¿½Å¸ï¿½ï¿½,ï¿½ßºï¿½ï¿½ï¿½ï¿½Ï¸ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½âº» ï¿½ï¿½Ã¥
+		        
 		        multi = new MultipartRequest(request,uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 		       		    
 		        contents = multi.getParameter("contents");
@@ -49,8 +49,8 @@ public class writeNewsfeedCommand implements Command{
 		         
 		        while(files.hasMoreElements())
 		        {
-		            // form ï¿½Â±×¿ï¿½ï¿½ï¿½ <input type="file" name="ï¿½ï¿½ï¿½â¿¡ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½" />ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Â´ï¿½.
-		            String file1 = (String)files.nextElement(); // ï¿½ï¿½ï¿½ï¿½ inputï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ì¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+		           
+		            String file1 = (String)files.nextElement();
 		            
 		            image_path= multi.getFilesystemName(file1);
 		            //image_path = image_path + "\\" + multi.getFilesystemName(file1);
@@ -70,20 +70,21 @@ public class writeNewsfeedCommand implements Command{
 		        	int idx = array[i].indexOf("#");
 		        	if(idx > -1)
 		        	{
-		        		System.out.println(array[i].substring(idx+1));
-		        		//DB¿¡ ¾î¶»°Ô È¿À²ÀûÀ¸·Î ³ÖÀ»±î?
+		        		set.add(array[i].substring(idx+1));
 		        	}
 		        }
-		        	
+		              	        	
 		        
 		        dto.setUser_id(user_id);
 		        dto.setContents(contents);
 		        dto.setImage_path(image_path);
-		        check = dao.insertNewsFeed(dto);
+		        newsfeed_id = dao.insertNewsFeed(dto);
 		        
-		        if(check > 0) {
-		        	check = dao.updateMyFeedNum(user_id);
-		        }
+		        if(newsfeed_id > 0) {
+		        	if(set.size() > 0)
+		        		dao.insertHashTag(set, newsfeed_id);
+		        	int check = dao.updateMyFeedNum(user_id);
+		         }
 		        
 		        request.setAttribute("user_id",user_id);
 		    }catch(Exception e){
