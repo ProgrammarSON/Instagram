@@ -44,6 +44,10 @@ input[type="file"] {
 	width: 100%;
 }
 
+.div-text-input {
+  margin: 1em 0;
+}
+
 .div-comments {
   display: block;
   margin-bottom: 5em;

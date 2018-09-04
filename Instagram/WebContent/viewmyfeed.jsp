@@ -132,9 +132,9 @@
                 <div class="ui column">
                     <p>
                     <form>
-                    	<button class="ui tiny button violet" id="following_btn">팔로우</button>
-                    	<button class="ui tiny button violet" id="followingjung_btn">팔로잉중</button>
-                    	<button class="ui tiny button violet" id="modify_btn">프로필 수정</button>
+                    	<button type="button" class="ui tiny button violet" id="following_btn">팔로우</button>
+                    	<button type="button" class="ui tiny button violet" id="followingjung_btn">팔로잉중</button>
+                    	<button type="button" class="ui tiny button violet" id="modify_btn">프로필 수정</button>
                     </form>
                     </p>
                 </div>
