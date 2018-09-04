@@ -1,8 +1,8 @@
-<%@ page import="com.myfeed.*" %>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ page import="java.util.*" %>
 <%@ page import="com.newsfeed.*" %>
+<%@ page import="com.myfeed.*" %>
 
 <% 
 	myfeedDTO dto = (myfeedDTO)request.getAttribute("dto"); 
@@ -22,10 +22,6 @@
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
     <script src="semantic/dist/semantic.min.js"></script>
 	
-	<!-- <script src="http://code.jquery.com/jquery-1.7.js" type="text/javascript"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
-	<link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/base/jquery-ui.css" rel="stylesheet" type="text/css" />
-  -->
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
@@ -98,7 +94,7 @@
             
             </div>
 
-            <div class="eleven wide column">
+            <div class="eleven wide middle aligned column">
                 
                 <h1 class="ui header" id="header_user">
                     <%=follow_id %>

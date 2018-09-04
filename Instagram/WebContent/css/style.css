@@ -6,6 +6,10 @@
   font-weight: 200;
 }
 
+#header_hashtag {
+  font-weight: 400;
+}
+
 input[type="file"] {
   display: none;
 }

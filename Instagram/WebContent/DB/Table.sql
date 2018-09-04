@@ -35,7 +35,7 @@ CREATE TABLE member(
   email VARCHAR2(100),
   username VARCHAR2(100),
   user_id VARCHAR2(100),
-  password VARCHAR2(100),
+  password VARCHAR2(100)
 );
 
 CREATE TABLE myfeed(
