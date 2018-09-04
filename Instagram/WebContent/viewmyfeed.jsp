@@ -53,32 +53,32 @@
     		$("#followingjung_btn").show();
     		$("#modify_btn").hide();
     	}   	
-    	
-    	
+    	    
     	$("#following_btn").click(function(){
         	$.ajax({
             	url: "following.do?user_id="+id+"&follow_id="+follow+"&check=follow",
             	success : function(result){
                 	var check = JSON.parse(result);
-					console.log(check);                
+    				console.log(check);                
             	}
-        	})        	
+        	})  
         	$("#following_btn").hide();
     		$("#followingjung_btn").show();
-    	})
+    	});
     	
     	$("#followingjung_btn").click(function(){
         	$.ajax({
             	url: "following.do?user_id="+id+"&follow_id="+follow+"&check=unfollow",
             	success : function(result){
                 	var check = JSON.parse(result);
-					console.log(check);                
+    				console.log(check);                
             	}
         	})
         	$("#following_btn").show();
     		$("#followingjung_btn").hide();
-       	})      	
+       	});    
     });
+    	
     </script>
 </head>
 
@@ -132,9 +132,9 @@
                 <div class="ui column">
                     <p>
                     <form>
-                    	<button class="ui tiny button violet" id="following_btn">팔로우</button>
-                    	<button class="ui tiny button violet" id="followingjung_btn">팔로잉중</button>
-                    	<button class="ui tiny button violet" id="modify_btn">프로필 수정</button>
+                    	<button type="button" class="ui tiny button violet" id="following_btn">팔로우</button>
+                    	<button type="button" class="ui tiny button violet" id="followingjung_btn">팔로잉중</button>
+                    	<button type="button" class="ui tiny button violet" id="modify_btn">프로필 수정</button>
                     </form>
                     </p>
                 </div>

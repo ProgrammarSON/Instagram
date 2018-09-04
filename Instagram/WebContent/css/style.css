@@ -44,9 +44,13 @@ input[type="file"] {
 	width: 100%;
 }
 
+.div-text-input {
+  margin: 1em 0;
+}
+
 .div-comments {
   display: block;
-  margin: 1.5em 0em 5em;
+  margin-bottom: 5em;
 }
 
 .ui.custom.popup {

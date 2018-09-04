@@ -22,9 +22,9 @@
 		
 		
 	<form action="writenewsfeed.do" method="post" enctype="Multipart/form-data" class="ui form">
-		<div class="ui segment">
+		<div class="ui container">
             <h1>작성하기</h1>
-            <div class="ui divider"></div>
+<!--             <div class="ui divider"></div> -->
             
            	<div><a href="mapAPI.html" target="_blank">위치추가</a>
             <script>
@@ -42,7 +42,8 @@
 				<img class="ui centered image dim_pic" src="images/wireframe/upload_image.png">
 			</div>
         </div>
-        <div class="ui segment">
+        
+        <div class="ui container div-text-input">
 			<textarea name="contents" rows="4"></textarea>
 		</div>
 		<div class="column">
