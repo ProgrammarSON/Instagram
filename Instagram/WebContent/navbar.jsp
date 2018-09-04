@@ -34,20 +34,21 @@
 	      <img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
     </a>
 
-    <div class="ui huge secondary pointing stackable menu violet">
-        <a class="item" href="./writenewsfeed.jsp">새 포스트</a>
-        <a class="item" id="liked">좋아한 글</a>
-        <a class="item">태그</a>
+    <div class="ui large secondary pointing stackable menu violet">
+        <a class="item" href="./writenewsfeed.jsp"><i class="image icon"></i>새 포스트</a>
+        <a class="item" id="liked"><i class="heart icon"></i>좋아한 글</a>
+        <a class="item"><i class="hashtag icon"></i>해시태그</a>
         <div class="right menu">
             <div class="item">
-                <div class="ui small input">
+                <div class="ui mini icon input">
                     <input placeholder="검색" type="text" id="searchid" />
+                    <i class="search link icon"></i>
                 </div>
                 
-                <div id="viewsearch"></div>
+                <div id="viewsearch" class="results"></div>
                 
             </div>
-            <a class="ui item" href="./member/logout.jsp">로그아웃</a>
+            <a class="ui item" href="./member/logout.jsp"><i class="user icon"></i>로그아웃</a>
         </div>
     </div>
 
