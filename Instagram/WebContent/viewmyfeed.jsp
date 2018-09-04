@@ -20,7 +20,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="semantic/dist/semantic.min.css">
     <script src="https://code.jquery.com/jquery-3.1.1.min.js" integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8=" crossorigin="anonymous"></script>
-    <script src="semantic/dist/semantic.min.js"></script>
+    <!-- <script src="semantic/dist/semantic.min.js"></script> -->
 	
 	<!-- <script src="http://code.jquery.com/jquery-1.7.js" type="text/javascript"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js" type="text/javascript"></script>
@@ -29,7 +29,7 @@
     <!-- Custom -->
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
-    <script src="js/script.js"></script>
+    <!-- <script src="js/script.js"></script> -->
     <title>Yestagram</title>
     
     <script>
@@ -53,32 +53,32 @@
     		$("#followingjung_btn").show();
     		$("#modify_btn").hide();
     	}   	
-    	
-    	
+    	    
     	$("#following_btn").click(function(){
         	$.ajax({
             	url: "following.do?user_id="+id+"&follow_id="+follow+"&check=follow",
             	success : function(result){
                 	var check = JSON.parse(result);
-					console.log(check);                
+    				console.log(check);                
             	}
-        	})        	
+        	})  
         	$("#following_btn").hide();
     		$("#followingjung_btn").show();
-    	})
+    	});
     	
     	$("#followingjung_btn").click(function(){
         	$.ajax({
             	url: "following.do?user_id="+id+"&follow_id="+follow+"&check=unfollow",
             	success : function(result){
                 	var check = JSON.parse(result);
-					console.log(check);                
+    				console.log(check);                
             	}
         	})
         	$("#following_btn").show();
     		$("#followingjung_btn").hide();
-       	})      	
+       	});    
     });
+    	
     </script>
 </head>
 
@@ -132,9 +132,9 @@
                 <div class="ui column">
                     <p>
                     <form>
-                    	<button class="ui tiny button violet" id="following_btn">팔로우</button>
-                    	<button class="ui tiny button violet" id="followingjung_btn">팔로잉중</button>
-                    	<button class="ui tiny button violet" id="modify_btn">프로필 수정</button>
+                    	<button type="button" class="ui tiny button violet" id="following_btn">팔로우</button>
+                    	<button type="button" class="ui tiny button violet" id="followingjung_btn">팔로잉중</button>
+                    	<button type="button" class="ui tiny button violet" id="modify_btn">프로필 수정</button>
                     </form>
                     </p>
                 </div>
