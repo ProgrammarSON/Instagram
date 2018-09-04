@@ -2,6 +2,9 @@ package com.command;
 
 import java.io.File;
 import java.util.*;
+
+import com.mapp.mapDAO;
+import com.mapp.mapDTO;
 import com.newsfeed.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -29,6 +32,12 @@ public class writeNewsfeedCommand implements Command{
 		    feedDTO dto = new feedDTO();
 		    feedDAO dao =feedDAO.getinstance();
 		    Set<String> set = new HashSet<>();
+		    
+		    mapDTO Mdto = new mapDTO();
+		    mapDAO Mdao = new mapDAO();
+		    String address = null;
+		    int lat = 0;
+		    int lng = 0;
 		    
 		    String fileName1 = ""; 
 		    String originalName1 = ""; 
@@ -79,6 +88,11 @@ public class writeNewsfeedCommand implements Command{
 		        dto.setContents(contents);
 		        dto.setImage_path(image_path);
 		        newsfeed_id = dao.insertNewsFeed(dto);
+		        
+		        Mdto.setAddress(address);
+		        Mdto.setLat(lat);
+		        Mdto.setLng(lng);
+		        newsfeed_id = Mdao.insertMap(Mdto);
 		        
 		        if(newsfeed_id > 0) {
 		        	if(set.size() > 0)

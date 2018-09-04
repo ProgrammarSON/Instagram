@@ -52,3 +52,13 @@ CREATE TABLE HASHTAG(
   newsfeed_id NUMBER
 );
 
+create table Mapinfo
+(
+  map_id number primary key,
+  address varchar2(1000),
+  lat number,
+  lng number
+);
+
+
+

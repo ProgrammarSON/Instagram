@@ -26,6 +26,14 @@
             <h1>작성하기</h1>
             <div class="ui divider"></div>
             
+           	<div><a href="mapAPI.html" target="_blank">위치추가</a>
+            <script>
+            	document.write(address+"<br>");
+            	document.write(lat+"<br>");
+            	document.write(lng+"<br>");
+            </script>
+            </div>
+            	<div class="ui divider"></div>
 			<div class="bordered image centered-and-cropped" id="dimmer_pic">
 				<div class="ui dimmer">
 					<label for="button_pic" class="ui inverted button violet">사진 선택</label>
