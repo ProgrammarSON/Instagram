@@ -46,7 +46,7 @@ input[type="file"] {
 
 .div-comments {
   display: block;
-  margin: 1.5em 0em 5em;
+  margin-bottom: 5em;
 }
 
 .ui.custom.popup {
