@@ -67,15 +67,17 @@ public class joinMemberCommand implements Command{
 	        		String file1 = (String)files.nextElement(); // 파일 input에 지정한 이름을 가져옴
 	            
 	        		profilePath= multi.getFilesystemName(file1);
-	        		if(profilePath == null) profilePath = "null.jpg";
-	        	//image_path = image_path + "\\" + multi.getFilesystemName(file1);
+	        		if(profilePath == null)
+	        		{
+	        			profilePath = "null.jpg";
+	        			break;
+	        		}
+	        		//image_path = image_path + "\\" + multi.getFilesystemName(file1);
 	        		originalName1 = multi.getOriginalFileName(file1);
 	        		System.out.println(profilePath);
 	           
-	        		File file = multi.getFile(file1);
-	            
-	        		fileSize = file.length();
-	        	} 
+	        		//File file = multi.getFile(file1);
+	           	} 
 	        
 	        
 	        member_dto.setEmail(email);

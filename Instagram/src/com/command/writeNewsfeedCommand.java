@@ -58,17 +58,15 @@ public class writeNewsfeedCommand implements Command{
 		         
 		        while(files.hasMoreElements())
 		        {
-		           
-		            String file1 = (String)files.nextElement();
+		           String file1 = (String)files.nextElement();
 		            
 		            image_path= multi.getFilesystemName(file1);
 		            //image_path = image_path + "\\" + multi.getFilesystemName(file1);
-		            originalName1 = multi.getOriginalFileName(file1);
-		            System.out.println(image_path);
-		           
-		            File file = multi.getFile(file1);
-		            
-		            fileSize = file.length();
+		            if(image_path == null)
+	        		{
+	        			image_path = "null.jpg";
+	        			break;
+	        		}
 		        }
 		        
 		        
@@ -82,8 +80,7 @@ public class writeNewsfeedCommand implements Command{
 		        		set.add(array[i].substring(idx+1));
 		        	}
 		        }
-		              	        	
-		        
+		        	        
 		        dto.setUser_id(user_id);
 		        dto.setContents(contents);
 		        dto.setImage_path(image_path);
@@ -92,7 +89,7 @@ public class writeNewsfeedCommand implements Command{
 		        Mdto.setAddress(address);
 		        Mdto.setLat(lat);
 		        Mdto.setLng(lng);
-		        newsfeed_id = Mdao.insertMap(Mdto);
+		        //newsfeed_id = Mdao.insertMap(Mdto);
 		        
 		        if(newsfeed_id > 0) {
 		        	if(set.size() > 0)

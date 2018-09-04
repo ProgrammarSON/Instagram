@@ -113,16 +113,21 @@
 
         	for(var word in splited)
         	{
-            	console.log(word);
+            	//console.log(word);
         		word = splited[word];
-        		console.log(word);
-             	if(word.indexOf('#') == 0) // # 문자를 찾는다.
+        		//console.log(word);
+        		
+        		word = word.replace(/#([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+)/g, '<a href ="#">#'+'$1'+'</a>');
+        		word = word.replace(/\n/g,"<br>");
+        		
+        		/* if(word.indexOf('#') == 0) // # 문자를 찾는다.
              	{
                 	 word = '<a href="#">'+word+'</a>'; 
-               	}
-             	
+               	} */           	
+          			
               	linked += word+' ';
-           	}
+           		console.log(linked);
+        	}
         	document.getElementById('feed_contents').innerHTML = linked;
         });
      </script>
