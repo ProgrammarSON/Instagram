@@ -34,8 +34,27 @@
 			reader.readAsDataURL(input.files[0]); 
 		}
 	}
+	
 </script>
 
+<script>
+	$(document).ready(function(){
+		<%for(String key : map.keySet()){ %>	//key는 게시물 번호
+			var key = "<%=key%>";
+			$("#"+key+"like").click(function(){
+				//$(this).find('i').toggleClass('outline')
+				if($(this).find('i').hasClass('outline')){
+					
+					$(this).find('i').removeClass('outline').css('color','#ff2733');
+				}else{
+					//$(this).find('i').removeClass('outline').css('color','#ff2733');
+					$(this).find('i').addClass('outline').css('color','rgba(0,0,0,.4)');
+				}
+				
+			});
+		<%} %>
+	});
+</script>
 
 </head>
 
@@ -44,7 +63,7 @@
         <jsp:include page="navbar.jsp"/>
         
 <div class="ui three stackable cards">
-    <%for(String key : map.keySet()){%>
+    <%for(String key : map.keySet()){%>			<!-- key는 게시물 번호 -->
     <div class="card">
        <div class="content">
           <div class="right floated meta">14h</div>
@@ -68,8 +87,8 @@
                     </div>
                 </div>
                 <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i> 좋아요 9
+                    <span class="right floated" id="<%=key%>like">
+                        <i class="heart like icon outline"></i> 좋아요 9
                     </span>
                     <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>">댓글 6</a>
                 </div>

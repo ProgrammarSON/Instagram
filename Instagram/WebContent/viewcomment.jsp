@@ -117,7 +117,7 @@
         		word = splited[word];
         		//console.log(word);
         		
-        		word = word.replace(/#([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+)/g, '<a href ="#">#'+'$1'+'</a>');
+        		word = word.replace(/#([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+)/g, '<a href ="viewhashtag.do?hashtag='+'$1'+'">#'+'$1'+'</a>');
         		word = word.replace(/\n/g,"<br>");
         		
         		/* if(word.indexOf('#') == 0) // # 문자를 찾는다.

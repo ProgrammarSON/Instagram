@@ -264,5 +264,50 @@ public class feedDAO {
 			}
 		}
 	}
-
+	
+	public LinkedHashMap<String,feedDTO> getHashTagFeed(String tag){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		LinkedHashMap<String,feedDTO> map = null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT contents, user_id, n.NEWSFEED_ID, FEED_DATE, image_path ");
+		sql.append("FROM newsfeed n JOIN hashtag h ");
+		sql.append("ON n.newsfeed_id = h.NEWSFEED_ID ");
+		sql.append("WHERE hashtag_contents = ? ");
+		sql.append("ORDER BY feed_date DESC");
+		
+		System.out.println(sql.toString());
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, tag);
+			rs = pstmt.executeQuery();
+			map = new LinkedHashMap<>();
+			
+			while(rs.next())
+			{
+				feedDTO dto = new feedDTO();
+				dto.setContents(rs.getString("contents"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setDate(rs.getString("feed_date"));
+				dto.setImage_path(rs.getString("image_path"));
+				map.put(rs.getString("newsfeed_id"), dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
 }

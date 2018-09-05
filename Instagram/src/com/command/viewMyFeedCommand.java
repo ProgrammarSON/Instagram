@@ -32,6 +32,7 @@ public class viewMyFeedCommand implements Command{
 		profile_img = dao.getProfieImg(user_id);
 		LinkedHashMap<String,feedDTO> map = feeddao.getMyFeed(user_id);
 		
+		
 		request.setAttribute("profile_img", profile_img);
 		request.setAttribute("dto", dto);
 		request.setAttribute("check", check);

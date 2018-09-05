@@ -102,6 +102,10 @@ public class controller extends HttpServlet {
 			command = new searchUserIDCommand();
 			command.execute(request, response);
 			return;
+		}else if(com.equals("/viewhashtag.do")) {
+			command = new viewHashTagFeedCommand();
+			command.execute(request, response);
+			viewPage = "viewhashtagfeed.jsp";
 		}
 		
 		System.out.println("dispatcher.......");
