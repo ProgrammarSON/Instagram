@@ -47,7 +47,6 @@
 					
 					$(this).find('i').removeClass('outline').css('color','#ff2733');
 				}else{
-					//$(this).find('i').removeClass('outline').css('color','#ff2733');
 					$(this).find('i').addClass('outline').css('color','rgba(0,0,0,.4)');
 				}
 				
