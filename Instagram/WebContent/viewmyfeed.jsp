@@ -73,8 +73,7 @@
         	$("#following_btn").show();
     		$("#followingjung_btn").hide();
        	});    
-    });
-    	
+    });    	
     </script>
 </head>
 

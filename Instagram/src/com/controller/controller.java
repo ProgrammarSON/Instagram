@@ -106,6 +106,10 @@ public class controller extends HttpServlet {
 			command = new viewHashTagFeedCommand();
 			command.execute(request, response);
 			viewPage = "viewhashtagfeed.jsp";
+		}else if(com.equals("/like.do")) {
+			command = new likeCommand();
+			command.execute(request, response);
+			return;
 		}
 		
 		System.out.println("dispatcher.......");

@@ -38,20 +38,37 @@
 </script>
 
 <script>
+<%for(String key : map.keySet()){ %>
+
 	$(document).ready(function(){
-		<%for(String key : map.keySet()){ %>	//key는 게시물 번호
+			//key는 게시물 번호
 			var key = "<%=key%>";
+			console.log(key);
 			$("#"+key+"like").click(function(){
 				//$(this).find('i').toggleClass('outline')
 				if($(this).find('i').hasClass('outline')){
 					$(this).find('i').removeClass('outline').css('color','#ff2733');
+					$.ajax({
+						url: "like.do?feed_id="+key+"&check=like",
+						success : function(result){
+							var check = JSON.parse(result);
+						}
+					})
+					
 				}else{
 					$(this).find('i').addClass('outline').css('color','rgba(0,0,0,.4)');
+					$.ajax({
+						url: "like.do?feed_id="+key+"&check=unlike",
+						success : function(result){
+							var check = JSON.parse(result);
+						}
+					})				
 				}
 				
 			});
-		<%} %>
+		
 	});
+<%} %>
 </script>
 
 </head>
@@ -86,7 +103,11 @@
                 </div>
                 <div class="extra content">
                     <span class="right floated" id="<%=key%>like">
-                        <i class="heart like icon outline"></i> 좋아요 9
+                    	<%if(map.get(key).getLike_state().equals("unlike")){ %>
+                        	<i class="heart like icon outline"></i> 좋아요 9
+                        <%}else{ %>
+                        	<i class="heart like icon" style="color: #ff2733"></i> 좋아요 9
+                        <%} %>
                     </span>
                     <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>">댓글 6</a>
                 </div>
