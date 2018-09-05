@@ -44,7 +44,6 @@
 			$("#"+key+"like").click(function(){
 				//$(this).find('i').toggleClass('outline')
 				if($(this).find('i').hasClass('outline')){
-					
 					$(this).find('i').removeClass('outline').css('color','#ff2733');
 				}else{
 					$(this).find('i').addClass('outline').css('color','rgba(0,0,0,.4)');
