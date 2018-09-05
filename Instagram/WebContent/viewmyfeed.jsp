@@ -144,10 +144,10 @@
         <!-- 프로필 구역 끝 -->
         
 		<!-- 카드 -->
-        <div class="ui three cards">
+        <div class="ui three cards dim-card">
             <% for(String key : map.keySet()) { %>
 			<div class="card">
-				<a class="image" href="viewcomment.do?feed_id=<%=key%>">
+				<a class="image centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
 					<div class="ui dimmer">
 		            	<div class="content">
 		            		<!-- 좋아요 표시 시작 --><!-- 좋아요 표시 끝 -->
@@ -159,11 +159,13 @@
 							<!-- 댓글 표시 끝 -->
 		            	</div>
 	              	</div>
+	              	<div class="cropped-image">
               	<% if(map.get(key).getImage_path() == null) { %>
-	            	<img src="./feed_image/null.jpg"><br>
+	            	<img class="image centered-and-cropped" src="./feed_image/null.jpg">
 	              	<% } else { %>
-	                <img src="./feed_image/<%= map.get(key).getImage_path() %>"><br>
+	                <img class="image centered-and-cropped" src="./feed_image/<%= map.get(key).getImage_path() %>">
               	<% } %>
+              		</div>
 				</a>
 			</div>
         <% } %>

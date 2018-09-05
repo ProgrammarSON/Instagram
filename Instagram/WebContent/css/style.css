@@ -57,6 +57,16 @@ input[type="file"] {
   margin-bottom: 5em;
 }
 
+.cropped-image {
+/* object-fit: cover는 */
+/* 	box-sizing: border-box; */
+/* 	overflow: hidden; */
+/* 	position: relative; 이 세 속성을 묶은 것과 같은 효과가 있는 듯하다. */
+	object-fit: cover;
+	height: 100%;
+	width: 100%;
+}
+
 .ui.custom.popup {
   min-width: 400px;
 }
