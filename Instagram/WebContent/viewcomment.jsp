@@ -24,10 +24,9 @@
     <title>포스트</title>
 
 	<!-- 대댓글  -->
+    <script>
     <c:forEach items="${list}" var="dto">
-        <script>
-
-            $(document).ready(function(){
+         $(document).ready(function(){
     	 $("#${dto.getComment_id()}").hide();
     	 $("#${dto.getComment_id()}_reply_hide").hide();
     	     	 
@@ -101,9 +100,9 @@
 		});
 	});
             
+ 	</c:forEach>
  	</script>
-    </c:forEach>
-    
+ 	
     <script>     
          //var content = document.querySelector("#hoho");
         $(document).ready(function(){
@@ -166,7 +165,7 @@
 	
 				<div class="ui container">
 					<div class="ui threaded comments">
-						<h3 class="ui dividing header">#개의 댓글</h3>
+						<h3 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h3>
 		              
 						<c:forEach items="${list}" var="dto">
 		                <div class="comment">
