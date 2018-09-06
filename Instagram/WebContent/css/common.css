@@ -3,6 +3,9 @@
 * {
     font-family: "Noto Sans KR", sans-serif;
 }
+.ui.secondary.pointing.menu .item:first-child {
+	padding-left: 0;	
+}
 
 #likes_feed {
 	margin-top: 0;

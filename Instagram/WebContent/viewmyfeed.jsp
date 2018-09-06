@@ -10,7 +10,7 @@
 	String user_id = (String)session.getAttribute("id");
 	String follow_id = dto.getUser_id();
 	String profile_img = (String)request.getAttribute("profile_img");
-	LinkedHashMap<String,feedDTO> map =(LinkedHashMap<String,feedDTO>) request.getAttribute("map");
+	LinkedHashMap<String,feedDTO> map =(LinkedHashMap<String,feedDTO>) request.getAttribute("map");	
 %>
 
 <!DOCTYPE html>
@@ -40,11 +40,11 @@
     		$("#following_btn").show();
     		$("#followingjung_btn").hide();
     		$("#modify_btn").hide();
-    	}else if(state == 0){		//내계정 
+    	}else if(state == 0){		//내 계정 
     		$("#following_btn").hide();
     		$("#followingjung_btn").hide();
     		$("#modify_btn").show();
-    	}else{						//상대계정을 팔로우중
+    	}else{						//상대 계정을 팔로우중
     		$("#following_btn").hide();
     		$("#followingjung_btn").show();
     		$("#modify_btn").hide();
@@ -73,15 +73,17 @@
         	$("#following_btn").show();
     		$("#followingjung_btn").hide();
        	});    
-    });
-    	
+    });    	
     </script>
 </head>
 
 <body>
     <div class="ui container">
+    	<!-- 내비게이션(메뉴) 바 시작 -->
         <jsp:include page="navbar.jsp"/>
+        <!-- 내비게이션(메뉴) 바 끝 -->
 
+		<!-- 프로필 구역 시작 -->
         <div class="ui grid container">
 
             <div class="five wide column center aligned">
@@ -134,45 +136,41 @@
                     </form>
                     </p>
                 </div>
-                
             </div>
         </div>
-
+		
         <div class="ui divider"></div>
-
-
-        <div class="ui three cards">
-            <%for(String key : map.keySet()){%>
-    <div class="card">
-       <div class="content">
-          <div class="right floated meta">14h</div>
-          	<%if(profile_img == null){ %>	
-             	<img class="ui avatar image" src="profile_image/null.jpg"> 
-             <%} else {%>
-             	<img class="ui avatar image" src="profile_image/<%=profile_img%>">
-             <%} %>
-             <a href="viewmyfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
-       </div>
-             <div class="image">
-             <%if(map.get(key).getImage_path() == null){ %>
-              	<img src="./feed_image/null.jpg"><br>
-              <%}else{ %>
-                <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
-              <%} %>
-              </div>
-                <div class="content">
-                    <div class="description">
-                    	<%=map.get(key).getContents() %>
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i> 좋아요 9
-                    </span>
-                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>">댓글 6</a>
-                </div>
-        </div>
-        <%} %>
+        <!-- 프로필 구역 끝 -->
+        
+		<!-- 카드 -->
+        <div class="ui three cards dim-card">
+            <% for(String key : map.keySet()) { %>
+			<div class="card">
+				<a class="image centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
+					<div class="ui dimmer">
+		            	<div class="content">
+		            		<!-- 좋아요 표시 시작 --><!-- 좋아요 표시 끝 -->
+		            		<i class="heart icon"></i>
+		            		<span style="margin-right: 25px;">#</span>
+		            		<!-- 댓글 표시 시작 -->
+							<i class="comment icon"></i>
+							<span>#</span>
+							<!-- 댓글 표시 끝 -->
+		            	</div>
+	              	</div>
+	              	<div class="cropped-image">
+              	<% if(map.get(key).getImage_path() == null) { %>
+	            	<img class="image centered-and-cropped" src="./feed_image/null.jpg">
+	              	<% } else { %>
+	                <img class="image centered-and-cropped" src="./feed_image/<%= map.get(key).getImage_path() %>">
+              	<% } %>
+              		</div>
+				</a>
+			</div>
+        <% } %>
     </div>
-
+    
+	<!-- 푸터 시작 -->
 	<jsp:include page="footer.jsp"/>
+	<!-- 푸터 끝 -->
+	

@@ -41,13 +41,23 @@ public class feedDAO {
 		ResultSet rs = null;
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG ");
+		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG, NVL2(l.newsfeed_id,'like','unlike') like_state, ");
+		sql.append("n.comment_count, n.like_count ");
+		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
+		sql.append("WHERE user_id = ?) p ");
+		sql.append("ON n.user_id = p.following ");
+		sql.append("JOIN myfeed m ");
+		sql.append("ON m.user_id = n.user_id LEFT OUTER JOIN likes l ");
+		sql.append("ON l.newsfeed_id = n.newsfeed_id ");
+		sql.append("ORDER BY n.feed_date DESC");
+		
+/*		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG ");
 		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
 		sql.append("WHERE user_id = ?) p ");
 		sql.append("ON n.user_id = p.following ");
 		sql.append("JOIN myfeed m ");
 		sql.append("ON m.user_id = n.user_id ");
-		sql.append("ORDER BY n.feed_date DESC");
+		sql.append("ORDER BY n.feed_date DESC");*/
 		
 		System.out.println(sql.toString());
 		
@@ -66,6 +76,9 @@ public class feedDAO {
 				dto.setDate(rs.getString("feed_date"));
 				dto.setImage_path(rs.getString("image_path"));
 				dto.setProfile_img(rs.getString("profile_img"));
+				dto.setLike_state(rs.getString("like_state"));
+				dto.setLike_count(rs.getString("like_count"));
+				dto.setComment_count(rs.getString("comment_count"));
 				map.put(rs.getString("newsfeed_id"), dto);
 				//System.out.println(rs.getString("contents"));
 				//System.out.println(rs.getString("image_path"));
@@ -141,7 +154,7 @@ public class feedDAO {
 		int newsfeed_id = 0;
 		try {
 			conn = getConnection();
-			cstmt = conn.prepareCall("{call newsfeed_proc(?,?,?,?)");
+			cstmt = conn.prepareCall("{call newsfeed_proc(?,?,?,?)}");
 			cstmt.setString(1, dto.getUser_id());
 			cstmt.setString(2, dto.getContents());
 			cstmt.setString(3,dto.getImage_path());
@@ -264,5 +277,84 @@ public class feedDAO {
 			}
 		}
 	}
-
+	
+	public LinkedHashMap<String,feedDTO> getHashTagFeed(String tag){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		LinkedHashMap<String,feedDTO> map = null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT contents, user_id, n.NEWSFEED_ID, FEED_DATE, image_path ");
+		sql.append("FROM newsfeed n JOIN hashtag h ");
+		sql.append("ON n.newsfeed_id = h.NEWSFEED_ID ");
+		sql.append("WHERE hashtag_contents = ? ");
+		sql.append("ORDER BY feed_date DESC");
+		
+		System.out.println(sql.toString());
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, tag);
+			rs = pstmt.executeQuery();
+			map = new LinkedHashMap<>();
+			
+			while(rs.next())
+			{
+				feedDTO dto = new feedDTO();
+				dto.setContents(rs.getString("contents"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setDate(rs.getString("feed_date"));
+				dto.setImage_path(rs.getString("image_path"));
+				map.put(rs.getString("newsfeed_id"), dto);
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return map;
+	}
+	
+	public int setLikeinfo(String feed_id, String user_id,String state) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		int check = 0;
+		StringBuffer sql = new StringBuffer();
+		if(state.equals("like"))
+			sql.append("INSERT INTO likes VALUES(?,?)");
+		else
+			sql.append("DELETE FROM likes WHERE newsfeed_id = ? AND user_id = ?");
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, feed_id);
+			pstmt.setString(2, user_id);
+			check = pstmt.executeUpdate();
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return check;
+	}
+	
+	
 }

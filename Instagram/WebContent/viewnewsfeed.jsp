@@ -34,8 +34,42 @@
 			reader.readAsDataURL(input.files[0]); 
 		}
 	}
+	
 </script>
 
+<script>
+<%for(String key : map.keySet()){ %>
+
+	$(document).ready(function(){
+			//key는 게시물 번호
+			var key = "<%=key%>";
+			console.log(key);
+			$("#"+key+"like").click(function(){
+				//$(this).find('i').toggleClass('outline')
+				if($(this).find('i').hasClass('outline')){
+					$(this).find('i').removeClass('outline').css('color','#ff2733');
+					$.ajax({
+						url: "like.do?feed_id="+key+"&check=like",
+						success : function(result){
+							var check = JSON.parse(result);
+						}
+					})
+					
+				}else{
+					$(this).find('i').addClass('outline').css('color','rgba(0,0,0,.4)');
+					$.ajax({
+						url: "like.do?feed_id="+key+"&check=unlike",
+						success : function(result){
+							var check = JSON.parse(result);
+						}
+					})				
+				}
+				
+			});
+		
+	});
+<%} %>
+</script>
 
 </head>
 
@@ -44,7 +78,7 @@
         <jsp:include page="navbar.jsp"/>
         
 <div class="ui three stackable cards">
-    <%for(String key : map.keySet()){%>
+    <%for(String key : map.keySet()){%>			<!-- key는 게시물 번호 -->
     <div class="card">
        <div class="content">
           <div class="right floated meta">14h</div>
@@ -62,16 +96,15 @@
                 <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
               <%} %>
               </div>
-                <div class="content">
-                    <div class="description">
-                    	<%=map.get(key).getContents() %>
-                    </div>
-                </div>
                 <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i> 좋아요 9
+                    <span class="right floated" id="<%=key%>like">
+                    	<%if(map.get(key).getLike_state().equals("unlike")){ %>
+                        	<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
+                        <%}else{ %>
+                        	<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
+                        <%} %>
                     </span>
-                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>">댓글 6</a>
+                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
                 </div>
      </div>
      <%} %>

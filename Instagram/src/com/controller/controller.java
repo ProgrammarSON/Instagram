@@ -113,6 +113,14 @@ public class controller extends HttpServlet {
 			command = new searchUserIDCommand();
 			command.execute(request, response);
 			return;
+		}else if(com.equals("/viewhashtag.do")) {
+			command = new viewHashTagFeedCommand();
+			command.execute(request, response);
+			viewPage = "viewhashtagfeed.jsp";
+		}else if(com.equals("/like.do")) {
+			command = new likeCommand();
+			command.execute(request, response);
+			return;
 		}
 		
 		System.out.println("dispatcher.......");

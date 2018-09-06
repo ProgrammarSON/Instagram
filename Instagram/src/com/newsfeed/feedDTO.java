@@ -8,10 +8,29 @@ public class feedDTO {
 	private String date;
 	private String image_path;
 	private String profile_img;
-	private List<reply> replys;	
+	private String like_state;
+	private String comment_count;
+	private String like_count;
+		
 	
-	
-
+	public String getComment_count() {
+		return comment_count;
+	}
+	public void setComment_count(String comment_count) {
+		this.comment_count = comment_count;
+	}
+	public String getLike_count() {
+		return like_count;
+	}
+	public void setLike_count(String like_count) {
+		this.like_count = like_count;
+	}
+	public String getLike_state() {
+		return like_state;
+	}
+	public void setLike_state(String like_state) {
+		this.like_state = like_state;
+	}
 	public String getProfile_img() {
 		return profile_img;
 	}
@@ -23,12 +42,6 @@ public class feedDTO {
 	}
 	public void setImage_path(String image_path) {
 		this.image_path = image_path;
-	}
-	public List<reply> getReplys() {
-		return replys;
-	}
-	public void setReplys(List<reply> replys) {
-		this.replys = replys;
 	}
 	public String getUser_id() {
 		return user_id;

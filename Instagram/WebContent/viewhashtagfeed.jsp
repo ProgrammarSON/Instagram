@@ -1,5 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.newsfeed.*" %>
+<%@ page import="java.util.*" %>
+
+<%
+	LinkedHashMap<String,feedDTO> map = (LinkedHashMap<String,feedDTO>)request.getAttribute("map");
+	String hashtag = (String)request.getAttribute("hashtag");
+	String imagePath = (String)request.getAttribute("imagePath");
+%>
 
 <!DOCTYPE html>
 <html>
@@ -30,7 +38,7 @@
             <div class="five wide column center aligned">
 	            <div class="div-profile">
 	            	<div class="div-profile-img">
-	               		<img id="my_profile_img" class="image" src="./profile_image/ronaldo.jpg">
+	               		<img id="my_profile_img" class="image" src="feed_image/<%=imagePath%>">
 	               	</div>
 	            </div>
             
@@ -40,7 +48,7 @@
             <div class="eleven wide middle aligned column">
                 
                 <h1 class="ui header" id="header_hashtag">
-					#<span>ronaldo</span>
+					#<span><%=hashtag%></span>
                 </h1>
             
                 <div class="ui relaxed horizontal list">
@@ -57,27 +65,31 @@
         <div class="ui divider"></div>
 
 
-        <div class="ui three cards">
-    		<div class="card">
-       			<div class="content">
-          			<div class="right floated meta">14h</div>
-		             	<img class="ui avatar image" src="profile_image/null.jpg"> 
-       			</div>
-             	<div class="image">
-              		<img src="./feed_image/null.jpg">
-              	</div>
-                <div class="content">
-                    <div class="description">
-<%--                     	<%=map.get(key).getContents() %> --%>
-                    </div>
-                </div>
-                <div class="extra content">
-                    <span class="right floated">
-                        <i class="heart outline like icon"></i> 좋아요 9
-                    </span>
-                    <i class="comment icon"></i>댓글 6
-                </div>
-        </div>
+       <div class="ui three cards dim-card">
+            <% for(String key : map.keySet()) { %>
+			<div class="card">
+				<a class="image centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
+					<div class="ui dimmer">
+		            	<div class="content">
+		            		<!-- 좋아요 표시 시작 --><!-- 좋아요 표시 끝 -->
+		            		<i class="heart icon"></i>
+		            		<span style="margin-right: 25px;">#</span>
+		            		<!-- 댓글 표시 시작 -->
+							<i class="comment icon"></i>
+							<span>#</span>
+							<!-- 댓글 표시 끝 -->
+		            	</div>
+	              	</div>
+	              	<div class="cropped-image">
+              	<% if(map.get(key).getImage_path() == null) { %>
+	            	<img class="image centered-and-cropped" src="./feed_image/null.jpg">
+	              	<% } else { %>
+	                <img class="image centered-and-cropped" src="./feed_image/<%= map.get(key).getImage_path() %>">
+              	<% } %>
+              		</div>
+				</a>
+			</div>
+        <% } %>
     </div>
 
 	<jsp:include page="footer.jsp"/>

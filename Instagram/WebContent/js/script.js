@@ -4,7 +4,7 @@ $(document).ready(function() {
         $(this).addClass('active');
     });
 
-    $('#dimmer_pic.image').dimmer({
+    $('#dimmer_pic.image, .dim-card .image').dimmer({
         on: 'hover'
     });
 });

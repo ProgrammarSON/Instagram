@@ -19,7 +19,7 @@ public class writeCommentCommand implements Command {
 		
 		int check = 0;
 		commentDTO dto = new commentDTO();
-		commentDAO dao = new commentDAO();
+		commentDAO dao = commentDAO.getinstance();
 		
 		dto.setFeed_id(feed_id);
 		dto.setUser_id(user_id);

@@ -1,5 +1,6 @@
 package com.comment;
 
+import java.sql.CallableStatement;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,27 +37,28 @@ public class commentDAO {
 	
 	public int insertComment(commentDTO dto) {
 		Connection conn = null;
-		PreparedStatement pstmt = null;
+		CallableStatement cstmt = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("INSERT INTO comments ");
-		sql.append("VALUES(comment_seq.nextval,?,?,sysdate,?)");
+		sql.append("{call insertcomment_proc(?,?,?,?)}");
 		int check = 0;
 		
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, dto.getUser_id());
-			pstmt.setString(2, dto.getFeed_id());
-			pstmt.setString(3, dto.getContent());
-			check = pstmt.executeUpdate();
-				
+			cstmt = conn.prepareCall(sql.toString());
+			cstmt.setString(1, dto.getUser_id());
+			cstmt.setString(2, dto.getFeed_id());
+			cstmt.setString(3, dto.getContent());
+			cstmt.registerOutParameter(4, java.sql.Types.INTEGER);
+			cstmt.executeUpdate();
+			
+			check = cstmt.getInt(4);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}finally {
 			try {
 				if(conn != null) conn.close();
-				if(pstmt != null) pstmt.close();
+				if(cstmt != null) cstmt.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
