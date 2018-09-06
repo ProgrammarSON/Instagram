@@ -138,23 +138,41 @@
         <!-- 프로필 구역 끝 -->
         
         <!-- 모달 시작 -->
-        <div class="ui modal">
-			<div class="ui icon header">
-				<i class="archive icon"></i>
-				Archive Old Messages
-			</div>
-			<div class="content">
-				<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
-			</div>
-			<div class="actions">
-				<div class="ui red basic cancel inverted button">
-					<i class="remove icon"></i>
-					No
+        <div class="ui mini modal">
+        	<i class="close icon"></i>
+			<div class="header">팔로잉</div>
+
+			<div class="scrolling content">
+
+				<div class="ui very relaxed list">
+					<div class="item">
+						<div class="left floated content">
+		                	<img class="ui avatar image" src="images/avatar/small/daniel.jpg">
+		            	</div>
+		            	<div class="right floated content">
+		                	<button class="ui tiny button violet btn_follow">팔로우</button>
+		            	</div>
+						<div class="content">
+							<a class="header">wona23</a>
+							<div class="description">저는 이런 사람입니다.</div>
+						</div>
+					</div>
+					
+					<div class="item">
+						<div class="left floated content">
+		                	<img class="ui avatar image" src="images/avatar/small/daniel.jpg">
+		            	</div>
+		            	<div class="right floated content">
+		                	<button class="ui tiny button violet btn_follow">팔로우</button>
+		            	</div>
+						<div class="content">
+							<a class="header">jipro</a>
+							<div class="description">지프로입니다.</div>
+						</div>
+					</div>
+					
 				</div>
-				<div class="ui green ok inverted button">
-					<i class="checkmark icon"></i>
-					Yes
-				</div>
+				
 			</div>
 		</div>
         <!-- 모달 끝 -->

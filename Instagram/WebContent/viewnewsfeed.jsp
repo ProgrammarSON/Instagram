@@ -77,36 +77,37 @@
    <div class="ui container">
         <jsp:include page="navbar.jsp"/>
         
-<div class="ui three stackable cards">
-    <%for(String key : map.keySet()){%>			<!-- key는 게시물 번호 -->
-    <div class="card">
-       <div class="content">
-          <div class="right floated meta">14h</div>
-             <%if(map.get(key).getProfile_img() == null){ %>
-             	<img class="ui avatar image" src="profile_image/null.jpg">
-             <%}else { %>
-             	<img class="ui avatar image" src="profile_image/<%=map.get(key).getProfile_img()%>">
-             <%} %>  
-             <a href="viewmyfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
-       </div>
-             <div class="image">
-             <%if(map.get(key).getImage_path() == null){ %>
-              	<img src="./feed_image/null.jpg"><br>
-              <%}else{ %>
-                <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
-              <%} %>
-              </div>
-                <div class="extra content">
-                    <span class="right floated" id="<%=key%>like">
-                    	<%if(map.get(key).getLike_state().equals("unlike")){ %>
-                        	<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
-                        <%}else{ %>
-                        	<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
-                        <%} %>
-                    </span>
-                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
-                </div>
-     </div>
-     <%} %>
+	<div class="ui three stackable cards">
+	    <%for(String key : map.keySet()){%>			<!-- key는 게시물 번호 -->
+	    <div class="card">
+	       <div class="content">
+	          <div class="right floated meta">14h</div>
+	             <%if(map.get(key).getProfile_img() == null){ %>
+	             	<img class="ui avatar image" src="profile_image/null.jpg">
+	             <%}else { %>
+	             	<img class="ui avatar image" src="profile_image/<%=map.get(key).getProfile_img()%>">
+	             <%} %>  
+	             <a href="viewmyfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
+	       </div>
+	             <div class="image">
+	             <%if(map.get(key).getImage_path() == null){ %>
+	              	<img src="./feed_image/null.jpg"><br>
+	              <%}else{ %>
+	                <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
+	              <%} %>
+	              </div>
+	                <div class="extra content">
+	                    <span class="right floated" id="<%=key%>like">
+	                    	<%if(map.get(key).getLike_state().equals("unlike")){ %>
+	                        	<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
+	                        <%}else{ %>
+	                        	<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
+	                        <%} %>
+	                    </span>
+	                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
+	                </div>
+	     </div>
+	     <%} %>
+	</div>
 </div>
 <jsp:include page="footer.jsp"/>

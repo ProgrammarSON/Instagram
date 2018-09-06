@@ -4,17 +4,19 @@ $(function(){
     $('#show_modal_follow').click(function(){
         $('.ui.modal')
         .modal({
-            selector: {
-                approve: '.ok',
-                deny: '.cancel'
-            },
             closable: false,
-            onDeny: function() {
-                return true;
-            },
-            onApprove: function() {
-                window.alert('wow');
-            }
+            transition: 'fade',
+//             duration: 200,
+//             selector: {
+//                 approve: '.ok',
+//                 deny: '.cancel'
+//             },
+//             onDeny: function() {
+//                 return true;
+//             },
+//             onApprove: function() {
+//                 window.alert('wow');
+//             }
         })
         .modal('show');
     });
