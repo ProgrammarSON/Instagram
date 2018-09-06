@@ -62,7 +62,6 @@ body {
 		/*아랫글에서 설명한 event를 이용 지도를 'click'하면 codeCoordinate함수를 실행합니다.
 
 		codeCoordinate함수는 클릭한 지점의 좌표를 가지고 주소를 찾는 함수입니다. */
-
 	}
 
 	function Setmarker(latLng) {
@@ -158,14 +157,10 @@ body {
 				$('#lng1').val(results[0].geometry.location.lng());
 				//address는 주소값 lat lng은 위도 경도 값
 				if (results[1])
-
 				{
-
 					infowindow.setContent(results[1].formatted_address);
-
 					infowindow.open(map, marker[0]);
 					//infowindow로 주소를 표시합니다.
-
 				}
 
 			}
@@ -179,6 +174,7 @@ body {
 <body onload="initialize()">
 
 	<div id="map_canvas" style="width: 80%; height: 60%"></div>
+	<br><br><br><br><br><br>
 	<form action="writenewsfeed.jsp" method="post">
 		<p>
 			찾는곳 : <input type="text" size="100" id="addr1" name="address" /> 
