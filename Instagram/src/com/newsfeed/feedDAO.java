@@ -41,7 +41,8 @@ public class feedDAO {
 		ResultSet rs = null;
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG, NVL2(l.newsfeed_id,'like','unlike') like_state ");
+		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG, NVL2(l.newsfeed_id,'like','unlike') like_state, ");
+		sql.append("n.comment_count, n.like_count ");
 		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
 		sql.append("WHERE user_id = ?) p ");
 		sql.append("ON n.user_id = p.following ");
@@ -76,6 +77,8 @@ public class feedDAO {
 				dto.setImage_path(rs.getString("image_path"));
 				dto.setProfile_img(rs.getString("profile_img"));
 				dto.setLike_state(rs.getString("like_state"));
+				dto.setLike_count(rs.getString("like_count"));
+				dto.setComment_count(rs.getString("comment_count"));
 				map.put(rs.getString("newsfeed_id"), dto);
 				//System.out.println(rs.getString("contents"));
 				//System.out.println(rs.getString("image_path"));
@@ -151,7 +154,7 @@ public class feedDAO {
 		int newsfeed_id = 0;
 		try {
 			conn = getConnection();
-			cstmt = conn.prepareCall("{call newsfeed_proc(?,?,?,?)");
+			cstmt = conn.prepareCall("{call newsfeed_proc(?,?,?,?)}");
 			cstmt.setString(1, dto.getUser_id());
 			cstmt.setString(2, dto.getContents());
 			cstmt.setString(3,dto.getImage_path());

@@ -96,20 +96,15 @@
                 <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
               <%} %>
               </div>
-                <div class="content">
-                    <div class="description">
-                    	<%=map.get(key).getContents() %>
-                    </div>
-                </div>
                 <div class="extra content">
                     <span class="right floated" id="<%=key%>like">
                     	<%if(map.get(key).getLike_state().equals("unlike")){ %>
-                        	<i class="heart like icon outline"></i> 좋아요 9
+                        	<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
                         <%}else{ %>
-                        	<i class="heart like icon" style="color: #ff2733"></i> 좋아요 9
+                        	<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
                         <%} %>
                     </span>
-                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>">댓글 6</a>
+                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
                 </div>
      </div>
      <%} %>

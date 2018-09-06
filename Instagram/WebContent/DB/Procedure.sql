@@ -56,3 +56,58 @@ EXCEPTION
     rollback;
     pnewsfeed_id := -1;
 END newsfeed_proc;
+
+
+create or replace PROCEDURE deleteComment_proc(  
+  pcomment_id COMMENTS.COMMENT_ID%TYPE,
+  pnewsfeed_id NEWSFEED.NEWSFEED_ID%TYPE,
+  pcheck OUT NUMBER
+  ) IS
+  
+  commentID NUMBER;
+
+BEGIN
+    pcheck := 1;
+    
+    DELETE FROM comments
+    WHERE COMMENT_ID = pcomment_id;
+    
+    UPDATE NEWSFEED
+    SET COMMENT_COUNT = COMMENT_COUNT - 1
+    WHERE NEWSFEED_ID = pnewsfeed_id;
+      
+    commit;
+
+EXCEPTION 
+ WHEN OTHERS THEN
+    rollback;
+    pcheck := -1;
+END deleteComment_proc;
+
+create or replace PROCEDURE insertComment_proc(  
+  puser_id IN NEWSFEED.USER_ID%TYPE,
+  pnewsfeed_id IN NUMBER,
+  pcontents IN COMMENTS.CONTENTS%TYPE,
+  pcheck OUT NUMBER
+  ) IS
+  
+  commentID NUMBER;
+
+BEGIN
+    pcheck := 1;
+    commentID := comment_seq.nextval;
+  
+    INSERT INTO comments
+    VALUES(commentID,puser_id,pnewsfeed_id,sysdate,pcontents);
+  
+    UPDATE NEWSFEED
+    SET COMMENT_COUNT = COMMENT_COUNT + 1
+    WHERE NEWSFEED_ID = pnewsfeed_id;
+      
+    commit;
+
+EXCEPTION 
+ WHEN OTHERS THEN
+    rollback;
+    pcheck := -1;
+END insertComment_proc;
