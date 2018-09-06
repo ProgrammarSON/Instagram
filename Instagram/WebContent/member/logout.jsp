@@ -5,7 +5,7 @@
     
 <%
 	session.invalidate();
-	response.sendRedirect("../login.html");
+	response.sendRedirect("../index.html");
 %>
 <!doctype html>
 <html>
