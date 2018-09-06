@@ -121,7 +121,7 @@
 
                     <div class="item">
                         <div class="content">
-							 <a id="show_modal_follow">팔로우 <span><%=dto.getFollowing_num() %></span>
+							 <a id="show_modal_follow">팔로우 <span><%=dto.getFollowing_num() %></span></a>
                         </div>
                     </div>
                 </div>
