@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%String id = (String)session.getAttribute("id"); %>
+<% String id = (String)session.getAttribute("id"); %>
 	
 	<a class="" href="viewnewsfeed.do">
 		<img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
@@ -24,7 +24,7 @@
                 <div id="viewsearch" class="results"></div>
                 
             </div>
-            <a class="ui item" href="./member/logout.jsp"><i class="user icon"></i>로그아웃</a>
+            <a class="item" href="./member/logout.jsp"><i class="user icon"></i>로그아웃</a>
         </div>
     </div>
 

@@ -165,7 +165,7 @@
 		            	<div class="right floated content">
 		                	<button class="ui tiny button violet btn_follow">팔로우</button>
 		            	</div>
-						<div class="content">
+						<div class="middle aligned content">
 							<a class="header">jipro</a>
 							<div class="description">지프로입니다.</div>
 						</div>

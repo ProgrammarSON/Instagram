@@ -1,22 +1,14 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <script>
-/* navbar 좋아한 글 */
+/* 팔로우한 유저 모달창 띄우기 */
 $(function(){
     $('#show_modal_follow').click(function(){
         $('.ui.modal')
         .modal({
             closable: false,
-            transition: 'fade',
-//             duration: 200,
-//             selector: {
-//                 approve: '.ok',
-//                 deny: '.cancel'
-//             },
-//             onDeny: function() {
-//                 return true;
-//             },
-//             onApprove: function() {
-//                 window.alert('wow');
-//             }
+            transition: 'fade'
         })
         .modal('show');
     });

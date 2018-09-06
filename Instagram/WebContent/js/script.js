@@ -47,7 +47,21 @@ $(document).ready(function() {
 	        }
 	    }
     );
-			
+	
+//    var like = $.post("likesfeed.html", function(data) {
+//    	console.log("success!");
+//    }).
+//    	done(function(data) {
+//            $("#liked").popup({
+//                popup: $(".custom.popup").html(data),
+//                on: 'click'
+//            });
+//        })
+//        .fail(function(err, val, msg) {
+//            alert(err.responseText);
+//        }
+//	);
+
 	$("#searchid").on("keyup", function(){
 		var value = $(this).val().toLowerCase();
 		$("table tr").filter(function(){
