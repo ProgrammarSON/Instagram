@@ -1,19 +1,22 @@
 <script>
 /* navbar 좋아한 글 */
 $(function(){
-    $.ajax({
-        url: "likesfeed.html",
-        type: "GET",
-        dataType: "html",
-        success: function(data) {
-            $("#liked").popup({
-                popup: $(".custom.popup").html(data),
-                on: 'click'
-            });
-        },
-        error: function(err, val, msg) {
-            alert(err.responseText);
-        }
+    $('#show_modal_follow').click(function(){
+        $('.ui.modal')
+        .modal({
+            selector: {
+                approve: '.ok',
+                deny: '.cancel'
+            },
+            closable: false,
+            onDeny: function() {
+                return true;
+            },
+            onApprove: function() {
+                window.alert('wow');
+            }
+        })
+        .modal('show');
     });
 });
 </script>

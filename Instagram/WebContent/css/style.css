@@ -3,7 +3,23 @@
 }
 
 #header_user {
-  font-weight: 200;
+  height: 60px;
+  line-height: 32px;
+}
+
+#header_userid {
+  font-weight: 400;
+  font-size: 2rem;
+  margin-right: 54px;
+}
+
+#header_button {
+  margin-left: 0;
+}
+
+#header_button .button {
+  padding-left: 14px;
+  padding-right: 14px;
 }
 
 #header_hashtag {

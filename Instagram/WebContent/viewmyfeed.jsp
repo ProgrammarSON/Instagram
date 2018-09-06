@@ -72,12 +72,13 @@
         	})
         	$("#following_btn").show();
     		$("#followingjung_btn").hide();
-       	});    
+       	});
     });    	
     </script>
 </head>
 
 <body>
+	<!-- 페이지 전체 컨테이너 시작 -->
     <div class="ui container">
     	<!-- 내비게이션(메뉴) 바 시작 -->
         <jsp:include page="navbar.jsp"/>
@@ -92,48 +93,42 @@
 	               		<img id="my_profile_img" class="image" src="./profile_image/<%=dto.getProfile_img() %>">
 	               	</div>
 	            </div>
-            
-            
             </div>
 
             <div class="eleven wide middle aligned column">
-                
-                <h1 class="ui header" id="header_user">
-                    <%=follow_id %>
-                </h1>
-            
+
+                <div class="ui header" id="header_user">
+                    <span id="header_userid"><%=follow_id %></span>
+                    <span id="header_button">
+		                <button type="button" class="ui tiny basic button violet" id="following_btn">팔로우</button>
+		               	<button type="button" class="ui tiny button violet" id="followingjung_btn">팔로잉</button>
+		               	<button type="button" class="ui tiny basic button violet" id="modify_btn">프로필 수정</button>
+	            	</span>
+                </div>
+            	
                 <div class="ui relaxed horizontal list">
                     <div class="item">
                         <div class="content">
-                            게시물 <span><%=dto.getFeed_num() %></span>
+							게시물 <span><%=dto.getFeed_num() %></span>
                         </div>
                     </div>
 
                     <div class="item">
                         <div class="content">
-                            팔로워 <span><%=dto.getFollower_num() %></span>
+							팔로워 <span><%=dto.getFollower_num() %></span>
                         </div>
                     </div>
 
                     <div class="item">
                         <div class="content">
-                            팔로우 <span><%=dto.getFollowing_num() %></span>
+							<a id="show_modal_follow">팔로우 <span><%=dto.getFollowing_num() %></span></a>
                         </div>
                     </div>
                 </div>
 
                 <div class="ui column">
                     <p>
-                        <%=dto.getContents() %><br>
-                    </p>
-                </div>
-                <div class="ui column">
-                    <p>
-                    <form>
-                    	<button type="button" class="ui tiny button violet" id="following_btn">팔로우</button>
-                    	<button type="button" class="ui tiny button violet" id="followingjung_btn">팔로잉중</button>
-                    	<button type="button" class="ui tiny button violet" id="modify_btn">프로필 수정</button>
-                    </form>
+                        <%=dto.getContents() %>
                     </p>
                 </div>
             </div>
@@ -141,6 +136,28 @@
 		
         <div class="ui divider"></div>
         <!-- 프로필 구역 끝 -->
+        
+        <!-- 모달 시작 -->
+        <div class="ui modal">
+			<div class="ui icon header">
+				<i class="archive icon"></i>
+				Archive Old Messages
+			</div>
+			<div class="content">
+				<p>Your inbox is getting full, would you like us to enable automatic archiving of old messages?</p>
+			</div>
+			<div class="actions">
+				<div class="ui red basic cancel inverted button">
+					<i class="remove icon"></i>
+					No
+				</div>
+				<div class="ui green ok inverted button">
+					<i class="checkmark icon"></i>
+					Yes
+				</div>
+			</div>
+		</div>
+        <!-- 모달 끝 -->
         
 		<!-- 카드 -->
         <div class="ui three cards dim-card">
@@ -160,16 +177,18 @@
 	              	</div>
 	              	<div class="cropped-image">
               	<% if(map.get(key).getImage_path() == null) { %>
-	            	<img class="image centered-and-cropped" src="./feed_image/null.jpg">
+	            		<img class="image centered-and-cropped" src="./feed_image/null.jpg">
 	              	<% } else { %>
-	                <img class="image centered-and-cropped" src="./feed_image/<%= map.get(key).getImage_path() %>">
+	                	<img class="image centered-and-cropped" src="./feed_image/<%= map.get(key).getImage_path() %>">
               	<% } %>
               		</div>
 				</a>
 			</div>
-        <% } %>
+			<% } %>
+    	</div>
     </div>
-    
+    <!-- 페이지 전체 컨테이너 끝 -->
+	
 	<!-- 푸터 시작 -->
 	<jsp:include page="footer.jsp"/>
 	<!-- 푸터 끝 -->
