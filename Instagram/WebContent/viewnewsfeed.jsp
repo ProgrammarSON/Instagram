@@ -52,7 +52,7 @@
              	<img class="ui avatar image" src="profile_image/null.jpg">
              <%}else { %>
              	<img class="ui avatar image" src="profile_image/<%=map.get(key).getProfile_img()%>">
-             <%} %> 
+             <%} %>  
              <a href="viewmyfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
        </div>
              <div class="image">

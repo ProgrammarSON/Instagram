@@ -1,6 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% String user_id = (String)session.getAttribute("id"); %>
+<% request.setCharacterEncoding("UTF-8");
+	//html에서부터 값 받아옴
+	String address = request.getParameter("add1");
+	request.setAttribute("add1",address);
+	%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,14 +29,10 @@
 	<form action="writenewsfeed.do" method="post" enctype="Multipart/form-data" class="ui form">
 		<div class="ui container">
             <h1>작성하기</h1>
-<!--             <div class="ui divider"></div> -->
             
-           	<div><a href="mapAPI.html" target="_blank">위치추가</a>
-            <script>
-            	document.write(address+"<br>");
-            	document.write(lat+"<br>");
-            	document.write(lng+"<br>");
-            </script>
+           	<div>
+           	<a href="mapAPI.html" target="_blank">위치추가</a> <br>
+           	주소 : <%=request.getAttribute("add1") %>
             </div>
             	<div class="ui divider"></div>
 			<div class="bordered image centered-and-cropped" id="dimmer_pic">

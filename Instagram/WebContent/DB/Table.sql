@@ -55,9 +55,7 @@ CREATE TABLE HASHTAG(
 create table Mapinfo
 (
   map_id number primary key,
-  address varchar2(1000),
-  lat number,
-  lng number
+  address varchar2(1000)
 );
 
 

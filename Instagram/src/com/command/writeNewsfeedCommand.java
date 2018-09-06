@@ -24,6 +24,8 @@ public class writeNewsfeedCommand implements Command{
 			String uploadPath = request.getRealPath("/feed_image");
 			int maxSize = 1024 * 1024 * 10; 
 		    int newsfeed_id = 0;
+		    int ma = 0;
+		    
 		    
 		    HttpSession session = request.getSession();
 		    String user_id = (String)session.getAttribute("id");
@@ -33,11 +35,10 @@ public class writeNewsfeedCommand implements Command{
 		    feedDAO dao =feedDAO.getinstance();
 		    Set<String> set = new HashSet<>();
 		    
-		    mapDTO Mdto = new mapDTO();
-		    mapDAO Mdao = new mapDAO();
-		    String address = null;
-		    int lat = 0;
-		    int lng = 0;
+		   mapDTO Mdto = new mapDTO();
+		   mapDAO Mdao = mapDAO.getinstance();
+
+		   String address = request.getParameter("add1");
 		    
 		    String fileName1 = ""; 
 		    String originalName1 = ""; 
@@ -86,10 +87,9 @@ public class writeNewsfeedCommand implements Command{
 		        dto.setImage_path(image_path);
 		        newsfeed_id = dao.insertNewsFeed(dto);
 		        
-		        Mdto.setAddress(address);
-		        Mdto.setLat(lat);
-		        Mdto.setLng(lng);
-		        //newsfeed_id = Mdao.insertMap(Mdto);
+		       Mdto.setAddress(address);
+		       ma = Mdao.insertMap(Mdto);
+		       
 		        
 		        if(newsfeed_id > 0) {
 		        	if(set.size() > 0)

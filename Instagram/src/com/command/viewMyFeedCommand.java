@@ -24,6 +24,7 @@ public class viewMyFeedCommand implements Command{
 		feedDAO feeddao = feedDAO.getinstance();
 		
 		
+		
 		if(user_id.equals(session_id)) check = 0;
 		 else {
 			check = dao.checkFollow(session_id, user_id);

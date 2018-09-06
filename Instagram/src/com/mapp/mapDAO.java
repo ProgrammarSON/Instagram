@@ -11,9 +11,9 @@ import com.comment.commentDAO;
 
 public class mapDAO {
 
-		private static commentDAO instance = new commentDAO();
+		private static mapDAO instance = new mapDAO();
 		
-		public static commentDAO getinstance() {
+		public static mapDAO getinstance() {
 			return instance;
 		}
 		private Connection getConnection() {
@@ -33,18 +33,16 @@ public class mapDAO {
 		}
 		
 		public int insertMap(mapDTO dto) {
-		int ri = 0;	
+		int ma = 0;	
 		Connection conn = null;
 		PreparedStatement pstmt = null;
-		String sql = "INSERT INTO Mapinfo VALUES (NEXTVAL,?,?,?)";
+		String sql = "INSERT INTO Mapinfo VALUES (map_seq.NEXTVAL,?)";
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, dto.getAddress());
-			pstmt.setInt(2, dto.getLat());
-			pstmt.setInt(3, dto.getLng());
-			ri = pstmt.executeUpdate();
+			ma = pstmt.executeUpdate();
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -57,7 +55,7 @@ public class mapDAO {
 				e2.printStackTrace();
 			}
 		}
-		return ri;
+		return ma;
 	}
 }
 

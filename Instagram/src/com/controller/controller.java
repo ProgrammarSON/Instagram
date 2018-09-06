@@ -57,47 +57,58 @@ public class controller extends HttpServlet {
 			command = new writeNewsfeedCommand();
 			command.execute(request, response);
 			viewPage = "writenewsfeed.jsp";
+			
 		}else if(com.equals("/viewnewsfeed.do")) {
 			command = new viewnewsfeedCommand();
 			command.execute(request, response);
 			viewPage = "viewnewsfeed.jsp";
+			
 		}else if(com.equals("/writecomment.do")) {
 			command = new writeCommentCommand();
 			command.execute(request, response);
 			viewPage = "check_comment.jsp";
+			
 		}else if(com.equals("/viewcomment.do")) {
 			command = new viewCommentCommand();
 			command.execute(request, response);
 			viewPage = "viewcomment.jsp";
+			
 		}else if(com.equals("/viewreply.do")) {
 			command = new viewReplyCommand();
 			command.execute(request, response);
 			return;
+			
 			//viewPage = "viewcomment.jsp";
 		}else if(com.equals("/writereply.do")) {
 			command = new writeReplyCommand();
 			command.execute(request, response);
 			return;
+			
 		}else if(com.equals("/writenewsfeed.do")) {
 			command = new writeNewsfeedCommand();
 			command.execute(request, response);
 			viewPage  = "check_newsfeed.jsp";
+			
 		}else if(com.equals("/login.do")) {
 			command = new loginMemberCommand();
 			command.execute(request, response);
 			viewPage = "/member/check_login.jsp";
+			
 		}else if(com.equals("/join.do")) {
 			command = new joinMemberCommand();
 			command.execute(request, response);
 			viewPage = "/member/check_join.jsp";
+			
 		}else if(com.equals("/viewmyfeed.do")) {
 			command = new viewMyFeedCommand();
 			command.execute(request, response);
 			viewPage = "viewmyfeed.jsp";
+			
 		}else if(com.equals("/following.do")) {
 			command = new followingCommand();
 			command.execute(request, response);
 			return;
+			
 		}else if(com.equals("/searchid.do")) {
 			command = new searchUserIDCommand();
 			command.execute(request, response);
