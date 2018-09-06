@@ -42,7 +42,7 @@ $(document).ready(function() {
     			resulttag += "</table>";
     			$("#viewsearch").html(resulttag);
     		}
-    	});
+    	},
     // 좋아요 feed
 		{
 	        url: "likesfeed.html",

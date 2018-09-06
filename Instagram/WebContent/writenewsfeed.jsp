@@ -3,7 +3,9 @@
 <% String user_id = (String)session.getAttribute("id"); %>
 <% request.setCharacterEncoding("UTF-8");
 	//html에서부터 값 받아옴
-	String address = request.getParameter("add1");
+	String address = request.getParameter("add");
+	String latitude = request.getParameter("lat");
+	String longitude = request.getParameter("lng");
 %>
 <!DOCTYPE html>
 <html>
@@ -34,6 +36,8 @@
            	
            	<%if(address != null){%>
            		주소 : <%=address %>
+           		위도 : <%=latitude %>
+           		경도 : <%=longitude %>
            	<%} %>
             </div>
             	<div class="ui divider"></div>

@@ -53,8 +53,7 @@ public class writeNewsfeedCommand implements Command{
 		        multi = new MultipartRequest(request,uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 		       		    
 		        contents = multi.getParameter("contents");
-		         
-		        // ������ ��ü �����̸����� ������
+		        		        
 		        Enumeration files = multi.getFileNames();
 		         
 		        while(files.hasMoreElements())
@@ -82,10 +81,10 @@ public class writeNewsfeedCommand implements Command{
 		        	}
 		        }
 		        	        
-		        dto.setUser_id(user_id);
-		        dto.setContents(contents);
-		        dto.setImage_path(image_path);
-		        newsfeed_id = dao.insertNewsFeed(dto);
+		       dto.setUser_id(user_id);
+		       dto.setContents(contents);
+		       dto.setImage_path(image_path);
+		       newsfeed_id = dao.insertNewsFeed(dto);
 		        
 		       Mdto.setAddress(address);
 		       ma = Mdao.insertMap(Mdto);
