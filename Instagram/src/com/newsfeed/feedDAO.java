@@ -48,7 +48,7 @@ public class feedDAO {
 		sql.append("ON n.user_id = p.following ");
 		sql.append("JOIN myfeed m ");
 		sql.append("ON m.user_id = n.user_id LEFT OUTER JOIN likes l ");
-		sql.append("ON l.newsfeed_id = n.newsfeed_id ");
+		sql.append("ON l.newsfeed_id = n.newsfeed_id AND l.USER_ID = ? ");
 		sql.append("ORDER BY n.feed_date DESC");
 		
 /*		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG ");
@@ -65,6 +65,7 @@ public class feedDAO {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, id);
+			pstmt.setString(2, id);
 			rs = pstmt.executeQuery();
 			map = new LinkedHashMap<>();
 			
@@ -105,7 +106,7 @@ public class feedDAO {
 		ResultSet rs = null;
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT contents, user_id, NEWSFEED_ID, FEED_DATE, image_path ");
+		sql.append("SELECT contents, user_id, NEWSFEED_ID, FEED_DATE, image_path, like_count, comment_count ");
 		sql.append("FROM NEWSFEED ");
 		sql.append("WHERE user_id = ? ");
 		sql.append("ORDER BY feed_date DESC");
@@ -126,6 +127,8 @@ public class feedDAO {
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDate(rs.getString("feed_date"));
 				dto.setImage_path(rs.getString("image_path"));
+				dto.setComment_count(rs.getString("comment_count"));
+				dto.setLike_count(rs.getString("like_count"));
 				map.put(rs.getString("newsfeed_id"), dto);
 				//System.out.println(rs.getString("contents"));
 				//System.out.println(rs.getString("image_path"));
@@ -212,7 +215,7 @@ public class feedDAO {
 		ResultSet rs = null;
 		StringBuffer sql = new StringBuffer();
 		feedDTO dto = new feedDTO();
-		sql.append("SELECT image_path, contents ");
+		sql.append("SELECT image_path, contents, comment_count ");
 		sql.append("FROM newsfeed ");
 		sql.append("WHERE newsfeed_id = ?");
 		
@@ -226,6 +229,7 @@ public class feedDAO {
 			if(rs.next()) {
 				dto.setImage_path(rs.getString("image_path"));
 				dto.setContents(rs.getString("contents"));				
+				dto.setComment_count(rs.getString("comment_count"));
 			}
 			
 		} catch (SQLException e) {
@@ -284,7 +288,7 @@ public class feedDAO {
 		ResultSet rs = null;
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT contents, user_id, n.NEWSFEED_ID, FEED_DATE, image_path ");
+		sql.append("SELECT contents, user_id, n.NEWSFEED_ID, FEED_DATE, image_path, comment_count, like_count ");
 		sql.append("FROM newsfeed n JOIN hashtag h ");
 		sql.append("ON n.newsfeed_id = h.NEWSFEED_ID ");
 		sql.append("WHERE hashtag_contents = ? ");
@@ -306,6 +310,8 @@ public class feedDAO {
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setDate(rs.getString("feed_date"));
 				dto.setImage_path(rs.getString("image_path"));
+				dto.setComment_count(rs.getString("comment_count"));
+				dto.setLike_count(rs.getString("like_count"));
 				map.put(rs.getString("newsfeed_id"), dto);
 			}
 		} catch (SQLException e) {
@@ -326,20 +332,23 @@ public class feedDAO {
 	
 	public int setLikeinfo(String feed_id, String user_id,String state) {
 		Connection conn = null;
-		PreparedStatement pstmt = null;
+		CallableStatement cstmt = null;
 		int check = 0;
 		StringBuffer sql = new StringBuffer();
 		if(state.equals("like"))
-			sql.append("INSERT INTO likes VALUES(?,?)");
+			sql.append("{call insertlike_proc(?,?,?)}");
 		else
-			sql.append("DELETE FROM likes WHERE newsfeed_id = ? AND user_id = ?");
+			sql.append("{call deletelike_proc(?,?,?)}");
 		
 		try {
 			conn = getConnection();
-			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, feed_id);
-			pstmt.setString(2, user_id);
-			check = pstmt.executeUpdate();
+			cstmt = conn.prepareCall(sql.toString());
+			cstmt.setString(1, feed_id);
+			cstmt.setString(2, user_id);
+			cstmt.registerOutParameter(3, java.sql.Types.INTEGER);
+			cstmt.executeUpdate();
+			
+			check = cstmt.getInt(3);
 						
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -347,7 +356,7 @@ public class feedDAO {
 		}finally {
 			try {
 				if(conn != null) conn.close();
-				if(pstmt != null) pstmt.close();
+				if(cstmt != null) cstmt.close();
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

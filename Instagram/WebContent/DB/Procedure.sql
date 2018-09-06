@@ -46,7 +46,7 @@ BEGIN
   feedID := newsfeed_seq.nextval;
   
   INSERT INTO newsfeed
-  VALUES(feedID, puser_id, sysdate, pcontents, pimage_path);
+  VALUES(feedID, puser_id, sysdate, pcontents, pimage_path,0,0);
  
   pnewsfeed_id := feedID;  
   commit;
@@ -111,3 +111,50 @@ EXCEPTION
     rollback;
     pcheck := -1;
 END insertComment_proc;
+
+create or replace PROCEDURE insertLike_proc(  
+  pnewsfeed_id IN NUMBER, 
+  puser_id IN NEWSFEED.USER_ID%TYPE,
+  pcheck OUT NUMBER
+  ) IS
+  
+BEGIN
+    pcheck := 1;
+      
+    INSERT INTO likes VALUES(pnewsfeed_id, puser_id);
+  
+    UPDATE NEWSFEED
+    SET LIKE_COUNT = LIKE_COUNT + 1
+    WHERE NEWSFEED_ID = pnewsfeed_id;
+      
+    commit;
+
+EXCEPTION 
+ WHEN OTHERS THEN
+    rollback;
+    pcheck := -1;
+END insertLike_proc;
+
+create or replace PROCEDURE deleteLike_proc(  
+  pnewsfeed_id IN NUMBER, 
+  puser_id IN NEWSFEED.USER_ID%TYPE,
+  pcheck OUT NUMBER
+  ) IS
+  
+BEGIN
+    pcheck := 1;
+      
+    DELETE FROM likes 
+    WHERE NEWSFEED_ID = pnewsfeed_id AND USER_ID = puser_id;
+  
+    UPDATE NEWSFEED
+    SET LIKE_COUNT = LIKE_COUNT - 1
+    WHERE NEWSFEED_ID = pnewsfeed_id;
+      
+    commit;
+
+EXCEPTION 
+ WHEN OTHERS THEN
+    rollback;
+    pcheck := -1;
+END deleteLike_proc;

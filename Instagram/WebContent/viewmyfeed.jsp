@@ -168,10 +168,10 @@
 		            	<div class="content">
 		            		<!-- 좋아요 표시 시작 --><!-- 좋아요 표시 끝 -->
 		            		<i class="heart icon"></i>
-		            		<span style="margin-right: 25px;">#</span>
+		            		<span style="margin-right: 25px;"><%=map.get(key).getLike_count() %></span>
 		            		<!-- 댓글 표시 시작 -->
 							<i class="comment icon"></i>
-							<span>#</span>
+							<span><%=map.get(key).getComment_count() %></span>
 							<!-- 댓글 표시 끝 -->
 		            	</div>
 	              	</div>
