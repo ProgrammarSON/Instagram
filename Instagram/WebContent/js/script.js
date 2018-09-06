@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 	// navbar 버튼
     $('.ui .item').on('click', function() {
@@ -30,8 +31,9 @@ $(document).ready(function() {
     			resulttag += "</table>";
     			$("#viewsearch").html(resulttag);
     		}
-    	},
+    	});
     // 좋아요 feed 
+    $.ajax(
 		{
 	        url: "likesfeed.html",
 	        type: "GET",

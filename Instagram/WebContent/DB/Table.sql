@@ -9,8 +9,8 @@ CREATE TABLE newsfeed(
   feed_date Date,
   contents VARCHAR2(4000),
   image_path VARCHAR2(200),
-  like_count NUMBER,
-  comment_count NUMBER
+  comment_count NUMBER,
+  like_count NUMBER
 );
 
 CREATE TABLE comments(

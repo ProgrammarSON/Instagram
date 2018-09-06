@@ -4,8 +4,7 @@
 <% request.setCharacterEncoding("UTF-8");
 	//html에서부터 값 받아옴
 	String address = request.getParameter("add1");
-	request.setAttribute("add1",address);
-	%>
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -32,7 +31,10 @@
             
            	<div>
            	<a href="mapAPI.html" target="_blank">위치추가</a> <br>
-           	주소 : <%=request.getAttribute("add1") %>
+           	
+           	<%if(address != null){%>
+           		주소 : <%=address %>
+           	<%} %>
             </div>
             	<div class="ui divider"></div>
 			<div class="bordered image centered-and-cropped" id="dimmer_pic">
