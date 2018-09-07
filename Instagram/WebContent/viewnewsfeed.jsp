@@ -67,6 +67,14 @@
 				
 			});
 		
+		
+
+			$("#"+key+"_a_show_map").click(function(e) {
+				e.preventDefault();
+				$('.ui.modal').modal('show');
+				
+			})
+		
 	});
 <%} %>
 </script>
@@ -88,7 +96,11 @@
 	             	<img class="ui avatar image" src="profile_image/<%=map.get(key).getProfile_img()%>">
 	             <%} %>  
 	             <a href="viewmyfeed.do?user_id=<%=map.get(key).getUser_id()%>"><%=map.get(key).getUser_id()%></a>
+	       		<div class="content">
+	       			<a href="" id="<%=key %>_a_show_map"><%=map.get(key).getAddress() %></a>
+	       		</div>	
 	       </div>
+	       	
 	             <div class="image">
 	             <%if(map.get(key).getImage_path() == null){ %>
 	              	<img src="./feed_image/null.jpg"><br>
@@ -106,8 +118,17 @@
 	                    </span>
 	                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
 	                </div>
-	     </div>
+	     	</div>
 	     <%} %>
 	</div>
 </div>
+
+
+<div class="ui modal">
+	<div class="content">
+		asdf
+	</div>
+</div>
+
+
 <jsp:include page="footer.jsp"/>

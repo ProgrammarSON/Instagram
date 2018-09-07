@@ -33,31 +33,6 @@ BEGIN
 END unfollow_proc;
 
 
-create or replace PROCEDURE newsfeed_proc(  
-  puser_id IN NEWSFEED.USER_ID%TYPE,
-  pcontents IN NEWSFEED.CONTENTS%TYPE,
-  pimage_path IN NEWSFEED.IMAGE_PATH%TYPE,
-  pnewsfeed_id OUT NUMBER
-  ) IS
-  
-  feedID NUMBER;
-
-BEGIN
-  feedID := newsfeed_seq.nextval;
-  
-  INSERT INTO newsfeed
-  VALUES(feedID, puser_id, sysdate, pcontents, pimage_path,0,0);
- 
-  pnewsfeed_id := feedID;  
-  commit;
-
-EXCEPTION 
- WHEN OTHERS THEN
-    rollback;
-    pnewsfeed_id := -1;
-END newsfeed_proc;
-
-
 create or replace PROCEDURE deleteComment_proc(  
   pcomment_id COMMENTS.COMMENT_ID%TYPE,
   pnewsfeed_id NEWSFEED.NEWSFEED_ID%TYPE,
@@ -158,3 +133,30 @@ EXCEPTION
     rollback;
     pcheck := -1;
 END deleteLike_proc;
+
+create or replace PROCEDURE newsfeed_proc(  
+  puser_id IN NEWSFEED.USER_ID%TYPE,
+  pcontents IN NEWSFEED.CONTENTS%TYPE,
+  pimage_path IN NEWSFEED.IMAGE_PATH%TYPE,
+  paddress IN NEWSFEED.ADDRESS%TYPE,
+  plat IN NEWSFEED.LATITUDE%TYPE,
+  plng IN NEWSFEED.LONGITUDE%TYPE,
+  pnewsfeed_id OUT NUMBER
+  ) IS
+  
+  feedID NUMBER;
+
+BEGIN
+  feedID := newsfeed_seq.nextval;
+  
+  INSERT INTO newsfeed
+  VALUES(feedID, puser_id, sysdate, pcontents, pimage_path,0,0,paddress,plat,plng);
+ 
+  pnewsfeed_id := feedID;  
+  commit;
+
+EXCEPTION 
+ WHEN OTHERS THEN
+    rollback;
+    pnewsfeed_id := -1;
+END newsfeed_proc;
