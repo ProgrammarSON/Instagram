@@ -98,15 +98,24 @@ body {
 
 	//입력 받은 주소를 지오코딩 요청하고 결과를 마커로 지도에 표시합니다.
 	function codeAddress(event) {
-		deleteMarkers2();
+		//deleteMarkers2();
 		if (geocodemarker.length > 0) {
 			for (var i = 0; i < geocodemarker.length; i++) {
 				geocodemarker[i].setMap(null);
-			
+			}
 			geocodemarker = [];
 			geocodemarker.length = 0;
+			
 		}
-	}
+
+		if(marker.length > 0){
+			for(var i =0; i<marker.length; i++){
+				marker[i].setMap(null);
+			}
+			marker = [];
+			marker.length = 0;
+		}
+	
 		//이 부분도 위와 같이 주소를 입력할 때 표시되는 marker가 매번 새로 나타나게 하기 위함입니다.
 
 		var address = document.getElementById("addr1").value;
@@ -119,7 +128,7 @@ body {
 
 			if (status == google.maps.GeocoderStatus.OK) //Geocoding이 성공적이라면,
 			{
-				alert(results.length + "개의 결과를 찾았습니다.");
+				//alert(results.length + "개의 결과를 찾았습니다.");
 				//결과의 개수를 표시하는 창을 띄웁니다. alert 함수는 알림창 함수입니다.
 
 				for (var i = 0; i < results.length; i++) {
@@ -130,8 +139,10 @@ body {
 						//icon : GreenIcon,
 						map : map
 					}));
+					
 					infowin.setContent(address);
 					infowin.open(map, geocodemarker[0]);
+					$('#add1').val(address);
 				}
 				//결과가 여러 개일 수 있기 때문에 모든 결과를 지도에 marker에 표시합니다.
 
@@ -148,7 +159,7 @@ body {
 		Setmarker(event.latLng);
 		//이벤트 발생 시 그 좌표에 마커를 생성합니다.
 		// 좌표를 받아 reverse geocoding(좌표를 주소로 바꾸기)를 실행합니다.
-		deleteMarkers();
+		//deleteMarkers();
 		geocoder.geocode({
 			'latLng' : event.latLng
 		}, function(results, status) {
@@ -163,7 +174,7 @@ body {
 				//address는 주소값 lat lng은 위도 경도 값
 				if (results[1])
 				{
-					infowindow.setContent(results[1].formatted_address);
+					infowindow.setContent(results[0].formatted_address);
 					infowindow.open(map, marker[0]);
 					//infowindow로 주소를 표시합니다.
 				}
@@ -196,23 +207,6 @@ body {
 		clearMarkers();
 		geocodemaker = [];
 	}
-	
-	
-	function setMapOnAll2(map){
-		for(var i = 0; i<marker.length; i++) {
-			marker[i].setMap(map);
-		}
-	}
-	
-	function clearMarkers2() {
-		setMapOnAll2(null);
-	}
-	
-	
-	function deleteMarkers2() {
-		clearMarkers();
-		marker = [];
-	}
 
 </script>
 </head>
@@ -236,6 +230,7 @@ body {
 		<input type="submit" value="저장"> 
 		<input type="reset" value="취소" >
 	</form>
+
 	
 	<!--입력받는 부분을 통해 주소를 입력받고, 버튼을 누르면 codeAddress() 함수를 실행하는 부분입니다.
 
