@@ -42,7 +42,7 @@ public class feedDAO {
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
 		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG, NVL2(l.newsfeed_id,'like','unlike') like_state, ");
-		sql.append("n.comment_count, n.like_count ");
+		sql.append("n.comment_count, n.like_count, n.address, n.latitude, n.longitude ");
 		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
 		sql.append("WHERE user_id = ?) p ");
 		sql.append("ON n.user_id = p.following ");
@@ -80,6 +80,9 @@ public class feedDAO {
 				dto.setLike_state(rs.getString("like_state"));
 				dto.setLike_count(rs.getString("like_count"));
 				dto.setComment_count(rs.getString("comment_count"));
+				dto.setAddress(rs.getString("address"));
+				dto.setLatitude(rs.getString("latitude"));
+				dto.setLongitude(rs.getString("longitude"));
 				map.put(rs.getString("newsfeed_id"), dto);
 				//System.out.println(rs.getString("contents"));
 				//System.out.println(rs.getString("image_path"));
