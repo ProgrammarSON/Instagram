@@ -1,4 +1,3 @@
-
 $(document).ready(function() {
 	// navbar 버튼
     $('.ui .item').on('click', function() {
@@ -21,9 +20,9 @@ $(document).ready(function() {
         .modal('show');
     });
     
-/* ajax 통합 */
-    $.ajax(
+    
     // navbar 검색 기능
+    $.ajax(
     	{
     		url : "searchid.do",
     		type: "POST",
@@ -42,46 +41,46 @@ $(document).ready(function() {
     			resulttag += "</table>";
     			$("#viewsearch").html(resulttag);
     		}
-    	},
-    // 좋아요 feed
-		{
-	        url: "likesfeed.html",
+    	}
+    )
+    ;
+//    	,
+//    $.ajax(
+//    // 좋아요 feed
+//		{
+//	        url: "likesfeed.html",
+//	        type: "GET",
+//	        dataType: "html",
+//	        success: function(data) {
+//	            $("#liked").popup({
+//	                popup: $(".custom.popup").html(data),
+//	                on: 'click'
+//	            });
+//	        },
+//	        error: function(err, val, msg) {
+//	            alert(err.responseText);
+//	        }
+//	    }
+//    );
+	
+    $("#liked").click(function(){
+    	$.ajax({
+    		url: "likesfeed.html",
 	        type: "GET",
 	        dataType: "html",
 	        success: function(data) {
+	        	console.log("sibal");
 	            $("#liked").popup({
-	                popup: $(".custom.popup").html(data),
-	                on: 'click'
-	            });
+	            	popup: $(".custom.popup").html(data),
+	            	on: 'click'
+	            })        
 	        },
-	        error: function(err, val, msg) {
+	    	error: function(err, val, msg) {
 	            alert(err.responseText);
-	        }
-	    }
-    );
-	
-//    var like = $.post("likesfeed.html", function(data) {
-//    	console.log("success!");
-//        $("#liked").popup({
-//            popup: $(".custom.popup").html(data),
-//            on: 'click'
-//        });
-//    }),
-//    ($.ajax("searchid.do")).done(function(result) {
-//		var datas = JSON.parse(result);
-//		var datajson = JSON.stringify(datas);
-//		console.log(datajson);
-//		var resulttag;
-//		console.log(datas);
-//		resulttag += "<table border='1'>";
-//		for(i=0; i<datas.length; i++){
-//			resulttag += "<tr><td><a href=viewmyfeed.do?user_id="+datas[i].user_id+">"
-//			+datas[i].user_id
-//			+"</a></td></tr>";
-//		}			
-//		resulttag += "</table>";
-//		$("#viewsearch").html(resulttag);
-//    });
+	    	}
+    	})
+    });
+   
     
 	$("#searchid").on("keyup", function(){
 		var value = $(this).val().toLowerCase();
