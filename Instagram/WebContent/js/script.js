@@ -42,44 +42,7 @@ $(document).ready(function() {
     			$("#viewsearch").html(resulttag);
     		}
     	}
-    )
-    ;
-//    	,
-//    $.ajax(
-//    // 좋아요 feed
-//		{
-//	        url: "likesfeed.html",
-//	        type: "GET",
-//	        dataType: "html",
-//	        success: function(data) {
-//	            $("#liked").popup({
-//	                popup: $(".custom.popup").html(data),
-//	                on: 'click'
-//	            });
-//	        },
-//	        error: function(err, val, msg) {
-//	            alert(err.responseText);
-//	        }
-//	    }
-//    );
-	
-    $("#liked").click(function(){
-    	$.ajax({
-    		url: "likesfeed.html",
-	        type: "GET",
-	        dataType: "html",
-	        success: function(data) {
-	        	console.log("sibal");
-	            $("#liked").popup({
-	            	popup: $(".custom.popup").html(data),
-	            	on: 'click'
-	            })        
-	        },
-	    	error: function(err, val, msg) {
-	            alert(err.responseText);
-	    	}
-    	})
-    });
+    );
    
     
 	$("#searchid").on("keyup", function(){
@@ -99,25 +62,3 @@ function readURL(input){
         reader.readAsDataURL(input.files[0]);
     } 
 }
-
-//function ajaxSearch() {
-//	var deferred = $.Deferred();
-//	
-//	XMLHttpRequest xhr = new XMLHttpRequest();
-//	xhr.open("POST", "result", true);
-//	
-//	xhr.addEventListener('load', function(){
-//		if(xhr.status == 200) {
-//			deferred.resolve(xhr.response);
-//		} else {
-//			deferred.reject("HTTP error: " + xhr.status);
-//		}
-//	}, false)
-//	
-//	xhr.send();
-//	return deferred.promise();
-//};
-//
-//function ajaxLikeFeed() {
-//	
-//}
