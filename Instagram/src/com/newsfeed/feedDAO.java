@@ -157,14 +157,17 @@ public class feedDAO {
 		int newsfeed_id = 0;
 		try {
 			conn = getConnection();
-			cstmt = conn.prepareCall("{call newsfeed_proc(?,?,?,?)}");
+			cstmt = conn.prepareCall("{call newsfeed_proc(?,?,?,?,?,?,?)}");
 			cstmt.setString(1, dto.getUser_id());
 			cstmt.setString(2, dto.getContents());
-			cstmt.setString(3,dto.getImage_path());
-			cstmt.registerOutParameter(4, java.sql.Types.INTEGER);
+			cstmt.setString(3, dto.getImage_path());
+			cstmt.setString(4, dto.getAddress());
+			cstmt.setString(5, dto.getLatitude());
+			cstmt.setString(6, dto.getLongitude());
+			cstmt.registerOutParameter(7, java.sql.Types.INTEGER);
 			
 			cstmt.executeUpdate();			
-			newsfeed_id = cstmt.getInt(4);
+			newsfeed_id = cstmt.getInt(7);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

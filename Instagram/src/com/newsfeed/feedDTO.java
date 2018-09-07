@@ -11,8 +11,28 @@ public class feedDTO {
 	private String like_state;
 	private String comment_count;
 	private String like_count;
-		
+	private String address;
+	private String latitude;
+	private String longitude;
 	
+	public String getAddress() {
+		return address;
+	}
+	public void setAddress(String address) {
+		this.address = address;
+	}
+	public String getLatitude() {
+		return latitude;
+	}
+	public void setLatitude(String latitude) {
+		this.latitude = latitude;
+	}
+	public String getLongitude() {
+		return longitude;
+	}
+	public void setLongitude(String longitude) {
+		this.longitude = longitude;
+	}
 	public String getComment_count() {
 		return comment_count;
 	}

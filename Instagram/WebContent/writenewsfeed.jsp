@@ -42,7 +42,7 @@
             <h1>작성하기</h1>
             
            	<div>
-           	<a href="mapAPI.html" target="_blank">위치추가</a> <br>
+           	<a href="mapAPI.html">위치추가</a> <br>
            	
            	<%if(address != null){%>
            		주소 : <%=address %>
@@ -56,7 +56,7 @@
 					<label for="button_pic" class="ui inverted button violet">사진 선택</label>
 					<input type="file" name="fileName1" id="button_pic" onchange="readURL(this);">
 					<input type="hidden" id="add" name="address" value="<%=address %>">
-					<input type="hidden" id="lat" name="lattitude" value="<%=latitude %>">
+					<input type="hidden" id="lat" name="latitude" value="<%=latitude %>">
 					<input type="hidden" id="lng"name="longitude" value="<%=longitude %>">
 				</div>
 				<img class="ui centered image dim_pic" src="images/wireframe/upload_image.png">

@@ -3,8 +3,6 @@ package com.command;
 import java.io.File;
 import java.util.*;
 
-import com.mapp.mapDAO;
-import com.mapp.mapDTO;
 import com.newsfeed.*;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,8 +48,12 @@ public class writeNewsfeedCommand implements Command{
 		        multi = new MultipartRequest(request,uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 		       		    
 		        contents = multi.getParameter("contents");
+		        address = multi.getParameter("address");
+		        latitude = multi.getParameter("latitude");
+		        longitude = multi.getParameter("longitude");
 		        
-		        		        
+		        if(address == null)
+		        	System.out.println(address+" "+latitude+" "+longitude);
 		        Enumeration files = multi.getFileNames();
 		         
 		        while(files.hasMoreElements())
@@ -59,6 +61,7 @@ public class writeNewsfeedCommand implements Command{
 		           String file1 = (String)files.nextElement();
 		            
 		            image_path= multi.getFilesystemName(file1);
+		            
 		            
 		            //image_path = image_path + "\\" + multi.getFilesystemName(file1);
 		            if(image_path == null)
@@ -83,6 +86,10 @@ public class writeNewsfeedCommand implements Command{
 		       dto.setUser_id(user_id);
 		       dto.setContents(contents);
 		       dto.setImage_path(image_path);
+		       dto.setAddress(address);
+		       dto.setLatitude(latitude);
+		       dto.setLongitude(longitude);
+		       
 		       newsfeed_id = dao.insertNewsFeed(dto);
 		       	       
 		        
