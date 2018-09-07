@@ -28,4 +28,4 @@
         </div>
     </div>
 
-    <div class="ui custom popup bottom center transition hidden"></div>
+<!--     <div class="ui custom popup bottom center transition hidden"></div> -->
