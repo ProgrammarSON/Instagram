@@ -98,7 +98,7 @@ body {
 
 	//입력 받은 주소를 지오코딩 요청하고 결과를 마커로 지도에 표시합니다.
 	function codeAddress(event) {
-		infowindow.close();
+		deleteMarkers2();
 		if (geocodemarker.length > 0) {
 			for (var i = 0; i < geocodemarker.length; i++) {
 				geocodemarker[i].setMap(null);
@@ -204,8 +204,13 @@ body {
 		}
 	}
 	
+	function clearMarkers2() {
+		setMapOnAll2(null);
+	}
+	
+	
 	function deleteMarkers2() {
-		celarMarkers();
+		clearMarkers();
 		marker = [];
 	}
 
