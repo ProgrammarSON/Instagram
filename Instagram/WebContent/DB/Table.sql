@@ -10,7 +10,10 @@ CREATE TABLE newsfeed(
   contents VARCHAR2(4000),
   image_path VARCHAR2(200),
   comment_count NUMBER,
-  like_count NUMBER
+  like_count NUMBER,
+  address VARCHAR2(100),
+  latitude VARCHAR2(100),
+  longitude VARCHAR2(100)
 );
 
 CREATE TABLE comments(

@@ -31,19 +31,16 @@ public class writeNewsfeedCommand implements Command{
 		    String user_id = (String)session.getAttribute("id");
 		    String contents = "";
 		    String image_path="";
+		    String address="";
+		    String latitude="";
+		    String longitude="";
+		    
 		    feedDTO dto = new feedDTO();
 		    feedDAO dao =feedDAO.getinstance();
 		    Set<String> set = new HashSet<>();
+		    //String address = request.getParameter("add1");
 		    
-		   mapDTO Mdto = new mapDTO();
-		   mapDAO Mdao = mapDAO.getinstance();
-
-		   String address = request.getParameter("add1");
-		    
-		    String fileName1 = ""; 
-		    String originalName1 = ""; 
-		    long fileSize = 0; 
-		    String fileType = ""; 
+		 		         
 		     
 		    
 		    MultipartRequest multi = null;
@@ -53,6 +50,7 @@ public class writeNewsfeedCommand implements Command{
 		        multi = new MultipartRequest(request,uploadPath,maxSize,"utf-8",new DefaultFileRenamePolicy());
 		       		    
 		        contents = multi.getParameter("contents");
+		        
 		        		        
 		        Enumeration files = multi.getFileNames();
 		         
@@ -61,6 +59,7 @@ public class writeNewsfeedCommand implements Command{
 		           String file1 = (String)files.nextElement();
 		            
 		            image_path= multi.getFilesystemName(file1);
+		            
 		            //image_path = image_path + "\\" + multi.getFilesystemName(file1);
 		            if(image_path == null)
 	        		{
@@ -85,12 +84,10 @@ public class writeNewsfeedCommand implements Command{
 		       dto.setContents(contents);
 		       dto.setImage_path(image_path);
 		       newsfeed_id = dao.insertNewsFeed(dto);
+		       	       
 		        
-		       Mdto.setAddress(address);
-		       ma = Mdao.insertMap(Mdto);
-		       
-		        
-		        if(newsfeed_id > 0) {
+		        if(newsfeed_id > 0) 
+		        {
 		        	if(set.size() > 0)
 		        		dao.insertHashTag(set, newsfeed_id);
 		        	int check = dao.updateMyFeedNum(user_id);

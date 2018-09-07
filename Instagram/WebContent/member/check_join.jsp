@@ -12,7 +12,7 @@
 %>
 		<script language="javascript">
 			alert("회원가입 완료");
-			document.location.href="login.html";
+			document.location.href="index.html";
 		</script>
 <%
 		} else {	
