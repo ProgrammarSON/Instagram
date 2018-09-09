@@ -121,6 +121,10 @@ public class controller extends HttpServlet {
 			command = new likeCommand();
 			command.execute(request, response);
 			return;
+		}else if(com.equals("/viewmodalfollow.do")) {
+			command = new viewModalFollowCommand();
+			command.execute(request, response);
+			return;
 		}
 		
 		System.out.println("dispatcher.......");

@@ -138,13 +138,18 @@
         <!-- 프로필 구역 끝 -->
         
         <!-- 모달 시작 -->
-        <div class="ui mini modal">
+         <%-- <jsp:include page="viewwmodalfollow.jsp">
+         	<jsp:param name="user_id" value="<%=follow_id%>"/>
+		 </jsp:include> --%>
+         	
+         <div class="ui mini modal">
         	<i class="close icon"></i>
 			<div class="header">팔로잉</div>
 
 			<div class="scrolling content">
 
 				<div class="ui very relaxed list">
+					
 					<div class="item">
 						<div class="left floated content">
 		                	<img class="ui avatar image" src="images/avatar/small/daniel.jpg">
@@ -174,7 +179,7 @@
 				</div>
 				
 			</div>
-		</div>
+		</div> 
         <!-- 모달 끝 -->
         
 		<!-- 카드 -->

@@ -7,7 +7,7 @@
   body { height : 100%; margin: 3% 0% 0% 1.5%; padding: 0 }
   #map_canvas { height : 100% }
 </style>
-<!-- AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM <-이건 구글 API사용 할때 필요한 키에요-->
+<!-- AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM <-�씠嫄� 援ш� API�궗�슜 �븷�븣 �븘�슂�븳 �궎�뿉�슂-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM&callback=initMap">
 </script>
 
@@ -30,7 +30,7 @@
 //    new google.maps.Point(0, 0),
 //    new google.maps.Point(6, 20));
 
-// 녹색 마커 아이콘을 정의하는 부분
+// �끃�깋 留덉빱 �븘�씠肄섏쓣 �젙�쓽�븯�뒗 遺�遺�
 
 
 function initialize()
@@ -51,17 +51,9 @@ function initialize()
 
   geocoder =  new google.maps.Geocoder();
 
-       //이 부분도 위와 같이 주소를 입력할 때 표시되는 marker가 매번 새로 나타나게 하기 위함입니다.
+  var address ="���븳誘쇨뎅 ��援ш킅�뿭�떆 �닔�꽦援� 吏��궛1�룞 吏��궛濡�14湲� 122-2"
 
-       //var address = document.getElementById("addr1").value;
-  var address ="대한민국 대구광역시 수성구 지산1동 지산로14길 122-2"
-       //아래의 주소 입력창에서 받은 정보를 address 변수에 저장합니다.
-
-    
-
-// marker를 빈 배열로 만들고, marker 배열의 개수를 0개로 만들어 marker 배열을 초기화합니다.
-
-    marker.push(new google.maps.Marker({
+  marker.push(new google.maps.Marker({
      position: latlng,
      map: map
 
@@ -72,12 +64,12 @@ function initialize()
         position: marklocation
     });    
    
-       //지오코딩하는 부분입니다.
+       //吏��삤肄붾뵫�븯�뒗 遺�遺꾩엯�땲�떎.
 
     geocoder.geocode( {'address': address}, function(results, status) {
         
         
-        if (status == google.maps.GeocoderStatus.OK)  //Geocoding이 성공적이라면,
+        if (status == google.maps.GeocoderStatus.OK)  //Geocoding�씠 �꽦怨듭쟻�씠�씪硫�,
         {
 
             for(var i=0;i<results.length;i++)
@@ -90,24 +82,15 @@ function initialize()
                     map: map
                 }));
             }   
-         //결과가 여러 개일 수 있기 때문에 모든 결과를 지도에 marker에 표시합니다.
         }
         else
         { 
-            alert("올바르지 않습니다. "); //+ status); 오류 처리 
+            alert("�삱諛붾Ⅴ吏� �븡�뒿�땲�떎. "); 
         }
         
     });
     infoWindow.open(map,marker[0]);
 }
-
-        /*아랫글에서 설명한 event를 이용 지도를 'click'하면 codeCoordinate함수를 실행합니다.
-
-        codeCoordinate함수는 클릭한 지점의 좌표를 가지고 주소를 찾는 함수입니다. */
-
-
-
-
 
     </script>
   </head>
@@ -116,10 +99,6 @@ function initialize()
 
    <div id="map_canvas" style="width:80%; height:60%"></div>
 
- <!--입력받는 부분을 통해 주소를 입력받고, 버튼을 누르면 codeAddress() 함수를 실행하는 부분입니다.
-
- // <input type="text"는 텍스트 입력을 <input type="submit"은 버튼 입력을 의미합니다. 
- //<p>와 </p> 사이에 있는 부분이 한 문단을 구성합니다. -->
 
 </body>
 </html>

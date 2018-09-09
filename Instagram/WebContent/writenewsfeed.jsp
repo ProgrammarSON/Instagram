@@ -61,13 +61,11 @@
 	           	<div>
 <!-- 	           		<a href="mapAPI.html">위치추가</a> -->
 					<a class="ui small basic button violet" href="mapAPI.html" id="button_mapAPI">위치 추가</a>
-	           	<br>
-	           	
-	           	<%if(address != null){%>
-	           		주소 : <%=address %>
-	           		위도 : <%=latitude %>
-	           		경도 : <%=longitude %>
-	           	<%} %>
+	           		<div>
+	           			<%if(address != null){%>
+	           				주소 : <%=address %>
+	           			<%} %>
+	           		</div>
 	            </div>
 	            
             	<div class="ui divider"></div>

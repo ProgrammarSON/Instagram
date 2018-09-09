@@ -12,12 +12,44 @@ $(document).ready(function() {
     
 	// 팔로우한 유저 모달창 띄우기 
     $('#show_modal_follow').click(function(){
+        var id = document.getElementById('header_userid').innerText;
+       
+        //$(this).find('i').hasClass('outline')
+        $.ajax({
+    		url : "viewmodalfollow.do?user_id="+id+"&state=following",
+    		success : function(result){
+    			var data = JSON.parse(result);
+    			$('.ui.very.relaxed.list').html("");
+    			for(var i=0; i<data.length; i++){
+    				
+    				$('.ui.very.relaxed.list').append(
+    					"<div class='item'>"+
+    					 "<div class='left floated content'>"+
+    		                	"<img class='ui avatar image' src='profile_image/"+ data[i].profile_img+"'>"+
+    		             "</div>"+
+    		              "<div class='right floated content'>"+
+    		                	"<button type='button'class='ui tiny button violet btn_follow'>팔로우</button>"+
+    		              "</div>"+
+    					   "<div class='content'>"+
+    							"<a class='header'>"+data[i].user_id+"</a>"+
+    						"<div class='description'>저는 이런 사람입니다.</div>"+
+    						"</div>"+
+    					"</div>"
+    				);
+    			}
+    		},
+    		error : function(xhr, status, error) {
+    			alert("ERROR!!!");
+    		}
+      	})        
+                
         $('.ui.modal')
         .modal({
             closable: false,
             transition: 'fade'
         })
         .modal('show');
+    	
     });
     
     
