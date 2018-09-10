@@ -65,7 +65,7 @@
         <div class="ui divider"></div>
 
 
-       <div class="ui three cards dim-card">
+		<div class="ui three cards dim-card">
             <% for(String key : map.keySet()) { %>
 			<div class="card">
 				<a class="image centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
@@ -80,7 +80,7 @@
 							<!-- 댓글 표시 끝 -->
 		            	</div>
 	              	</div>
-	              	<div class="cropped-image">
+					<div class="cropped-image">
               	<% if(map.get(key).getImage_path() == null) { %>
 	            	<img class="image centered-and-cropped" src="./feed_image/null.jpg">
 	              	<% } else { %>
@@ -90,6 +90,7 @@
 				</a>
 			</div>
         <% } %>
+    	</div>
     </div>
 
 	<jsp:include page="footer.jsp"/>
