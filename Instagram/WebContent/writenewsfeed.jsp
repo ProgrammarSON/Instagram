@@ -202,18 +202,7 @@
 			e.preventDefault();
 			$(".ui.modal").modal("show");
 		});
-
-// 		$("#button_mapAPI").each(function() {
-// 			$(this).click(function() {
-// 				e.preventDefault();
-// 				var url = $(this).attr("href");
-// 				$.get(url, function(data) {
-// 					$(".ui.modal .content").html(data);
-// 					$(".ui.modal").modal({observeChanges:true}).modal("show");
-// 				});
-// 			})
-// 		});
-//	});
+	});
 	</script>
 	
 </head>

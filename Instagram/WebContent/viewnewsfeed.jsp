@@ -99,28 +99,31 @@
 	       		<div class="content">
 	       			<a href="" id="<%=key %>_a_show_map"><%=map.get(key).getAddress() %></a>
 	       		</div>	
-	       </div>
-	       	
-	             <div class="image">
-	             <%if(map.get(key).getImage_path() == null){ %>
-	              	<img src="./feed_image/null.jpg"><br>
-	              <%}else{ %>
-	                <img src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
-	              <%} %>
-	              </div>
-	                <div class="extra content">
-	                    <span class="right floated" id="<%=key%>like">
-	                    	<%if(map.get(key).getLike_state().equals("unlike")){ %>
-	                        	<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
-	                        <%}else{ %>
-	                        	<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
-	                        <%} %>
-	                    </span>
-	                    <i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
-	                </div>
-	     	</div>
+			</div>
+			<div class="centered-and-cropped">
+				<div class="cropped-image">
+				<%if(map.get(key).getImage_path() == null){ %>
+					<img class="image centered-and-cropped" src="./feed_image/null.jpg"><br>
+				<%}else{ %>
+					<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
+				<%} %>
+				</div>
+			</div>
+			<div class="extra content">
+				<span class="right floated" id="<%=key%>like">
+				<%if(map.get(key).getLike_state().equals("unlike")){ %>
+					<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
+				<%}else{ %>
+					<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
+				<%} %>
+				</span>
+				<i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
+			</div>
+		</div>
 	     <%} %>
-	</div>
+    </div>
+    
+    
 </div>
 
 
