@@ -33,7 +33,6 @@
     	var id = "<%=user_id %>";
     	var follow = "<%=follow_id %>";
     	var state = "<%=check%>";
-    	var temp=[];
     	
     	if(state == -1)		//상대 계정과 follow가 안되어 있음
     	{
@@ -73,11 +72,101 @@
         	$("#following_btn").show();
     		$("#followingjung_btn").hide();
        	});
+    
+    	$('#show_modal_following').click(function(){
+            var header_id = document.getElementById('header_userid').innerText;
+           
+            //$(this).find('i').hasClass('outline')
+            $.ajax({
+        		url : "viewmodalfollow.do?user_id="+header_id+"&state=following",
+        		success : function(result){
+        			var modalData = JSON.parse(result);
+        			$('.ui.very.relaxed.list').html("");
+        			for(var i=0; i<modalData.length; i++){
+        				console.log(modalData[i].user_id);
+        				$('.ui.very.relaxed.list').append(
+        					"<div class='item'>"+
+        					 "<div class='left floated content'>"+
+        					 	  	"<img class='ui avatar image' src='profile_image/"+ modalData[i].profile_img+"'>"+
+        		             "</div>"+
+        		              "<div class='right floated content'>"+
+        		                	//"<button type='button'class='ui tiny button violet btn_follow' id="+modalData[i].user_id+"_followingjung_btn>팔로잉</button>"+
+        		              "<button type='button'class='ui tiny button violet basic btn_follow'  id="+modalData[i].user_id+"_followingjung_btn onclick=\"followingjung('"+id+"','"+modalData[i].user_id+"');\">팔로잉</button>"+
+        		              "<button type='button'class='ui tiny button violet btn_follow'  id="+modalData[i].user_id+"_following_btn onclick=\"following('"+id+"','"+modalData[i].user_id+"');\">팔로우</button>"+
+        		              "</div>"+
+        					   "<div class='content'>"+
+        							"<a class='header'>"+modalData[i].user_id+"</a>"+
+        						"<div class='description'>저는 이런 사람입니다.</div>"+
+        						"</div>"+
+        					"</div>"
+        				);
+        				//setModalData(modalData[i].user_id);
+        				$('#'+modalData[i].user_id+'_following_btn').hide();
+        			}
+        			
+        		},
+        		error : function(xhr, status, error) {
+        			alert("ERROR!!!");
+        		}
+          	})        
+                    
+            $('.ui.modal')
+            .modal({
+                closable: false,
+                transition: 'fade'
+            })
+            .modal('show');
+        	
+        });
+    	
+    	 $('#show_modal_follower').click(function(){
+    	        var header_id = document.getElementById('header_userid').innerText;
+    	       
+    	        //$(this).find('i').hasClass('outline')
+    	        $.ajax({
+    	    		url : "viewmodalfollow.do?user_id="+header_id+"&state=follower",
+    	    		success : function(result){
+    	    			var modalData = JSON.parse(result);
+    	    			$('.ui.very.relaxed.list').html("");
+    	    			
+    	    			for(var i=0; i<modalData.length; i++){
+    	    				console.log(modalData[i].user_id);
+    	    				$('.ui.very.relaxed.list').append(
+    	    					"<div class='item'>"+
+    	    					 "<div class='left floated content'>"+
+    	    					 	  	"<img class='ui avatar image' src='profile_image/"+ modalData[i].profile_img+"'>"+
+    	    		             "</div>"+
+    	    		              "<div class='right floated content'>"+
+    	    		                	//"<button type='button'class='ui tiny button violet btn_follow' id="+modalData[i].user_id+"_followingjung_btn>팔로잉</button>"+
+    	    		              "<button type='button'class='ui tiny button violet btn_follow'  id="+modalData[i].user_id+"_followingjung_btn onclick=\"followingjung('"+id+"','"+modalData[i].user_id+"');\">팔로잉</button>"+
+    	    		              "<button type='button'class='ui tiny button violet btn_follow'  id="+modalData[i].user_id+"_following_btn onclick=\"following('"+id+"','"+modalData[i].user_id+"');\">팔로우</button>"+
+    	    		              "</div>"+
+    	    					   "<div class='content'>"+
+    	    							"<a class='header'>"+modalData[i].user_id+"</a>"+
+    	    						"<div class='description'>저는 이런 사람입니다.</div>"+
+    	    						"</div>"+
+    	    					"</div>"
+    	    				);
+    	    				//setModalData(modalData[i].user_id);
+    	    				$('#'+modalData[i].user_id+'_followingjung_btn').hide();
+    	    			}
+    	    			
+    	    		},
+    	    		error : function(xhr, status, error) {
+    	    			alert("ERROR!!!");
+    	    		}
+    	      	})        
+    	                
+    	        $('.ui.modal')
+    	        .modal({
+    	            closable: false,
+    	            transition: 'fade'
+    	        })
+    	        .modal('show');
+    	    	
+    	    });       
     });
- 	             
-
-      
-    </script>
+ 	</script>
     
 </head>
 
@@ -145,7 +234,7 @@
               	
          <div class="ui mini modal">
         	<i class="close icon"></i>
-			<div class="header">팔로잉</div>
+			<div class="header"></div>
 
 			<div class="scrolling content">
 

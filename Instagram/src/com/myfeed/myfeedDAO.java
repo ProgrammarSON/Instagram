@@ -341,11 +341,17 @@ public class myfeedDAO {
 		StringBuffer sql = new StringBuffer();
 		myfeedDTO dto = null;
 		List<myfeedDTO> list = new ArrayList<>();
-		sql.append("SELECT following, profile_img ");
-		sql.append("FROM follow f JOIN myfeed m ");
-		sql.append("ON f.following = m.USER_ID ");
-		sql.append("WHERE f.USER_ID = ? AND NOT f.following = ?");
-				
+		if(state.equals("following")) {
+			sql.append("SELECT following, profile_img ");
+			sql.append("FROM follow f JOIN myfeed m ");
+			sql.append("ON f.following = m.USER_ID ");
+			sql.append("WHERE f.USER_ID = ? AND NOT f.following = ?");
+		}else {
+			sql.append("SELECT f.user_id AS follower, profile_img ");
+			sql.append("FROM follow f JOIN myfeed m ");
+			sql.append("ON f.user_id = m.USER_ID ");
+			sql.append("WHERE f.following = ? AND NOT f.user_id = ?");
+		}
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
@@ -353,12 +359,20 @@ public class myfeedDAO {
 			pstmt.setString(2, user_id);
 			rs = pstmt.executeQuery();
 			
-			while(rs.next()) {
-				dto = new myfeedDTO();
-				dto.setUser_id(rs.getString("following"));
-				dto.setProfile_img(rs.getString("profile_img"));
-				list.add(dto);
-			}
+			if(state.equals("following")) 
+				while(rs.next()) {
+					dto = new myfeedDTO();
+					dto.setUser_id(rs.getString("following"));
+					dto.setProfile_img(rs.getString("profile_img"));
+					list.add(dto);
+				}
+			else
+				while(rs.next()) {
+					dto = new myfeedDTO();
+					dto.setUser_id(rs.getString("follower"));
+					dto.setProfile_img(rs.getString("profile_img"));
+					list.add(dto);
+				}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

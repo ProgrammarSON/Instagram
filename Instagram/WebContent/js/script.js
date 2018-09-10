@@ -17,7 +17,7 @@ $(document).ready(function() {
     
     
     
-    $('#show_modal_following').click(function(){
+    /*$('#show_modal_following').click(function(){
         var id = document.getElementById('header_userid').innerText;
        
         //$(this).find('i').hasClass('outline')
@@ -61,10 +61,10 @@ $(document).ready(function() {
         })
         .modal('show');
     	
-    });
+    });*/
     
     
-    $('#show_modal_follower').click(function(){
+   /* $('#show_modal_follower').click(function(){
         var id = document.getElementById('header_userid').innerText;
        
         //$(this).find('i').hasClass('outline')
@@ -108,7 +108,7 @@ $(document).ready(function() {
         })
         .modal('show');
     	
-    });
+    });*/
     
     
     // navbar 검색 기능

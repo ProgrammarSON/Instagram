@@ -208,7 +208,7 @@ public class memberDAO {
 		return user_id;
 	}
 	
-	public int updateMember(memberDTO dto) {
+/*	public int updateMember(memberDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		String sql = "UPDATE MEMBER SET Email = ?, Username = ?, User_id = ? ,Password = ?"
@@ -233,5 +233,5 @@ public class memberDAO {
 			}
 		}
 	}
-	return ri;
+	return ri;*/
 }
