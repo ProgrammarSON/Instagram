@@ -83,7 +83,7 @@
         			var modalData = JSON.parse(result);
         			$('.ui.very.relaxed.list').html("");
         			for(var i=0; i<modalData.length; i++){
-        				console.log(modalData[i].user_id);
+        				console.log(modalData[i].follow_check);
         				$('.ui.very.relaxed.list').append(
         					"<div class='item'>"+
         					 "<div class='left floated content'>"+
@@ -101,7 +101,18 @@
         					"</div>"
         				);
         				//setModalData(modalData[i].user_id);
-        				$('#'+modalData[i].user_id+'_following_btn').hide();
+        				console.log(id+" "+modalData[i].user_id+" "+modalData[i].follow_check)
+        				if(id == modalData[i].user_id)
+    	    			{
+    	    				$('#'+modalData[i].user_id+'_followingjung_btn').hide();
+    	    				$('#'+modalData[i].user_id+'_following_btn').hide();
+    	    			}else if("unfollow" == modalData[i].follow_check){
+    	    				$('#'+modalData[i].user_id+'_followingjung_btn').hide();
+    	    				$('#'+modalData[i].user_id+'_following_btn').show();
+    	    			}else{
+    	    				$('#'+modalData[i].user_id+'_followingjung_btn').show();
+    	    				$('#'+modalData[i].user_id+'_following_btn').hide();
+    	    			}        				
         			}
         			
         		},
@@ -138,8 +149,9 @@
     	    		             "</div>"+
     	    		              "<div class='right floated content'>"+
     	    		                	//"<button type='button'class='ui tiny button violet btn_follow' id="+modalData[i].user_id+"_followingjung_btn>팔로잉</button>"+
-    	    		              "<button type='button'class='ui tiny button violet btn_follow'  id="+modalData[i].user_id+"_followingjung_btn onclick=\"followingjung('"+id+"','"+modalData[i].user_id+"');\">팔로잉</button>"+
+    	    		              "<button type='button'class='ui tiny button violet basic btn_follow'  id="+modalData[i].user_id+"_followingjung_btn onclick=\"followingjung('"+id+"','"+modalData[i].user_id+"');\">팔로잉</button>"+
     	    		              "<button type='button'class='ui tiny button violet btn_follow'  id="+modalData[i].user_id+"_following_btn onclick=\"following('"+id+"','"+modalData[i].user_id+"');\">팔로우</button>"+
+    	    		             
     	    		              "</div>"+
     	    					   "<div class='content'>"+
     	    							"<a class='header'>"+modalData[i].user_id+"</a>"+
@@ -148,7 +160,18 @@
     	    					"</div>"
     	    				);
     	    				//setModalData(modalData[i].user_id);
-    	    				$('#'+modalData[i].user_id+'_followingjung_btn').hide();
+    	    				//console.log(modalData[i].user_id+" "+id);
+    	    				if(id == modalData[i].user_id)
+        	    			{
+        	    				$('#'+modalData[i].user_id+'_followingjung_btn').hide();
+        	    				$('#'+modalData[i].user_id+'_following_btn').hide();
+        	    			}else if("unfollow" == modalData[i].follow_check){
+        	    				$('#'+modalData[i].user_id+'_followingjung_btn').hide();
+        	    				$('#'+modalData[i].user_id+'_following_btn').show();
+        	    			}else{
+        	    				$('#'+modalData[i].user_id+'_followingjung_btn').show();
+        	    				$('#'+modalData[i].user_id+'_following_btn').hide();
+        	    			}        			
     	    			}
     	    			
     	    		},
@@ -193,9 +216,9 @@
                 <div class="ui header" id="header_user">
                     <span id="header_userid"><%=follow_id %></span>
                     <span id="header_button">
-		                <button type="button" class="ui tiny basic button violet" id="following_btn">팔로우</button>
-		               	<button type="button" class="ui tiny button violet" id="followingjung_btn">팔로잉</button>
-		               	<button type="button" class="ui tiny basic button violet" id="modify_btn" onclick="location.href='userinfo.jsp'">프로필 수정</button>
+		                <button type="button" class="ui tiny button violet" id="following_btn">팔로우</button>
+		               	<button type="button" class="ui tiny button basic violet" id="followingjung_btn">팔로잉</button>
+		               	<button type="button" class="ui tiny button violet" id="modify_btn" onclick="location.href='userinfo.jsp'">프로필 수정</button>
 	            	</span>
                 </div>
             	

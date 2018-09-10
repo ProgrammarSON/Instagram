@@ -164,6 +164,7 @@ function followingjung(id,follow){
 	})
 	$('#'+follow+'_followingjung_btn').hide();
 	$('#'+follow+'_following_btn').show();
+	
 }
 
 function following(id,follow){
@@ -173,9 +174,12 @@ function following(id,follow){
         	var check = JSON.parse(result);
 			console.log(check);                
     	}
-	})  
+	})
+	
+	
 	$('#'+follow+'_followingjung_btn').show();
 	$('#'+follow+'_following_btn').hide();
+	
 }
 
 

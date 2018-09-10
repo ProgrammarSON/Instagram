@@ -9,8 +9,14 @@ public class myfeedDTO {
 	String profile_img;
 	String comment_count;
 	String like_count;
+	String follow_check;
 	
-		
+	public String getFollow_check() {
+		return follow_check;
+	}
+	public void setFollow_check(String follow_check) {
+		this.follow_check = follow_check;
+	}
 	public String getComment_count() {
 		return comment_count;
 	}

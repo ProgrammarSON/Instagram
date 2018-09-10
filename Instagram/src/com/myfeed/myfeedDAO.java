@@ -265,7 +265,7 @@ public class myfeedDAO {
 		myfeedDTO dto = null;
 		List<myfeedDTO> list = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT * FROM myfeed ");
+		sql.append("SELECT user_id FROM myfeed ");
 		//sql.append("WHERE user_id = ?");
 		
 		
