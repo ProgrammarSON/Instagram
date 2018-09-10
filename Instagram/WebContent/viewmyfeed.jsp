@@ -33,7 +33,7 @@
     	var id = "<%=user_id %>";
     	var follow = "<%=follow_id %>";
     	var state = "<%=check%>";
-    	
+    	var temp=[];
     	
     	if(state == -1)		//상대 계정과 follow가 안되어 있음
     	{
@@ -73,8 +73,12 @@
         	$("#following_btn").show();
     		$("#followingjung_btn").hide();
        	});
-    });    	
+    });
+ 	             
+
+      
     </script>
+    
 </head>
 
 <body>
@@ -115,13 +119,13 @@
 
                     <div class="item">
                         <div class="content">
-							팔로워 <span><%=dto.getFollower_num() %></span>
+							<a id='show_modal_follower'>팔로워 <span><%=dto.getFollower_num() %></span></a>
                         </div>
                     </div>
 
                     <div class="item">
                         <div class="content">
-							 <a id="show_modal_follow">팔로우 <span><%=dto.getFollowing_num() %></span></a>
+							 <a id="show_modal_following">팔로우 <span><%=dto.getFollowing_num() %></span></a>
                         </div>
                     </div>
                 </div>
@@ -138,10 +142,7 @@
         <!-- 프로필 구역 끝 -->
         
         <!-- 모달 시작 -->
-         <%-- <jsp:include page="viewwmodalfollow.jsp">
-         	<jsp:param name="user_id" value="<%=follow_id%>"/>
-		 </jsp:include> --%>
-         	
+              	
          <div class="ui mini modal">
         	<i class="close icon"></i>
 			<div class="header">팔로잉</div>
@@ -210,6 +211,16 @@
 			<% } %>
     	</div>
     </div>
+    
+<!--     <script>
+	function setModalData(x){
+		//temp.push(x);
+			console.log(x);
+			//$('#'+x+'_following_btn').show();
+			//$('#'+x+'_followingjung_btn').hide();
+			
+	}
+	</script> -->
     <!-- 페이지 전체 컨테이너 끝 -->
 	
 	<!-- 푸터 시작 -->
