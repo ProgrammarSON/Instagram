@@ -26,6 +26,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM&callback=initMap"></script>	
 	
 	<script>
+	/* 구글 맵 시작 */
 	var map;
 	var infowindow = new google.maps.InfoWindow();
 	var infowin = new google.maps.InfoWindow();
@@ -186,27 +187,29 @@
 		clearMarkers();
 		geocodemaker = [];
 	}
-
+	/* 구글 맵 끝 */
 	</script>
 	
 	<script>
-	function formchk() {
-		if($('#add').val().length <1 ) $('#add').text("null");
-		if($('#lat').val().length <1 ) $('#lat').text("null");
-		if($('#lng').val().length <1 ) $('#lng').text("null");
-		document.feedform.submit();
-	}
-	
+	/* 구글 맵 모달창 띄우기 */
 	$(function() {
 		$("#button_mapAPI").click(function(e) {
 			e.preventDefault();
 			$(".ui.modal").modal("show");
 		});
 	});
+	
+	/* 구글 맵 좌표 입력하기 */
+	function formchk() {
+		if($('#add').val().length <1 ) $('#add').text("null");
+		if($('#lat').val().length <1 ) $('#lat').text("null");
+		if($('#lng').val().length <1 ) $('#lng').text("null");
+		document.feedform.submit();
+	}
 	</script>
 	
 </head>
-<body onload="initialize()">
+<body onload="initialize()">  <!-- initialize(): Google Map API 구동 시 필요  -->
 	<div class="ui container">
 		<jsp:include page="navbar.jsp"/>
 		
@@ -278,7 +281,5 @@
 		</div>
 	</div>
 	<!-- mapAPI 모달 끝 -->
-
-
 
 	<jsp:include page="footer.jsp"/>
