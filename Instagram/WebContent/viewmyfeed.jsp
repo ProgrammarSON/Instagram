@@ -202,7 +202,7 @@
 	              	<div class="cropped-image">
               	<% if(map.get(key).getImage_path() == null) { %>
 	            		<img class="image centered-and-cropped" src="./feed_image/null.jpg">
-	              	<% } else { %>
+	            <% } else { %>
 	                	<img class="image centered-and-cropped" src="./feed_image/<%= map.get(key).getImage_path() %>">
               	<% } %>
               		</div>
