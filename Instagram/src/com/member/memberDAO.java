@@ -207,4 +207,31 @@ public class memberDAO {
 		}
 		return user_id;
 	}
+	
+	public int updateMember(memberDTO dto) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		String sql = "UPDATE MEMBER SET Email = ?, Username = ?, User_id = ? ,Password = ?"
+					+"WHERE Email=? Password=?";
+		int ri = 0;
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, dto.getEmail());
+			pstmt.setString(2, dto.getUsername());
+			pstmt.setString(3, dto.getUser_id());
+			pstmt.setString(4, dto.getPassword());
+			ri = pstmt.executeUpdate();
+		} catch (Exception e) {
+			// TODO: handle exception
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+	}
+	return ri;
 }

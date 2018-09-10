@@ -102,7 +102,7 @@
                     <span id="header_button">
 		                <button type="button" class="ui tiny basic button violet" id="following_btn">팔로우</button>
 		               	<button type="button" class="ui tiny button violet" id="followingjung_btn">팔로잉</button>
-		               	<button type="button" class="ui tiny basic button violet" id="modify_btn">프로필 수정</button>
+		               	<button type="button" class="ui tiny basic button violet" id="modify_btn" onclick="location.href='userinfo.jsp'">프로필 수정</button>
 	            	</span>
                 </div>
             	

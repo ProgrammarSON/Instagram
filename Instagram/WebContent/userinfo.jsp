@@ -36,35 +36,35 @@
 					</div>
 					<div class="field">
 	        			<label>아이디</label>
-	        			<input type="email" name="" placeholder="아이디">
+	        			<input type="email" name="email" placeholder="아이디">
 	        		</div>
         		</div>
         		
         		<div class="two fields">
 					<div class="field">
 						<label>이름</label>
-						<input type="text" name="" placeholder="이름">
+						<input type="text" name="username" placeholder="이름">
 					</div>
 					<div class="field">
 						<label>별명</label>
-						<input type="text" name="" placeholder="별명">
+						<input type="text" name="user_id" placeholder="별명">
 					</div>
 				</div>
 				
 				<div class="two fields">
 					<div class="field">
 						<label>비밀번호</label>
-						<input type="password" name="" placeholder="비밀번호">
+						<input type="password" name="password" placeholder="비밀번호">
 					</div>
 					<div class="field">
 						<label>비밀번호 확인</label>
-						<input type="password" name="" placeholder="비밀번호 확인">
+						<input type="password" name="password_check" placeholder="비밀번호 확인">
 					</div>
 				</div>
 				
 				<div class="field">
 					<label>프로필 소개</label>
-					<input type="text" name="" placeholder="프로필 소개">
+					<input type="text" name="contents" placeholder="프로필 소개">
 				</div>
 				
 				<div class="ui fluid large button violet">수정 완료</div>

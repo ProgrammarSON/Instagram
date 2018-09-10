@@ -207,6 +207,21 @@ body {
 		clearMarkers();
 		geocodemaker = [];
 	}
+	
+	function setMapOnAll2(map){
+		for(var i = 0; i<marker.length; i++) {
+			marker[i].setMap(map);
+		}
+	}
+	
+	function clearMarkers2() {
+		setMapOnAll2(null);
+	}
+	
+	function deleteMarkers2(){
+		clearMarkers2();
+		marker = [];
+	}
 
 </script>
 </head>
