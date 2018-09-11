@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function() {  // $(function() 과 같다.
 	//var temp=[];
 	// navbar 버튼
     $('.ui .item').on('click', function() {
