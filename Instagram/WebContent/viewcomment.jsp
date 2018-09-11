@@ -116,7 +116,7 @@
         		word = splited[word];
         		//console.log(word);
         		
-        		word = word.replace(/#([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣]+)/g, '<a href ="viewhashtag.do?hashtag='+'$1'+'">#'+'$1'+'</a>');
+        		word = word.replace(/#([a-zA-Z0-9ㄱ-ㅎ|ㅏ-ㅣ|가-힣_-]+)/g, '<a href ="viewhashtag.do?hashtag='+'$1'+'">#'+'$1'+'</a>');
         		word = word.replace(/\n/g,"<br>");
         		
         		/* if(word.indexOf('#') == 0) // # 문자를 찾는다.
@@ -143,14 +143,18 @@
         	<div class="sixteen wide mobile ten wide tablet nine wide computer column">
 		        <div class="ui container end-div">	
 					<img id="posted_image" class="ui image fluid" src="feed_image/<%=dto.getImage_path() %>" alt="upload image">
-					<div id="feed_contents"><%=dto.getContents() %></div>
-		           	<div id="feed_hashtag"></div>
 		       	</div>
 	       	</div>
 	       	
 	       	
 	       	<div class="sixteen wide mobile six wide tablet seven wide computer column">
 		        <div class="ui container">
+		        	<div class="ui divider"></div>
+		        	<div id="feed_contents"><%=dto.getContents() %></div>
+		           	<div id="feed_hashtag"></div>
+		           	
+		           	<div class="ui divider"></div>
+		           	
 		            <div class="div-comments">
 		                <form class="ui reply form" action="writecomment.do">
 		                    <input type="hidden" name="comment_feed_id" value=<%=feed_id%>>
@@ -205,7 +209,7 @@
 		             
 		             
 						<div class="comments" id="reply_id">
-							<div class="comment">
+							<!-- <div class="comment">
 			    				<a class="avatar">
 			        				<img src="images/avatar/small/jenny.jpg">
 			    				</a>
@@ -221,7 +225,7 @@
 			            				<a class="reply">댓글쓰기</a>
 			        				</div>
 			    				</div>
-							</div>
+							</div> -->
 						</div>
 					</div>
 				</div>
