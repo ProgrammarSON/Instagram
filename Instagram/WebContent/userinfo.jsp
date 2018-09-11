@@ -21,10 +21,12 @@
 </head>
 
 <body>
+	<!-- 내비게이션(메뉴) 바 시작 -->
+	<jsp:include page="navbar.jsp"/>
+    <!-- 내비게이션(메뉴) 바 끝 -->
+
+	<!-- 페이지 전체 컨테이너 시작 -->
     <div class="ui container">
-    	<!-- 내비게이션(메뉴) 바 시작 -->
-        <jsp:include page="navbar.jsp"/>
-        <!-- 내비게이션(메뉴) 바 끝 -->
 
 		<!-- 프로필 구역 시작 -->
         <div class="ui segment">
@@ -74,8 +76,9 @@
         
 		<!-- 카드 -->
         
-    
-		<!-- 푸터 시작 -->
-		<jsp:include page="footer.jsp"/>
-		<!-- 푸터 끝 -->
 	</div>
+	<!-- 페이지 전체 컨테이너 끝 -->
+	
+	<!-- 푸터 시작 -->
+	<jsp:include page="footer.jsp"/>
+	<!-- 푸터 끝 -->
