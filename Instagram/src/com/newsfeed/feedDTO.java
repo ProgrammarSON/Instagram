@@ -14,7 +14,7 @@ public class feedDTO {
 	private String address;
 	private String latitude;
 	private String longitude;
-	
+
 	public String getAddress() {
 		return address;
 	}

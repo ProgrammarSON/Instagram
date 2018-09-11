@@ -52,8 +52,6 @@ public class writeNewsfeedCommand implements Command{
 		        latitude = multi.getParameter("latitude");
 		        longitude = multi.getParameter("longitude");
 		        
-		        if(address == null)
-		        	System.out.println(address+" "+latitude+" "+longitude);
 		        Enumeration files = multi.getFileNames();
 		         
 		        while(files.hasMoreElements())

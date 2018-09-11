@@ -150,6 +150,19 @@
 	       	<div class="sixteen wide mobile six wide tablet seven wide computer column">
 		        <div class="ui container">
 		        	<div class="ui divider"></div>
+		        	
+		        	<!--user_id, 프로필 이미지  -->
+		        	<div class="ui avatar image">
+		        		<img src="profile_image/<%=dto.getProfile_img()%>">
+		           	</div>
+		           	<div class="metadata">
+		                   <span class="date"><%=dto.getUser_id()%></span>
+		            </div>
+		           <%-- 	<div>
+		           		<%=dto.getUser_id() %>
+		           	</div> --%>
+		        	
+		        	<div class="ui divider"></div>
 		        	<div id="feed_contents"><%=dto.getContents() %></div>
 		           	<div id="feed_hashtag"></div>
 		           	

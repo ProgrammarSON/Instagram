@@ -127,7 +127,6 @@ public class controller extends HttpServlet {
 			return;
 		}
 		
-		System.out.println("dispatcher.......");
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);
 		dispatcher.forward(request,response);
 	}

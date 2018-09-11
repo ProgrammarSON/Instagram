@@ -221,10 +221,11 @@ public class feedDAO {
 		ResultSet rs = null;
 		StringBuffer sql = new StringBuffer();
 		feedDTO dto = new feedDTO();
-		sql.append("SELECT image_path, contents, comment_count ");
-		sql.append("FROM newsfeed ");
+		sql.append("SELECT n.image_path, n.contents, n.comment_count, m.user_id, m.profile_img ");
+		sql.append("FROM newsfeed n JOIN myfeed m ");
+		sql.append("ON n.user_id = m.user_id ");
 		sql.append("WHERE newsfeed_id = ?");
-		
+		System.out.println(sql.toString());
 		
 		try {
 			conn = getConnection();
@@ -236,6 +237,8 @@ public class feedDAO {
 				dto.setImage_path(rs.getString("image_path"));
 				dto.setContents(rs.getString("contents"));				
 				dto.setComment_count(rs.getString("comment_count"));
+				dto.setUser_id(rs.getString("user_id"));
+				dto.setProfile_img(rs.getString("profile_img"));
 			}
 			
 		} catch (SQLException e) {

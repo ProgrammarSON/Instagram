@@ -135,7 +135,7 @@
 		            <% } %>  
 		            <a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
 		       		<div class="content">
-	     			<% if(map.get(key).getAddress().equals("null")) { %>
+	     			<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>
 	       				주소 없음
 	   				<% } else { %>
 	       				<a id="<%=key %>_a_show_map"><%= map.get(key).getAddress() %></a>
