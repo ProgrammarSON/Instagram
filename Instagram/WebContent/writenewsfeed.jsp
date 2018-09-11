@@ -195,7 +195,13 @@
 	$(function() {
 		$("#button_mapAPI").click(function(e) {
 			e.preventDefault();
-			$(".ui.modal").modal("show");
+			$(".ui.modal").modal({
+				closable: false,
+				selector    : {
+					keyboardShortcuts : false,
+					deny : '.cancel'
+				},
+			}).modal("show");
 		});
 	});
 	
@@ -270,7 +276,7 @@
 				<input type="hidden" id="lat1" name="lat">
 				<input type="hidden" id="lng1" name="lng">
 				<button type="submit" class="ui button violet">위치 추가</button> 
-				<button type="reset" class="ui button">취소</button>
+				<button type="reset" class="ui button cancel">취소</button>
 			</div>
 		</form>
 		
