@@ -8,7 +8,7 @@
   body { height : 100%; margin: 3% 0% 0% 1.5%; padding: 0 }
   #map_canvas { height : 100% }
 </style>
-<!-- AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM <-�씠嫄� 援ш� API�궗�슜 �븷�븣 �븘�슂�븳 �궎�뿉�슂-->
+<!-- AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM <-이건 구글 API사용 할때 필요한 키에요-->
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM&callback=initMap">
 </script>
 
@@ -31,7 +31,7 @@
 //    new google.maps.Point(0, 0),
 //    new google.maps.Point(6, 20));
 
-// �끃�깋 留덉빱 �븘�씠肄섏쓣 �젙�쓽�븯�뒗 遺�遺�
+// 녹색 마커 아이콘을 정의하는 부분
 
 
 function initialize()
@@ -65,12 +65,12 @@ function initialize()
         position: marklocation
     });    
    
-       //吏��삤肄붾뵫�븯�뒗 遺�遺꾩엯�땲�떎.
+       //지오코딩하는 부분입니다.
 
     geocoder.geocode( {'address': address}, function(results, status) {
         
         
-        if (status == google.maps.GeocoderStatus.OK)  //Geocoding�씠 �꽦怨듭쟻�씠�씪硫�,
+        if (status == google.maps.GeocoderStatus.OK)  //Geocoding이 성공적이라면,
         {
 
             for(var i=0;i<results.length;i++)
