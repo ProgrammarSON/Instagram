@@ -7,7 +7,7 @@ $(document).ready(function() {  // $(function() 과 같다.
     });
 	$('.overlay').visibility({
         type: 'fixed',
-        offset: 80
+        offset: 30
 	});
 	
 	// navbar 버튼
