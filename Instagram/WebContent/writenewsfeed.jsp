@@ -216,9 +216,12 @@
 	
 </head>
 <body onload="initialize()">  <!-- initialize(): Google Map API 구동 시 필요  -->
+	<!-- 내비게이션(메뉴) 바 시작 -->
+    <jsp:include page="navbar.jsp"/>
+    <!-- 내비게이션(메뉴) 바 끝 -->
+    
+    <!-- 페이지 전체 컨테이너 시작 -->
 	<div class="ui container">
-		<jsp:include page="navbar.jsp"/>
-		
 		
 		<form action="writenewsfeed.do" name="feedform" method="post" enctype="Multipart/form-data" class="ui form" onSubmit="formchk()">
 			<div class="ui container">
@@ -259,7 +262,7 @@
 	        </div>
 		</form>
 	</div>
-	
+	<!-- 페이지 전체 컨테이너 끝 -->
 	
 	<!-- mapAPI 모달 시작 -->
 	<div class="ui modal">

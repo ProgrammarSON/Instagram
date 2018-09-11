@@ -114,60 +114,70 @@
 </head>
 
 <body>
-   <div class="ui container">
-        <jsp:include page="navbar.jsp"/>
-        
-	<div class="ui three stackable cards">
-	    <% for(String key : map.keySet()) { %>			<!-- key는 게시물 번호 -->
-	    <div class="card">
-	       <div class="content">
-	          <div class="right floated meta">14h</div>
-	            <% if(map.get(key).getProfile_img() == null) { %>
-	            	<img class="ui avatar image" src="profile_image/null.jpg">
-	            <% } else { %>
-	            	<img class="ui avatar image" src="profile_image/<%= map.get(key).getProfile_img() %>">
-	            <% } %>  
-	            <a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
-	       		<div class="content">
-     			<% if(map.get(key).getAddress().equals("null")) { %>
-       				주소 없음
-   				<% } else { %>
-       				<a id="<%=key %>_a_show_map"><%= map.get(key).getAddress() %></a>
-   				<%} %>
-       			</div>	
-			</div>
-			<div class="centered-and-cropped">
-				<div class="cropped-image">
-				<% if(map.get(key).getImage_path() == null) { %>
-					<img class="image centered-and-cropped" src="./feed_image/null.jpg"><br>
-				<% } else { %>
-					<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
-				<% } %>
+	<!-- 내비게이션(메뉴) 바 시작 -->
+    <jsp:include page="navbar.jsp"/>
+    <!-- 내비게이션(메뉴) 바 끝 -->
+    
+    <!-- 페이지 전체 컨테이너 시작 -->
+    <div class="ui container">
+    
+	    <!-- 카드 구역 시작 -->    
+		<div class="ui three stackable cards">
+		    <% for(String key : map.keySet()) { %>			<!-- key는 게시물 번호 -->
+		    <!-- 카드 시작 -->
+		    <div class="card">
+		       <div class="content">
+		          <div class="right floated meta">14h</div>
+		            <% if(map.get(key).getProfile_img() == null) { %>
+		            	<img class="ui avatar image" src="profile_image/null.jpg">
+		            <% } else { %>
+		            	<img class="ui avatar image" src="profile_image/<%= map.get(key).getProfile_img() %>">
+		            <% } %>  
+		            <a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
+		       		<div class="content">
+	     			<% if(map.get(key).getAddress().equals("null")) { %>
+	       				주소 없음
+	   				<% } else { %>
+	       				<a id="<%=key %>_a_show_map"><%= map.get(key).getAddress() %></a>
+	   				<%} %>
+	       			</div>	
+				</div>
+				<div class="centered-and-cropped">
+					<div class="cropped-image">
+					<% if(map.get(key).getImage_path() == null) { %>
+						<img class="image centered-and-cropped" src="./feed_image/null.jpg"><br>
+					<% } else { %>
+						<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
+					<% } %>
+					</div>
+				</div>
+				<div class="extra content">
+					<span class="right floated" id="<%=key%>like">
+					<%if(map.get(key).getLike_state().equals("unlike")){ %>
+						<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
+					<%}else{ %>
+						<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
+					<%} %>
+					</span>
+					<i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
 				</div>
 			</div>
-			<div class="extra content">
-				<span class="right floated" id="<%=key%>like">
-				<%if(map.get(key).getLike_state().equals("unlike")){ %>
-					<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
-				<%}else{ %>
-					<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
-				<%} %>
-				</span>
-				<i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
-			</div>
-		</div>
-		<%} %>
-    </div>
+			<!-- 카드 끝 -->
+			<%} %>
+	    </div>
+	    <!-- 카드 구역 끝 -->
     
-    
-</div>
-
-
-<div class="ui modal">
-	<div class="content">
-		<div id="map_canvas"></div>
 	</div>
-</div>
+	<!-- 페이지 전체 컨테이너 끝 -->
 
+	<!-- 모달 시작 -->
+	<div class="ui modal">
+		<div class="content">
+			<div id="map_canvas"></div>
+		</div>
+	</div>
+	<!-- 모달 끝 -->
 
-<jsp:include page="footer.jsp"/>
+	<!-- 푸터 시작 -->
+	<jsp:include page="footer.jsp"/>
+	<!-- 푸터 끝 -->

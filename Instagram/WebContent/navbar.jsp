@@ -2,11 +2,14 @@
     pageEncoding="UTF-8"%>
 <% String id = (String)session.getAttribute("id"); %>
 	
-	<a class="" href="viewnewsfeed.do">
-		<img src="images/yestagram.png" class="ui image centered small" id="brand" alt="Yestagram">
-    </a>
+	<div id="a_brand">
+		<a href="viewnewsfeed.do">
+			<img src="images/yestagram.png" class="ui image small" id="brand" alt="Yestagram">
+    	</a>
+    </div>
 
-    <div class="ui large secondary pointing stackable menu violet">
+    <div class="ui large secondary pointing stackable main menu violet">
+    	<div class="ui container">
 <!--         <a class="item" href="./writenewsfeed.jsp"><i class="image icon"></i>새 포스트</a> -->
         <a class="item" href="./writenewsfeed.jsp">
         	<button class="ui labeled icon button violet"><i class="plus square outline icon"></i>새 포스트</button>
@@ -25,6 +28,7 @@
                 
             </div>
             <a class="item" href="./member/logout.jsp"><i class="user icon"></i>로그아웃</a>
+        </div>
         </div>
     </div>
 

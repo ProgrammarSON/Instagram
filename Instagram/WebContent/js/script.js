@@ -1,5 +1,15 @@
 $(document).ready(function() {  // $(function() 과 같다.
 	//var temp=[];
+	
+	// navbar 고정
+	$('.main.menu').visibility({
+        type: 'fixed'
+    });
+	$('.overlay').visibility({
+        type: 'fixed',
+        offset: 80
+	});
+	
 	// navbar 버튼
     $('.ui .item').on('click', function() {
         $('.ui .item').removeClass('active');
