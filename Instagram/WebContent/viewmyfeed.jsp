@@ -124,7 +124,10 @@
             $('.ui.modal')
             .modal({
                 closable: false,
-                transition: 'fade'
+                transition: 'fade',
+                selector: {
+					deny : '.close'
+				}
             })
             .modal('show');
         	
@@ -183,7 +186,10 @@
     	        $('.ui.modal')
     	        .modal({
     	            closable: false,
-    	            transition: 'fade'
+    	            transition: 'fade',
+    	            selector: {
+    					deny : '.close'
+    				}
     	        })
     	        .modal('show');
     	    	
@@ -256,11 +262,13 @@
         
         <!-- 모달 시작 -->
         <div class="ui mini modal">
-        	<i class="close icon"></i>
 <!-- 			<div class="header"></div> -->
 			<div class="scrolling content">
 				<div class="ui very relaxed list">
 				</div>
+			</div>
+			<div class="actions">
+				<button class="ui tiny button basic close">닫기</button>
 			</div>
 		</div>
         <!-- 모달 끝 -->
