@@ -15,8 +15,8 @@
         	<button class="ui labeled icon button violet"><i class="plus square outline icon"></i>새 포스트</button>
         </a>
         <a class="item" id="" href="viewmyfeed.do?user_id=<%=id%>"><i class="images outline icon"></i>내 피드</a>
-        <a class="item" id="liked"><i class="heart icon"></i>좋아한 글</a>
-        <a class="item"><i class="hashtag icon"></i>해시태그</a>
+        <a class="item disabled" id="liked"><i class="heart icon"></i>좋아한 글</a>
+        <a class="item disabled"><i class="hashtag icon"></i>해시태그</a>
         <div class="right menu">
             <div class="item">
                 <div class="ui mini icon input">

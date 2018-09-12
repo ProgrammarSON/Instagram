@@ -11,10 +11,10 @@ $(document).ready(function() {  // $(function() 과 같다.
 	});
 	
 	// navbar 버튼
-    $('.ui .item').on('click', function() {
-        $('.ui .item').removeClass('active');
-        $(this).addClass('active');
-    });
+//    $('.ui .item').on('click', function() {
+//        $('.ui .item').removeClass('active');
+//        $(this).addClass('active');
+//    });
     
     // 마우스 hover 시 이미지 dimmer
     $('#dimmer_pic.image, .dim-card .image').dimmer({
