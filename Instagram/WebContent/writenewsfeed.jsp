@@ -46,7 +46,7 @@
 	function initialize() {
 		var latlng = new google.maps.LatLng(37.5240220, 126.9265940);
 		var myOptions = {
-			zoom : 20,
+			zoom : 12,
 			center : latlng,
 			mapTypeId : google.maps.MapTypeId.ROADMAP
 		};
@@ -212,7 +212,22 @@
 		if($('#lat').val().length <1 ) $('#lat').text("null");
 		if($('#lng').val().length <1 ) $('#lng').text("null");
 		document.feedform.submit();
-	}
+	};
+	
+// 	$(function() {
+// 		$("#map_submit").click(function() {
+// 			$.ajax({
+// 				type: "post",
+// 				url: "writenewsfeed.jsp",
+// 				data: $("#add1").attr("value"),
+// 				success: function(result) {
+// 					$("#address_input").html(result);
+// 				}
+// 			});
+// 			$(".ui.modal").modal("close");
+// 			return false;
+// 		});
+// 	});
 	</script>
 	
 </head>
@@ -229,11 +244,13 @@
 	            <h1>작성하기</h1>
 	            
 	           	<div>
-<!-- 	           		<a href="mapAPI.html">위치추가</a> -->
 					<a class="ui small basic button violet" id="button_mapAPI">위치 추가</a>
-	           		<div>
+	           		<div id="div-address">
+<!-- 	           			주소 : <span id="address_input"></span> -->
 	           			<% if(address != null) { %>
-	           				주소 : <%= address %>
+	           				주소 : <span id="address_input"><%= address %></span>
+	           			<% } else { %>
+	           				주소 없음
 	           			<% } %>
 	           		</div>
 	            </div>
@@ -270,7 +287,7 @@
 		<div class="content">
 			<div id="map_canvas"></div>
 		
-		<form action="writenewsfeed.jsp" method="post" class="ui form">
+		<form action="" method="post" class="ui form">
 			<div>
 				<input type="text" id="addr1" name="address" placeholder="주소 검색" style="width: 500px;"> 
 				<button type="button" onclick="codeAddress(); return false;" class="ui button basic violet">찾기</button>
@@ -279,7 +296,7 @@
 				<input type="text" id="add1" name="add" placeholder="결과" style=" width: 500px;">
 				<input type="hidden" id="lat1" name="lat">
 				<input type="hidden" id="lng1" name="lng">
-				<button type="submit" class="ui button violet">위치 추가</button> 
+				<button type="submit" class="ui button violet" id="map_submit">위치 추가</button> 
 				<button type="reset" class="ui button cancel">취소</button>
 			</div>
 		</form>

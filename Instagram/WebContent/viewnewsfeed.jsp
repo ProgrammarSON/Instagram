@@ -108,7 +108,17 @@
 			} 
 			reader.readAsDataURL(input.files[0]); 
 		}
+	};
+	
+	function doNotReload() {
+		if(	(event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) //ctrl+N , ctrl+R 
+				|| (event.keyCode == 116)) { // function F5
+					event.keyCode = 0;
+					event.cancelBubble = true;
+					event.returnValue = false;
+		}
 	}
+	document.onkeydown = doNotReload;
 	</script>
 
 </head>
