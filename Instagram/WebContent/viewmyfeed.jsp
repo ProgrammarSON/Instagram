@@ -96,7 +96,7 @@
         		              "</div>"+
         					   "<div class='content'>"+
         							"<a class='header'>"+modalData[i].user_id+"</a>"+
-        						"<div class='description'>저는 이런 사람입니다.</div>"+
+        						"<div class='description'>"+modalData[i].contents+"</div>"+
         						"</div>"+
         					"</div>"
         				);
@@ -158,7 +158,7 @@
     	    		              "</div>"+
     	    					   "<div class='content'>"+
     	    							"<a class='header'>"+modalData[i].user_id+"</a>"+
-    	    						"<div class='description'>저는 이런 사람입니다.</div>"+
+    	    							"<div class='description'>"+modalData[i].contents+"</div>"+
     	    						"</div>"+
     	    					"</div>"
     	    				);
@@ -261,7 +261,7 @@
         <!-- 프로필 구역 끝 -->
         
         <!-- 모달 시작 -->
-        <div class="ui mini modal">
+        <div class="ui tiny modal">
 <!-- 			<div class="header"></div> -->
 			<div class="scrolling content">
 				<div class="ui very relaxed list">

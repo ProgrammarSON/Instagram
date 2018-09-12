@@ -77,8 +77,7 @@
 					success : function(result){
 						var check = JSON.parse(result);
 					}
-				})
-				
+				});
 			} else {
 				$(this).find('i').addClass('outline').css('color','rgba(0,0,0,.4)');
 				$.ajax({
@@ -86,9 +85,8 @@
 					success : function(result){
 						var check = JSON.parse(result);
 					}
-				})				
-			}
-			
+				});
+			};
 		});
 	
 	
@@ -144,14 +142,14 @@
 		            	<img class="ui avatar image" src="profile_image/<%= map.get(key).getProfile_img() %>">
 		            <% } %>  
 		            <a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
-		       		<div class="content">
+				</div>
+				<div class="content">
 	     			<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>
 	       				주소 없음
 	   				<% } else { %>
 	       				<a id="<%=key %>_a_show_map"><%= map.get(key).getAddress() %></a>
 	   				<%} %>
-	       			</div>	
-				</div>
+	       		</div>
 				<a class="centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
 					<div class="cropped-image">
 					<% if(map.get(key).getImage_path() == null) { %>
@@ -169,7 +167,9 @@
 						<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
 					<%} %>
 					</span>
-					<i class="comment icon"></i> <%=map.get(key).getComment_count() %>
+					<span>
+						<i class="comment icon"></i> <%=map.get(key).getComment_count() %>
+					</span>
 				</div>
 			</div>
 			<!-- 카드 끝 -->

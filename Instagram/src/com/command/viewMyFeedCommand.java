@@ -19,6 +19,7 @@ public class viewMyFeedCommand implements Command{
 		String user_id = request.getParameter("user_id");
 		String session_id = (String)session.getAttribute("id");
 		String profile_img = "";
+		String contents = "";
 		int check = 0;
 		myfeedDAO dao = myfeedDAO.getinstance();
 		feedDAO feeddao = feedDAO.getinstance();
@@ -33,8 +34,8 @@ public class viewMyFeedCommand implements Command{
 		profile_img = dao.getProfieImg(user_id);
 		LinkedHashMap<String,feedDTO> map = feeddao.getMyFeed(user_id);
 		
-		
 		request.setAttribute("profile_img", profile_img);
+		request.setAttribute("contents", contents);
 		request.setAttribute("dto", dto);
 		request.setAttribute("check", check);
 		request.setAttribute("map", map);
