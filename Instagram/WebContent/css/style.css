@@ -68,7 +68,12 @@ input[type="file"] {
   display: block;
   margin-bottom: 5em;
 }
-
+#div-reply-button {
+	margin-top: 12px;
+}
+#feed_hashtag {
+  padding-bottom: 8px;
+}
 .cropped-image {
 /* object-fit: cover는 */
 /* 	box-sizing: border-box; */
@@ -85,9 +90,9 @@ input[type="file"] {
 
 .ui.reply.form textarea:not([rows]) {
 	/* height: 5em; */
-	min-height: 75px;
-	max-height: 75px;
-	height: 75px;
+	min-height: 58px;
+	max-height: 58px;
+	height: 58px;
 }
 
 #map_canvas {

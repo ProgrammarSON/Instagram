@@ -197,7 +197,7 @@
 			e.preventDefault();
 			$(".ui.modal").modal({
 				closable: false,
-				selector    : {
+				selector: {
 					keyboardShortcuts : false,
 					deny : '.cancel'
 				},
