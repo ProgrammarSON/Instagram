@@ -181,7 +181,7 @@
 		        </div>
 	
 				<div class="ui container">
-					<div class="ui comments">
+					<div class="ui small comments">
 						<h4 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h4>
 		              
 						<c:forEach items="${list}" var="dto">

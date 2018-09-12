@@ -94,7 +94,7 @@
 	
 		$("#"+key+"_a_show_map").click(function(e) {
 			e.preventDefault();
-			$('.ui.modal').modal('show');
+			$('.ui.modal').modal('show').modal("refresh");
 			
 		})
 	});
@@ -142,15 +142,17 @@
 	   				<%} %>
 	       			</div>	
 				</div>
-				<div class="centered-and-cropped">
-					<div class="cropped-image">
-					<% if(map.get(key).getImage_path() == null) { %>
-						<img class="image centered-and-cropped" src="./feed_image/null.jpg"><br>
-					<% } else { %>
-						<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
-					<% } %>
+				<a href="viewcomment.do?feed_id=<%=key%>">
+					<div class="centered-and-cropped">
+						<div class="cropped-image">
+						<% if(map.get(key).getImage_path() == null) { %>
+							<img class="image centered-and-cropped" src="./feed_image/null.jpg"><br>
+						<% } else { %>
+							<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
+						<% } %>
+						</div>
 					</div>
-				</div>
+				</a>
 				<div class="extra content">
 					<span class="right floated" id="<%=key%>like">
 					<%if(map.get(key).getLike_state().equals("unlike")){ %>
@@ -159,7 +161,7 @@
 						<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
 					<%} %>
 					</span>
-					<i class="comment icon"></i> <a href="viewcomment.do?feed_id=<%=key%>"><%=map.get(key).getComment_count() %></a>
+					<i class="comment icon"></i> <%=map.get(key).getComment_count() %>
 				</div>
 			</div>
 			<!-- 카드 끝 -->
