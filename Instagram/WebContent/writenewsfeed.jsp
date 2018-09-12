@@ -201,8 +201,9 @@
 					keyboardShortcuts : false,
 					deny : '.cancel'
 				},
-			}).modal("show");
+			}).modal("show").modal("refresh");
 		});
+		
 	});
 	
 	/* 구글 맵 좌표 입력하기 */
