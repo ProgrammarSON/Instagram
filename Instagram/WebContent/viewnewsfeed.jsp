@@ -152,15 +152,13 @@
 	   				<%} %>
 	       			</div>	
 				</div>
-				<a href="viewcomment.do?feed_id=<%=key%>">
-					<div class="centered-and-cropped">
-						<div class="cropped-image">
-						<% if(map.get(key).getImage_path() == null) { %>
-							<img class="image centered-and-cropped" src="./feed_image/null.jpg"><br>
-						<% } else { %>
-							<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
-						<% } %>
-						</div>
+				<a class="centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
+					<div class="cropped-image">
+					<% if(map.get(key).getImage_path() == null) { %>
+						<img class="image centered-and-cropped" src="./feed_image/null.jpg"><br>
+					<% } else { %>
+						<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
+					<% } %>
 					</div>
 				</a>
 				<div class="extra content">
