@@ -3,6 +3,11 @@
 * {
     font-family: "Noto Sans KR", sans-serif;
 }
+
+::selection {
+	background: #5829bb;
+	color: white;
+}
 .main.menu {
   margin-top: 0em;
   border-radius: 0;
