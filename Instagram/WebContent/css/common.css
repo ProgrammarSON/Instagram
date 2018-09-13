@@ -61,7 +61,7 @@
   .ui.secondary.pointing.menu .item {
 	padding-left: 10px !important;
   }
-  .ui.secondary.pointing.menu+div {
+  .main.menu+div {
 	margin-top: 50px;
   }
 }
@@ -74,7 +74,7 @@
     margin: 0 auto;
     padding: 20px 0;
   }
-  .ui.secondary.pointing.menu+div {
+  .main.menu+div {
 	margin-top: 40px;
   }
 }
