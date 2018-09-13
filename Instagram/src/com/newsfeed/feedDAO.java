@@ -41,7 +41,7 @@ public class feedDAO {
 		ResultSet rs = null;
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG, NVL2(l.newsfeed_id,'like','unlike') like_state, ");
+		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, to_char(n.feed_date,'yyyy mm dd HH24 MI SS') AS feed_date, n.image_path, m.PROFILE_IMG, NVL2(l.newsfeed_id,'like','unlike') like_state, ");
 		sql.append("n.comment_count, n.like_count, n.address, n.latitude, n.longitude ");
 		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
 		sql.append("WHERE user_id = ?) p ");
@@ -74,7 +74,7 @@ public class feedDAO {
 				feedDTO dto = new feedDTO();
 				dto.setContents(rs.getString("contents"));
 				dto.setUser_id(rs.getString("user_id"));
-				dto.setDate(rs.getString("feed_date"));
+				dto.setDate(CalDate(rs.getString("feed_date")));
 				dto.setImage_path(rs.getString("image_path"));
 				dto.setProfile_img(rs.getString("profile_img"));
 				dto.setLike_state(rs.getString("like_state"));
@@ -297,7 +297,7 @@ public class feedDAO {
 		ResultSet rs = null;
 		LinkedHashMap<String,feedDTO> map = null;
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT contents, user_id, n.NEWSFEED_ID, FEED_DATE, image_path, comment_count, like_count ");
+		sql.append("SELECT contents, user_id, n.NEWSFEED_ID, to_char(feed_date,'yyyy mm dd HH24 MI SS') AS feed_date, image_path, comment_count, like_count ");
 		sql.append("FROM newsfeed n JOIN hashtag h ");
 		sql.append("ON n.newsfeed_id = h.NEWSFEED_ID ");
 		sql.append("WHERE hashtag_contents = ? ");
@@ -317,7 +317,7 @@ public class feedDAO {
 				feedDTO dto = new feedDTO();
 				dto.setContents(rs.getString("contents"));
 				dto.setUser_id(rs.getString("user_id"));
-				dto.setDate(rs.getString("feed_date"));
+				dto.setDate(CalDate(rs.getString("feed_date")));
 				dto.setImage_path(rs.getString("image_path"));
 				dto.setComment_count(rs.getString("comment_count"));
 				dto.setLike_count(rs.getString("like_count"));
@@ -337,6 +337,37 @@ public class feedDAO {
 			}
 		}
 		return map;
+	}
+	
+	private String CalDate(String d) {
+		String dateArray[] = d.split(" ");
+		
+		int dbyear = Integer.parseInt(dateArray[0]);
+		int dbmon = Integer.parseInt(dateArray[1]);
+		int dbday = Integer.parseInt(dateArray[2]);
+		
+		int dbhour = Integer.parseInt(dateArray[3]);
+		int dbmin = Integer.parseInt(dateArray[4]);
+		int dbsec = Integer.parseInt(dateArray[5]);
+			 
+		Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		
+		int hour = calendar.get(Calendar.HOUR);
+		int minute = calendar.get(Calendar.MINUTE);
+		int second = calendar.get(Calendar.SECOND);
+		
+		 String result="";
+		 if(year-dbyear > 0) result = dateArray[0]+"년"+dateArray[1]+"월"+dateArray[2]+"일";
+		 else if(month - dbmon > 0) result = dateArray[1]+"월" + dateArray[2]+"일";
+		 else if(day - dbday  > 0) result = Integer.toString(day-dbday) +"일 전";
+		 else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+"시간 전";
+		 else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +"분 전";
+		 else result = Integer.toString(second-dbsec)+"초 전";
+		
+		 return result;
 	}
 	
 	public int setLikeinfo(String feed_id, String user_id,String state) {

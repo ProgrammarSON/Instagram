@@ -154,7 +154,7 @@
 		    <!-- 카드 시작 -->
 		    <div class="card">
 		       <div class="content">
-		          <div class="right floated meta">14h</div>
+		          <div class="right floated meta"><%= map.get(key).getDate() %></div>
 		            <% if(map.get(key).getProfile_img() == null) { %>
 		            	<img class="ui avatar image" src="profile_image/null.jpg">
 		            <% } else { %>
