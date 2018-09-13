@@ -27,6 +27,11 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM&callback=initMap" async defer></script>
 
 	<script>
+	/*
+	* 참고 URI :
+	* https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?hl=ko
+	*/
+	
 	/* 구글 맵 시작 */
 	<%for(String key : map.keySet()){ %>
 	var key = "<%=key%>";
@@ -39,12 +44,14 @@
 	  	var geocoder = new google.maps.Geocoder();
 	
 	  	document.getElementById(key+'_a_show_map').addEventListener('click', function() {
-		    geocodeAddress(geocoder, map);
+	  		geocodeAddress(geocoder, map);
 		});
-	}
+	};
 	
 	function geocodeAddress(geocoder, resultsMap) {
       	var address = document.getElementById(key+'_a_show_map').innerText;
+		
+      	console.log(address);
       	geocoder.geocode({'address': address}, function(results, status) {
         	if (status === 'OK') {
           		resultsMap.setCenter(results[0].geometry.location);
@@ -56,7 +63,8 @@
           		alert('Geocode was not successful for the following reason: ' + status);
         	}
       	});
-    }
+    };
+    
 	<% } %>
 	/* 구글 맵 끝 */
 	</script>
@@ -68,6 +76,13 @@
 		//key는 게시물 번호
 		var key = "<%=key%>";
 		console.log(key);
+		
+		$("#"+key+"_a_show_map").click(function(e) {
+    		e.preventDefault();
+// 	  		geocodeAddress(geocoder, map);
+    		$('.ui.modal').modal('show').modal('refresh');
+    	});
+		
 		$("#"+key+"like").click(function(){
 			//$(this).find('i').toggleClass('outline')
 			if($(this).find('i').hasClass('outline')) {
@@ -88,13 +103,6 @@
 				});
 			};
 		});
-	
-	
-		$("#"+key+"_a_show_map").click(function(e) {
-			e.preventDefault();
-			$('.ui.modal').modal('show').modal("refresh");
-			
-		})
 	});
 	<%} %>
 	
@@ -108,15 +116,25 @@
 		}
 	};
 	
-	function doNotReload() {
-		if(	(event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) //ctrl+N , ctrl+R 
+	/* 새로고침 막기 */
+	/* function doNotReload() {
+		if(	(event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) // Ctrl+N , Ctrl+R 
 				|| (event.keyCode == 116)) { // function F5
 					event.keyCode = 0;
 					event.cancelBubble = true;
 					event.returnValue = false;
 		}
 	}
-	document.onkeydown = doNotReload;
+	document.onkeydown = doNotReload; */
+
+// 	$(function() {
+//     	$("#"+key+"_a_show_map").click(function(e) {
+//     		e.preventDefault();
+//     		$('.ui.modal').modal('show').modal("refresh");
+
+//     	});
+//     });
+
 	</script>
 
 </head>
@@ -132,6 +150,7 @@
 	    <!-- 카드 구역 시작 -->    
 		<div class="ui three stackable cards">
 		    <% for(String key : map.keySet()) { %>			<!-- key는 게시물 번호 -->
+		    
 		    <!-- 카드 시작 -->
 		    <div class="card">
 		       <div class="content">
@@ -147,15 +166,15 @@
 	     			<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>
 	       				주소 없음
 	   				<% } else { %>
-	       				<a id="<%=key %>_a_show_map"><%= map.get(key).getAddress() %></a>
+	       				<a id="<%=key%>_a_show_map"><%= map.get(key).getAddress() %></a>
 	   				<%} %>
 	       		</div>
 				<a class="centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
 					<div class="cropped-image">
 					<% if(map.get(key).getImage_path() == null) { %>
-						<img class="image centered-and-cropped" src="./feed_image/null.jpg"><br>
+						<img class="image centered-and-cropped" src="./feed_image/null.jpg">
 					<% } else { %>
-						<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>"><br>
+						<img class="image centered-and-cropped" src="./feed_image/<%=map.get(key).getImage_path()%>">
 					<% } %>
 					</div>
 				</a>
@@ -187,6 +206,7 @@
 		</div>
 	</div>
 	<!-- 모달 끝 -->
+
 
 	<!-- 푸터 시작 -->
 	<jsp:include page="footer.jsp"/>

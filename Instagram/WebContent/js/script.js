@@ -22,9 +22,16 @@ $(document).ready(function() {  // $(function() 과 같다.
     });
     
     
+    /* Lazy Image Loading */
+//	$('.cards.card img').visibility({
+//		type       : 'image',
+//		transition : 'fade in',
+//		duration   : 1000
+//	});
+    
+    
         
     // 팔로우한 유저 모달창 띄우기 
-    
     
     
     /*$('#show_modal_following').click(function(){
