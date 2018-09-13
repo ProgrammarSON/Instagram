@@ -2,14 +2,20 @@
     pageEncoding="UTF-8"%>
 <% String id = (String)session.getAttribute("id"); %>
 	
-	<div id="a_brand">
+<!-- 	<div id="a_brand"> -->
+<!-- 		<a href="viewnewsfeed.do"> -->
+<!-- 			<img src="images/yestagram.png" class="ui image small" id="brand" alt="Yestagram"> -->
+<!--     	</a> -->
+<!--     </div> -->
+
+    <div class="ui large secondary pointing stackable main menu violet">
+    	<div id="a_brand">
 		<a href="viewnewsfeed.do">
 			<img src="images/yestagram.png" class="ui image small" id="brand" alt="Yestagram">
     	</a>
     </div>
-
-    <div class="ui large secondary pointing stackable main menu violet">
     	<div class="ui container">
+    	
 <!--         <a class="item" href="./writenewsfeed.jsp"><i class="image icon"></i>새 포스트</a> -->
         <a class="item" href="./writenewsfeed.jsp">
         	<button class="ui labeled icon button violet"><i class="plus square outline icon"></i>새 포스트</button>
