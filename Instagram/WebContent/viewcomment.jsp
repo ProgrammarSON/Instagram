@@ -141,7 +141,7 @@
     	<!-- 그리드 영역 시작 -->
         <div class="ui grid">
         	<!-- 왼쪽 영역 시작 -->
-        	<div class="sixteen wide mobile ten wide tablet nine wide computer column">
+        	<div class="sixteen wide mobile ten wide tablet ten wide computer column">
 		        <div class="ui container end-div">	
 					<img id="posted_image" class="ui image fluid" src="feed_image/<%=dto.getImage_path() %>" alt="upload image">
 		       	</div>
@@ -149,7 +149,7 @@
 	       	<!-- 왼쪽 영역 끝 -->
 	       	
 	       	<!-- 오른쪽 영역 시작 -->
-	       	<div class="sixteen wide mobile six wide tablet seven wide computer column">
+	       	<div class="sixteen wide mobile six wide tablet six wide computer column">
 		        <div class="ui container">
 		        	<!-- user_id, 프로필 이미지  -->
 		        	<div class="ui relaxed horizontal list">
