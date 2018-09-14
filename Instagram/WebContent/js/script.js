@@ -7,7 +7,7 @@ $(document).ready(function() {  // $(function() 과 같다.
     });
 	$('.overlay').visibility({
         type: 'fixed',
-        offset: 30
+        offset: 50
 	});
 	
 	// navbar 버튼
@@ -30,9 +30,7 @@ $(document).ready(function() {  // $(function() 과 같다.
 //	});
     
     
-        
     // 팔로우한 유저 모달창 띄우기 
-    
     
     /*$('#show_modal_following').click(function(){
         var id = document.getElementById('header_userid').innerText;

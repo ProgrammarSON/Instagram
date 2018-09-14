@@ -8,6 +8,9 @@
 	background: #5829bb;
 	color: white;
 }
+.menu_padding {
+	padding: 8px 0;
+}
 .main.menu {
   margin-top: 0em;
   border-radius: 0;
@@ -15,17 +18,44 @@
   box-shadow: none;
   transition:
     box-shadow 0.5s ease,
-    padding 0.5s ease
-  ;
+    padding 0.5s ease;
 }
 .main.menu.fixed {
   background-color: #FFFFFF;
   border: 1px solid #DDD;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
 }
-.ui.secondary.pointing.menu {z-index: 99999;}
-.ui.secondary.pointing.menu .item:first-child {
+.ui.secondary.pointing.menu {
+	z-index: 99999;
+	border-bottom: 0;
+}
+.ui.secondary.pointing.menu .item {
+	padding: 1.8em 1em;
+}
+.ui.secondary.pointing.menu .item.brand {
+	padding: 1.6em 1em;
 	padding-left: 0;
+}
+.ui.secondary.pointing.menu .item:last-child {
+	padding-right: 0;
+}
+
+.ui.secondary.pointing.menu.fixed .item {
+	padding: 1.3em 1em;
+}
+.ui.secondary.pointing.menu.fixed .item.brand {
+	padding: 1.1em 1em;
+	padding-left: 0;
+}
+.ui.secondary.pointing.menu.fixed .item:last-child {
+	padding-right: 0;
+}
+#viewsearch {
+	position: absolute;
+	top: 3px;
+	left: 165px;
+	background: white;
+	z-index: 999999;
 }
 
 .image .ui.dimmer, .card .image .ui.dimmer {
@@ -53,28 +83,10 @@
 }
 
 @media (max-width: 767px) {
-  #brand {
-  	margin-top: 12px;
-    margin-left: 12px;
-    padding: 14px 0;
-  }
   .ui.secondary.pointing.menu .item {
 	padding-left: 10px !important;
   }
-  .main.menu+div {
-	margin-top: 50px;
-  }
 }
 @media (min-width: 768px) {
-  #a_brand {
-    position: absolute;
-    width: 100%;
-  }
-  #brand {
-    margin: 0 auto;
-    padding: 20px 0;
-  }
-  .main.menu+div {
-	margin-top: 40px;
-  }
+
 }
