@@ -57,7 +57,7 @@
                 <div class="ui relaxed horizontal list">
                     <div class="item">
                         <div class="content">
-                        	게시물 <span>123,456,789</span>
+                        	게시물 <span id="cardCount"></span>
                         </div>
                     </div>
                 </div>
@@ -96,7 +96,19 @@
     	</div>
     </div>
     <!-- 페이지 전체 컨테이너 시작 -->
-
+	
+	<script>
+	window.onload = function() {
+		var cardLength = $(".card").length;
+		console.log(cardLength);
+		if(cardLength != 0 || cardLength != null) {
+			document.getElementById("cardCount").innerHTML = cardLength;
+		} else {
+			document.getElementById("cardCount").innerHTML = "없음";			
+		}
+	};
+	</script>
+	
 	<!-- 푸터 시작 -->
 	<jsp:include page="footer.jsp"/>
 	<!-- 푸터 끝 -->
