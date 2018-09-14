@@ -27,31 +27,44 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM&callback=initMap" async defer></script>
 
 	<script>
+// 	window.onload = function() {
+<%-- 		<%for(String key : map.keySet()) { %> --%>
+<%-- 		var key = '<%=key%>'; --%>
+// 		(function(m) {
+// 			document.getElementById(key+'_a_show_map').addEventListener('click', function() {
+// 				alert(m);
+// 			}, false);
+// 		})(key);
+<%-- 		<% } %> --%>
+// 	}
+	
 	/*
 	* 참고 URI :
 	* https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?hl=ko
 	*/
 	
 	/* 구글 맵 시작 */
-	<%for(String key : map.keySet()){ %>
+	<%for(String key : map.keySet()) { %>
 	var key = "<%=key%>";
 	
-	function initMap() {
+	function initMap() {	
 	  	var map = new google.maps.Map(document.getElementById('map_canvas'), {
 	    	zoom: 14,
 	    	center: {lat: 40.731, lng: -73.997}
 	  	});
 	  	var geocoder = new google.maps.Geocoder();
-	
-	  	document.getElementById(key+'_a_show_map').addEventListener('click', function() {
+	  	var addressA = document.getElementById(key+'_a_show_map');
+	  	
+	  	addressA.addEventListener('click', function() {
 	  		geocodeAddress(geocoder, map);
-		});
+// 	  		alert($(this).text());
+		});  	
 	};
 	
 	function geocodeAddress(geocoder, resultsMap) {
       	var address = document.getElementById(key+'_a_show_map').innerText;
-		
       	console.log(address);
+      	
       	geocoder.geocode({'address': address}, function(results, status) {
         	if (status === 'OK') {
           		resultsMap.setCenter(results[0].geometry.location);
@@ -64,23 +77,17 @@
         	}
       	});
     };
+    <% } %>
     
-	<% } %>
 	/* 구글 맵 끝 */
-	</script>
+	<%for(String key : map.keySet()) { %>
 	
-	<script>
-	<%for(String key : map.keySet()){ %>
-
-	$(document).ready(function(){
-		//key는 게시물 번호
-		var key = "<%=key%>";
-		console.log(key);
+	$(function(){
+		var key="<%=key%>";
 		
-		$("#"+key+"_a_show_map").click(function(e) {
-    		e.preventDefault();
-// 	  		geocodeAddress(geocoder, map);
-    		$('.ui.modal').modal('show').modal('refresh');
+		$("#"+key+"_a_show_map").on("click", function(e) {
+			e.preventDefault();
+			$('.ui.modal').modal('show').modal('refresh');
     	});
 		
 		$("#"+key+"like").click(function(){
@@ -106,6 +113,7 @@
 	});
 	<%} %>
 	
+	
 	function readURL(input){ 
 		if (input.files && input.files[0]) { 
 			var reader = new FileReader(); 
@@ -126,14 +134,6 @@
 		}
 	}
 	document.onkeydown = doNotReload; */
-
-// 	$(function() {
-//     	$("#"+key+"_a_show_map").click(function(e) {
-//     		e.preventDefault();
-//     		$('.ui.modal').modal('show').modal("refresh");
-
-//     	});
-//     });
 
 	</script>
 
@@ -162,11 +162,11 @@
 		            <% } %>  
 		            <a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
 				</div>
-				<div class="content">
+				<div class="content" id="cardAddress">
 	     			<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>
 	       				주소 없음
 	   				<% } else { %>
-	       				<a id="<%=key%>_a_show_map"><%= map.get(key).getAddress() %></a>
+	       				<a id="<%=key%>_a_show_map" class="show_map"><%= map.get(key).getAddress() %></a>
 	   				<%} %>
 	       		</div>
 				<a class="centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
