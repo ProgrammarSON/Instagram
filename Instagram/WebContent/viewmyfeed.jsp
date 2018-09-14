@@ -238,7 +238,7 @@
 
                     <div class="item">
                         <div class="content">
-							<a id='show_modal_follower'>팔로워 <span><%=dto.getFollower_num() %></span></a>
+							<a id="show_modal_follower">팔로워 <span><%=dto.getFollower_num() %></span></a>
                         </div>
                     </div>
 
@@ -251,7 +251,11 @@
 
                 <div class="ui column">
                     <p>
-                        <%=dto.getContents() %>
+                    	<% if(dto.getContents() != null) { %>
+                        	<%=dto.getContents() %>
+                        <% } else { %>
+                        	프로필 소개가 없습니다.
+                        <% } %>
                     </p>
                 </div>
             </div>
