@@ -83,9 +83,28 @@
 }
 
 @media (max-width: 767px) {
-  .ui.secondary.pointing.menu .item {
-	padding-left: 10px !important;
-  }
+	.ui.secondary.pointing.menu .item {
+		padding: 1.5em 0.4em;
+	}
+	.ui.secondary.pointing.menu .item.brand {
+		padding-left: 0.8em;
+	}
+	.ui.secondary.pointing.menu .item:last-child {
+		padding-right: 0.8em;
+	}
+	.ui.secondary.pointing.menu.fixed .item {
+		padding: 1.1em 0.4em;
+	}
+	.ui.secondary.pointing.menu.fixed .item.brand {
+		padding-left: 0.8em;
+	}
+	.ui.secondary.pointing.menu.fixed .item:last-child {
+		padding-right: 0.8em;
+	}
+	#searchid {
+		width: 150px;
+	}
+  
 }
 @media (min-width: 768px) {
 

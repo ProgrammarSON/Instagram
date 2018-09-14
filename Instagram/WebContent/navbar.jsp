@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 <% String id = (String)session.getAttribute("id"); %>
 	<div class="menu_padding"></div>
-    <div class="ui large secondary pointing stackable main menu violet">
+    <div class="ui large secondary pointing main menu violet">
     	<div class="ui container">
     	
 			<a class="item brand" href="viewnewsfeed.do">
