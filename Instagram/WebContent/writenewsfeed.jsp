@@ -224,6 +224,20 @@
 		document.getElementById('address_input').innerHTML = $('#add1').val();
 	};
 	
+	$(function() {
+		$("#btn_search").on("click", function() {
+			codeAddress();
+			return false;
+		});
+		
+		$("#addr1").keypress(function(e) {
+			if(e.keyCode === 13) {
+				$("#btn_search").click();
+			}
+		});
+		
+	});
+	
 // 	$(function() {
 // 		$("#map_submit").click(function() {
 // 			$.ajax({
@@ -303,8 +317,8 @@
 		
 		<form action="" method="post" class="ui form">
 			<div>
-				<input type="text" id="addr1" name="address" placeholder="주소 검색" style="width: 500px;"> 
-				<button type="button" onclick="codeAddress(); return false;" class="ui button basic violet">찾기</button>
+				<input type="text" id="addr1" name="address" autofocus placeholder="주소 검색" style="width: 500px;"> 
+				<button type="button" id="btn_search" class="ui button basic violet">찾기</button>
 				
 			</div>
 			<div>
