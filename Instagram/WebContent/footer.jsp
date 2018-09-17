@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <script>
-
+$(document).ready(function() {
 function autocomplete(inp, arr) {
 	  /*the autocomplete function takes two arguments,
 	  the text field element and an array of possible autocompleted values:*/
@@ -131,6 +131,7 @@ $.ajax(
 	/*initiate the autocomplete function on the "myInput" element, and pass along the countries array as possible autocomplete values:*/
 	//autocomplete(document.getElementById("searchid"), countries);
 	autocomplete(document.getElementById("searchid"), temp);
+});
 </script>
 </body>
 </html>
