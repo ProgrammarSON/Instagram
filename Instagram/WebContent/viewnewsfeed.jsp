@@ -27,46 +27,32 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM&callback=initMap" async defer></script>
 
 	<script>
-// 	window.onload = function() {
-<%-- 		<%for(String key : map.keySet()) { %> --%>
-<%-- 		var key = '<%=key%>'; --%>
-// 		(function(m) {
-// 			document.getElementById(key+'_a_show_map').addEventListener('click', function() {
-// 				alert(m);
-// 			}, false);
-// 		})(key);
-<%-- 		<% } %> --%>
-// 	}
+	/* 구글 맵 시작 */
 	
 	/*
 	* 참고 URI :
 	* https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?hl=ko
 	*/
 	
-	/* 구글 맵 시작 */
-	<%for(String key : map.keySet()) 
-	{
-	%>
-	var key = "<%=key%>";
+<%-- 	<%for(String key : map.keySet()) { %> --%>
+<%-- 	var key = "<%=key%>"; --%>
+	var address;
 	
-	function initMap() {	
+	function initMap(e) {	
 	  	var map = new google.maps.Map(document.getElementById('map_canvas'), {
 	    	zoom: 14,
 	    	center: {lat: 40.731, lng: -73.997}
 	  	});
 	  	var geocoder = new google.maps.Geocoder();
-	  	var addressA = document.getElementById(key+'_a_show_map');
-	  	
-	  	addressA.addEventListener('click', function() {
+	
+	  	address = e[0].innerText;
+	  	console.log(this);
+	  	this.addEventListener('click', function() {
 	  		geocodeAddress(geocoder, map);
-// 	  		alert($(this).text());
 		});  	
 	};
 	
 	function geocodeAddress(geocoder, resultsMap) {
-      	var address = document.getElementById(key+'_a_show_map').innerText;
-      	console.log(address);
-      	
       	geocoder.geocode({'address': address}, function(results, status) {
         	if (status === 'OK') {
           		resultsMap.setCenter(results[0].geometry.location);
@@ -79,18 +65,21 @@
         	}
       	});
     };
-    <% } %>
-    
-	/* 구글 맵 끝 */
-	<%for(String key : map.keySet()) { %>
+<%--     <% } %> --%>
 	
 	$(function(){
-		var key="<%=key%>";
-		
-		$("#"+key+"_a_show_map").on("click", function(e) {
-			e.preventDefault();
+		$(".show_map").on("click", function() {
+			console.log($(this)[0].innerText);
+			initMap($(this));
 			$('.ui.modal').modal('show').modal('refresh');
     	});
+	});
+	/* 구글 맵 끝 */
+	
+	/* 좋아요 기능 */
+	<%for(String key : map.keySet()) { %>
+	$(function(){
+		var key="<%=key%>";
 		
 		$("#"+key+"like").click(function(){
 			//$(this).find('i').toggleClass('outline')
@@ -114,6 +103,7 @@
 		});
 	});
 	<%} %>
+	
 	
 	
 	function readURL(input){ 

@@ -78,10 +78,10 @@ input[type="file"] {
   padding-bottom: 8px;
 }
 .cropped-image {
-/* object-fit: cover�뒗 */
+/* object-fit: cover는 */
 /* 	box-sizing: border-box; */
 /* 	overflow: hidden; */
-/* 	position: relative; �씠 �꽭 �냽�꽦�쓣 臾띠� 寃껉낵 媛숈� �슚怨쇨� �엳�뒗 �벏�븯�떎. */
+/* 	position: relative; 이 세 속성을 묶은 것과 같은 효과가 있는 듯하다. */
 	object-fit: cover;
 	height: 100%;
 	width: 100%;
