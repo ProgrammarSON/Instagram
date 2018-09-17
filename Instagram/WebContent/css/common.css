@@ -104,7 +104,9 @@
 	position: absolute;
 	top: 50px !important;
 }
-
+.date {
+	margin-right: .4em !important;
+}
 .image .ui.dimmer, .card .image .ui.dimmer {
   z-index: 1;
 }

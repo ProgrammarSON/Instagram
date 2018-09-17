@@ -151,17 +151,20 @@
 		    
 		    <!-- 카드 시작 -->
 		    <div class="card">
-		       <div class="content">
-		          <div class="right floated meta">
-		          <a class="info"><i class="ellipsis vertical icon" id="more<%=key%>"></i></a>
-                  </div>
-		          <% if(map.get(key).getProfile_img() == null) { %>
-		            	<img class="ui avatar image" src="profile_image/null.jpg">
-		            <% } else { %>
-		            	<img class="ui avatar image" src="profile_image/<%= map.get(key).getProfile_img() %>">
-		            <% } %>  
-		            <a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
-		            <%= map.get(key).getDate() %>
+				<div class="content">
+					<div class="right floated meta">
+						<span class="date"><%= map.get(key).getDate() %></span>
+		          		<a class="info">
+		          			<i class="ellipsis vertical circular icon" id="more<%=key%>"></i>
+		          		</a>
+				</div>
+				<% if(map.get(key).getProfile_img() == null) { %>
+		            <img class="ui avatar image" src="profile_image/null.jpg">
+				<% } else { %>
+		            <img class="ui avatar image" src="profile_image/<%= map.get(key).getProfile_img() %>">
+				<% } %>  
+					<a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
+		            
 				</div>
 				<div class="content" id="cardAddress">
 	     			<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>
