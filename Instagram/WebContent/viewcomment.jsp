@@ -68,35 +68,7 @@
 		    	}
 		    }
     	});
-		
-		$("#${dto.getComment_id()}_reply_write").click(function(){
-			var id = "<%=user_id%>";
-			var contents = $("#${dto.getComment_id()}_reply_contents").val();
-			var profileimg = "<%=dto.getProfile_img()%>";
 			
-			$.ajax({
-				url:"writereply.do?comment_id=${dto.getComment_id()}&user_id="+id+"&contents="+contents,
-				success : function(result) {
-					var datas = JSON.parse(result);
-					
-					$("#${dto.getComment_id()}_reply_id").append(
-			    		"<div class='comment'>" +
-			    		" <a class='avatar'> " +
-                        " <img src='profile_image/"+profileimg+"'>"+
-                      	" </a> " +
-                      	"<div class='content'> "+
-                      		"<a class='author'> " + id + "</a>" +
-                      	"<div class='metadata'>" +
-            				"<span class='date'>방금 전</span> " +
-  	      				"</div> " +
-        				"<div class='text'> " + contents + "</div>" +
-            			"</div>"+
-						"</div>"
-					);
-					$("#${dto.getComment_id()}_reply_contents").val("");
-				}
-			});  	
-		});
 	});
             
  	</c:forEach>
@@ -127,6 +99,7 @@
            		console.log(linked);
         	}
         	document.getElementById('feed_contents').innerHTML = linked;
+              
         });
      </script>
     
@@ -178,7 +151,7 @@
 	                    <div class="field">
 	                        <textarea placeholder="댓글을 작성해보세요." rows="2" name="comment_content"></textarea>
 	                    </div>
-                      		<button class="ui button fluid violet" type="submit">작성하기</button>
+                      		<button class="ui button fluid violet" type="submit" id="<%=feed_id%>_comment_write">작성하기</button>
 	                </form>
 	            </div>
 	        
