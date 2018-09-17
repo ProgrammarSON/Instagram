@@ -153,7 +153,7 @@
 		    <div class="card">
 		       <div class="content">
 		          <div class="right floated meta"> <%= map.get(key).getDate() %>
-		          <a class="info"><i class="ellipsis vertical icon" id="more<%=key%>"></i></a>
+		          	<a class="info"><i class="ellipsis vertical icon" id="more<%=key%>"></i></a>
                   </div>
 		          <% if(map.get(key).getProfile_img() == null) { %>
 		            	<img class="ui avatar image" src="profile_image/null.jpg">
