@@ -44,7 +44,9 @@
 	*/
 	
 	/* 구글 맵 시작 */
-	<%for(String key : map.keySet()) { %>
+	<%for(String key : map.keySet()) 
+	{
+	%>
 	var key = "<%=key%>";
 	
 	function initMap() {	

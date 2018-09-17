@@ -360,12 +360,12 @@ public class feedDAO {
 		int second = calendar.get(Calendar.SECOND);
 		
 		 String result="";
-		 if(year-dbyear > 0) result = dateArray[0]+"년"+dateArray[1]+"월"+dateArray[2]+"일";
-		 else if(month - dbmon > 0) result = dateArray[1]+"월" + dateArray[2]+"일";
-		 else if(day - dbday  > 0) result = Integer.toString(day-dbday) +"일 전";
-		 else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+"시간 전";
-		 else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +"분 전";
-		 else result = Integer.toString(second-dbsec)+"초 전";
+		 if(year-dbyear > 0) result = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2]+"-";
+		 else if(month - dbmon > 0) result = dateArray[1]+"-" + dateArray[2]+"-";
+		 else if(day - dbday  > 0) result = Integer.toString(day-dbday) +"days ago";
+		 else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+"hours ago";
+		 else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +"min ago";
+		 else result = Integer.toString(second-dbsec)+"sec ago";
 		
 		 return result;
 	}
