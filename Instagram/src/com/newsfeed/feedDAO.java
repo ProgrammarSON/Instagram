@@ -339,36 +339,7 @@ public class feedDAO {
 		return map;
 	}
 	
-	private String CalDate(String d) {
-		String dateArray[] = d.split(" ");
-		
-		int dbyear = Integer.parseInt(dateArray[0]);
-		int dbmon = Integer.parseInt(dateArray[1]);
-		int dbday = Integer.parseInt(dateArray[2]);
-		
-		int dbhour = Integer.parseInt(dateArray[3]);
-		int dbmin = Integer.parseInt(dateArray[4]);
-		int dbsec = Integer.parseInt(dateArray[5]);
-			 
-		Calendar calendar = new GregorianCalendar(Locale.KOREA);
-		int year = calendar.get(Calendar.YEAR);
-		int month = calendar.get(Calendar.MONTH) + 1;
-		int day = calendar.get(Calendar.DAY_OF_MONTH);
-		
-		int hour = calendar.get(Calendar.HOUR);
-		int minute = calendar.get(Calendar.MINUTE);
-		int second = calendar.get(Calendar.SECOND);
-		
-		 String result="";
-		 if(year-dbyear > 0) result = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2]+"-";
-		 else if(month - dbmon > 0) result = dateArray[1]+"-" + dateArray[2]+"-";
-		 else if(day - dbday  > 0) result = Integer.toString(day-dbday) +"days ago";
-		 else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+"hours ago";
-		 else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +"min ago";
-		 else result = Integer.toString(second-dbsec)+"sec ago";
-		
-		 return result;
-	}
+	
 	
 	public int setLikeinfo(String feed_id, String user_id,String state) {
 		Connection conn = null;
@@ -405,5 +376,34 @@ public class feedDAO {
 		return check;
 	}
 	
-	
+	private String CalDate(String d) {
+		String dateArray[] = d.split(" ");
+		
+		int dbyear = Integer.parseInt(dateArray[0]);
+		int dbmon = Integer.parseInt(dateArray[1]);
+		int dbday = Integer.parseInt(dateArray[2]);
+		
+		int dbhour = Integer.parseInt(dateArray[3]);
+		int dbmin = Integer.parseInt(dateArray[4]);
+		int dbsec = Integer.parseInt(dateArray[5]);
+			 
+		Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		
+		int hour = calendar.get(Calendar.HOUR);
+		int minute = calendar.get(Calendar.MINUTE);
+		int second = calendar.get(Calendar.SECOND);
+		
+		String result="";
+		if(year-dbyear > 0) result = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2];
+		else if(month - dbmon > 0) result = dateArray[1]+"-" + dateArray[2];
+		else if(day - dbday  > 0) result = Integer.toString(day-dbday) +" days ago";
+		else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+" hours ago";
+		else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +" minute ago";
+		else result = Integer.toString(second-dbsec)+" sec ago";
+		
+		return result;
+	}
 }

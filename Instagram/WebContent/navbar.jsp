@@ -65,15 +65,15 @@
 	        </a>
 	        
 	        <div class="right menu">
-	            
+	            <form autocomplete="off" action="viewmyfeed.do">
 	            <div class="item">
 	                <div class="ui tiny icon input autocomplete">
-	                    <input placeholder="검색" type="text" id="searchid" />
+	                    <input placeholder="검색" type="text" id="searchid" name="user_id" />
 	                    <i class="search link icon"></i>
 	                </div>
 	                <div id="viewsearch" class="results"></div> 
 	            </div>
-	            
+	            </form>
 	            <a class="item" href="./member/logout.jsp">
 	            	<i class="user large icon"></i>
 	            	로그아웃
