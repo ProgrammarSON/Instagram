@@ -401,11 +401,11 @@ public class feedDAO {
 		
 		String result="";
 		if(year-dbyear > 0) result = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2];
-		else if(month - dbmon > 0) result = dateArray[1]+"¿ù " + dateArray[2]+"ÀÏ";
-		else if(day - dbday  > 0) result = Integer.toString(day-dbday) +"ÀÏ Àü";
-		else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+"½Ã°£ Àü";
-		else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +"ºÐ Àü";
-		else result = Integer.toString(second-dbsec)+"ÃÊ Àü";
+		else if(month - dbmon > 0) result = dateArray[1]+"ì›” " + dateArray[2]+"ì¼";
+		else if(day - dbday  > 0) result = Integer.toString(day-dbday) +"ì¼ ì „";
+		else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+"ì‹œê°„ ì „";
+		else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +"ë¶„ ì „";
+		else result = Integer.toString(second-dbsec)+"ì´ˆ ì „";
 		
 		return result;
 	}
