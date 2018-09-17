@@ -30,7 +30,7 @@
 	        
 	        <div class="right menu">
 	            <form autocomplete="off" action="viewmyfeed.do">
-	            <div class="item">
+	            <div class="item" id="item_search">
 	                <div class="ui tiny icon input autocomplete">
 	                    <input placeholder="검색" type="text" id="searchid" name="user_id" />
 	                    <i class="search link icon"></i>
@@ -38,18 +38,14 @@
 	                <div id="viewsearch" class="results"></div> 
 	            </div>
 	            </form>
-	            <%if(id==null) { %>
-	            <a class="item" href="./member/logout.jsp">
-	            	<i class="user large icon"></i>
-	            	로그인
-	            </a>
-	            <%}else{ %>
-	            <a class="item" href="viewmyfeed.do?user_id=<%=id%>"><i class="large id card icon"></i><%=id %></a>
-	            <a class="item" href="./member/logout.jsp">
-	            	<i class="user large icon"></i>
-	            	  로그아웃	  
-	            </a>
-	            <% } %>
+	            <div class="ui simple dropdown item">
+	            	<i class="user large icon"></i><%=id %>
+		            <div class="menu">
+		            	<a class="item" href="./member/logout.jsp">
+							로그아웃	  
+		            	</a>
+		            </div>
+	            </div>
 	        </div>
         </div>
     </div>
