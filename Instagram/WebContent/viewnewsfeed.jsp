@@ -152,7 +152,7 @@
 		    <!-- 카드 시작 -->
 		    <div class="card">
 		       <div class="content">
-		          <div class="right floated meta">
+		          <div class="right floated meta"> <%= map.get(key).getDate() %>
 		          <a class="info"><i class="ellipsis vertical icon" id="more<%=key%>"></i></a>
                   </div>
 		          <% if(map.get(key).getProfile_img() == null) { %>
@@ -161,7 +161,7 @@
 		            	<img class="ui avatar image" src="profile_image/<%= map.get(key).getProfile_img() %>">
 		            <% } %>  
 		            <a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
-		            <%= map.get(key).getDate() %>
+		           
 				</div>
 				<div class="content" id="cardAddress">
 	     			<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>
@@ -206,8 +206,14 @@
 			<div id="map_canvas"></div>
 		</div>
 	</div>
+	<!-- 게시물 삭제 모달 -->
+	<div class="tiny modal" style="display:none">
+        <div class="scrolling content" align="center">
+        	<button type="button" class="ui button red">게시물 삭제하기</button>
+        </div>
+    </div>
 	<!-- 모달 끝 -->
-
+	
 
 	<!-- 푸터 시작 -->
 	<jsp:include page="footer.jsp"/>
