@@ -42,7 +42,7 @@ $(document).ready(function() {  // $(function() 과 같다.
     			console.log(datajson);
     			var resulttag;
     			console.log(datas);
-    			resulttag += "<table border='1'>";
+    			resulttag += "<table>";
     			for(i=0; i<datas.length; i++){
     				resulttag += "<tr><td><a href=viewmyfeed.do?user_id="+datas[i].user_id+">"
     				+datas[i].user_id
