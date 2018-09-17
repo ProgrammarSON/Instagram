@@ -25,8 +25,9 @@
 	
 	<!-- 대댓글  -->
     <script>
+    $(document).ready(function(){
     <c:forEach items="${list}" var="dto">
-         $(document).ready(function(){
+        
     	 $("#${dto.getComment_id()}").hide();
     	 $("#${dto.getComment_id()}_reply_hide").hide();
     	     	 
@@ -68,10 +69,39 @@
 		    	}
 		    }
     	});
+    	$("#${dto.getComment_id()}_reply_write").click(function(){
+			var id = "<%=user_id%>";
+			var contents = $("#${dto.getComment_id()}_reply_contents").val();
+			var profileimg = "<%=dto.getProfile_img()%>";
 			
-	});
-            
+			$.ajax({
+				url:"writereply.do?comment_id=${dto.getComment_id()}&user_id="+id+"&contents="+contents,
+				success : function(result) {
+					var datas = JSON.parse(result);
+					
+					$("#${dto.getComment_id()}_reply_id").append(
+			    		"<div class='comment'>" +
+			    		" <a class='avatar'> " +
+                        " <img src='profile_image/"+profileimg+"'>"+
+                      	" </a> " +
+                      	"<div class='content'> "+
+                      		"<a class='author'> " + id + "</a>" +
+                      	"<div class='metadata'>" +
+            				"<span class='date'>방금 전</span> " +
+  	      				"</div> " +
+        				"<div class='text'> " + contents + "</div>" +
+            			"</div>"+
+						"</div>"
+					);
+					$("#${dto.getComment_id()}_reply_contents").val("");
+				}
+			});  	
+		});
+          
  	</c:forEach>
+ 		
+ 		
+    });
  	</script>
  	
     <script>     
@@ -101,6 +131,26 @@
         	document.getElementById('feed_contents').innerHTML = linked;
               
         });
+     </script>
+     
+     <script>
+    <%--  $(document).ready(function(){
+    	 var feedid = "<%=feed_id%>"; 
+    	 $('#'+feedid+'_comment_write').click(function(){
+ 			var id = "<%=user_id%>";
+ 			var contents = $("#comment_text").val();
+ 			
+ 			console.log(contents);
+ 			$.ajax({
+				url:"writecomment.do?comment_feed_id="+feedid+"&comment_content="+contents,
+				success : function(result) {
+					var datas = JSON.parse(result);
+					
+					
+				}
+			});  	
+ 		}); 
+     }); --%>
      </script>
     
 </head>
@@ -143,13 +193,14 @@
 	        	
 	        	<div id="feed_contents"><%=dto.getContents() %></div>
 	           	<div id="feed_hashtag"></div>
-	           	
+	           
+	           	<!-- 댓글 달기 -->
 	            <div class="div-comments">
 	                <form class="ui reply form" action="writecomment.do">
 	                    <input type="hidden" name="comment_feed_id" value=<%=feed_id%>>
 	                    
 	                    <div class="field">
-	                        <textarea placeholder="댓글을 작성해보세요." rows="2" name="comment_content"></textarea>
+	                        <textarea placeholder="댓글을 작성해보세요." rows="2" name="comment_content" id="comment_text"></textarea>
 	                    </div>
                       		<button class="ui button fluid violet" type="submit" id="<%=feed_id%>_comment_write">작성하기</button>
 	                </form>
@@ -158,8 +209,10 @@
 				<div class="ui small comments">
 					<h4 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h4>
 	              
+	              	<!--  댓글 출력  -->
+	              <div id="comment_id">	
 					<c:forEach items="${list}" var="dto">
-	                <div class="comment">
+	                 <div class="comment"> 
 						<a class="avatar">
 	                    	<c:if test="${dto.getImg_path() ne null}">
 								<img src="profile_image/${dto.getImg_path()}">
@@ -185,13 +238,15 @@
 									<div id="div-reply-button">
 		                        		<button class="ui button fluid violet" type="submit" id="${dto.getComment_id()}_reply_write">작성하기</button>
 									</div>
+									
+									<!-- 대댓글 리스트 -->
 		                            <div class="ui small comments" id="${dto.getComment_id()}_reply_id"></div>
 								</div>
 							</div>
 						</div>
 					</div>
 					</c:forEach>
-	             
+	             </div>
 	             
 					<div class="comments" id="reply_id">
 						<!-- <div class="comment">
