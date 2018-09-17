@@ -33,9 +33,7 @@
 	* 참고 URI :
 	* https://developers.google.com/maps/documentation/javascript/examples/geocoding-simple?hl=ko
 	*/
-	
-<%-- 	<%for(String key : map.keySet()) { %> --%>
-<%-- 	var key = "<%=key%>"; --%>
+
 	var address;
 	
 	function initMap(e) {	
@@ -46,10 +44,9 @@
 	  	var geocoder = new google.maps.Geocoder();
 	
 	  	address = e[0].innerText;
-	  	console.log(this);
-	  	this.addEventListener('click', function() {
-	  		geocodeAddress(geocoder, map);
-		});  	
+	  	console.log(address);
+
+  		geocodeAddress(geocoder, map);
 	};
 	
 	function geocodeAddress(geocoder, resultsMap) {
@@ -65,11 +62,11 @@
         	}
       	});
     };
-<%--     <% } %> --%>
 	
-	$(function(){
+	$(function() {
 		$(".show_map").on("click", function() {
 			console.log($(this)[0].innerText);
+			
 			initMap($(this));
 			$('.ui.modal').modal('show').modal('refresh');
     	});
@@ -104,8 +101,6 @@
 	});
 	<%} %>
 	
-	
-	
 	function readURL(input){ 
 		if (input.files && input.files[0]) { 
 			var reader = new FileReader(); 
@@ -115,12 +110,6 @@
 			reader.readAsDataURL(input.files[0]); 
 		}
 	};
-	
-	$(document).ready(function(){
-        $(".info").click(function(){
-             $('.tiny.modal').modal('show');
-        });
-});
 	
 	/* 새로고침 막기 */
 	/* function doNotReload() {
@@ -163,15 +152,15 @@
 		            <img class="ui avatar image" src="profile_image/<%= map.get(key).getProfile_img() %>">
 				<% } %>  
 					<a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
-		            
-				</div>
-				<div class="content" id="cardAddress">
-	     			<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>
-	       				주소 없음
+					<div id="addressInfo">
+					<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>
+	       				<span>주소 없음</span>
 	   				<% } else { %>
-	       				<a id="<%=key%>_a_show_map" class="show_map"><%= map.get(key).getAddress() %></a>
+	       				<span><a id="<%=key%>_a_show_map" class="show_map"><%= map.get(key).getAddress() %></a></span>
 	   				<%} %>
-	       		</div>
+   					</div>
+				</div>
+				
 				<a class="centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
 					<div class="cropped-image">
 					<% if(map.get(key).getImage_path() == null) { %>
