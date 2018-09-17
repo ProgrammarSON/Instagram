@@ -104,8 +104,6 @@
 	});
 	<%} %>
 	
-	
-	
 	function readURL(input){ 
 		if (input.files && input.files[0]) { 
 			var reader = new FileReader(); 
@@ -153,11 +151,9 @@
 		    <div class="card">
 				<div class="content">
 					<div class="right floated meta">
-						<span class="date"><%= map.get(key).getDate() %></span>
-		          		<a class="info">
-		          			<i class="ellipsis vertical circular icon" id="more<%=key%>"></i>
-		          		</a>
-				</div>
+						<%= map.get(key).getDate() %>
+					</div>
+				
 				<% if(map.get(key).getProfile_img() == null) { %>
 		            <img class="ui avatar image" src="profile_image/null.jpg">
 				<% } else { %>
