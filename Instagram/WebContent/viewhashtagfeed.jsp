@@ -60,8 +60,7 @@
                         	게시물 <span id="cardCount"></span>
                         </div>
                     </div>
-                </div>
-                
+                </div>                
             </div>
         </div>
 

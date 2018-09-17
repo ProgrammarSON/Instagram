@@ -311,7 +311,7 @@ public class feedDAO {
 			pstmt.setString(1, tag);
 			rs = pstmt.executeQuery();
 			map = new LinkedHashMap<>();
-			
+			int cnt=0;
 			while(rs.next())
 			{
 				feedDTO dto = new feedDTO();
@@ -321,7 +321,8 @@ public class feedDAO {
 				dto.setImage_path(rs.getString("image_path"));
 				dto.setComment_count(rs.getString("comment_count"));
 				dto.setLike_count(rs.getString("like_count"));
-				map.put(rs.getString("newsfeed_id"), dto);
+				cnt++;
+				map.put(rs.getString("newsfeed_id"), dto);				
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -387,22 +388,24 @@ public class feedDAO {
 		int dbmin = Integer.parseInt(dateArray[4]);
 		int dbsec = Integer.parseInt(dateArray[5]);
 			 
-		Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		//Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		Calendar calendar = Calendar.getInstance();
 		int year = calendar.get(Calendar.YEAR);
 		int month = calendar.get(Calendar.MONTH) + 1;
 		int day = calendar.get(Calendar.DAY_OF_MONTH);
 		
-		int hour = calendar.get(Calendar.HOUR);
+		int hour = calendar.get(Calendar.HOUR_OF_DAY);
 		int minute = calendar.get(Calendar.MINUTE);
 		int second = calendar.get(Calendar.SECOND);
 		
+		
 		String result="";
 		if(year-dbyear > 0) result = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2];
-		else if(month - dbmon > 0) result = dateArray[1]+"-" + dateArray[2];
-		else if(day - dbday  > 0) result = Integer.toString(day-dbday) +" days ago";
-		else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+" hours ago";
-		else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +" minute ago";
-		else result = Integer.toString(second-dbsec)+" sec ago";
+		else if(month - dbmon > 0) result = dateArray[1]+"월 " + dateArray[2]+"일";
+		else if(day - dbday  > 0) result = Integer.toString(day-dbday) +"일 전";
+		else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+"시간 전";
+		else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +"분 전";
+		else result = Integer.toString(second-dbsec)+"초 전";
 		
 		return result;
 	}

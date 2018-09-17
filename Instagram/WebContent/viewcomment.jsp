@@ -72,16 +72,17 @@
 		$("#${dto.getComment_id()}_reply_write").click(function(){
 			var id = "<%=user_id%>";
 			var contents = $("#${dto.getComment_id()}_reply_contents").val();
+			var profileimg = "<%=dto.getProfile_img()%>";
+			
 			$.ajax({
 				url:"writereply.do?comment_id=${dto.getComment_id()}&user_id="+id+"&contents="+contents,
 				success : function(result) {
 					var datas = JSON.parse(result);
 					
-					console.log()
 					$("#${dto.getComment_id()}_reply_id").append(
 			    		"<div class='comment'>" +
 			    		" <a class='avatar'> " +
-                        " <img src='images/avatar/small/jenny.jpg'> "+
+                        " <img src='profile_image/"+profileimg+"'>"+
                       	" </a> " +
                       	"<div class='content'> "+
                       		"<a class='author'> " + id + "</a>" +
@@ -154,7 +155,9 @@
 	        	<div class="ui large middle aligned list">
 	        		<div class="item">
 		        		<div class="right floated content">
-							<i class="ellipsis horizontal circular violet link icon"></i>
+		        			<%if(user_id.equals(dto.getUser_id())){ %>
+								<i class="ellipsis horizontal circular violet link icon"></i>
+							<%} %>
 						</div>
 						<img class="ui avatar image" src="profile_image/<%=dto.getProfile_img()%>">
 						<div class="content">

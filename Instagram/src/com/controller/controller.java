@@ -56,7 +56,7 @@ public class controller extends HttpServlet {
 		if(com.equals("/writenewsfeed.do")) {
 			command = new writeNewsfeedCommand();
 			command.execute(request, response);
-			viewPage = "viewnewsfeed.do";
+			viewPage = "check_newsfeed.jsp";
 			
 		}else if(com.equals("/viewnewsfeed.do")) {
 			command = new viewnewsfeedCommand();
