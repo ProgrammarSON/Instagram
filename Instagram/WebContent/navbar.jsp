@@ -38,10 +38,18 @@
 	                <div id="viewsearch" class="results"></div> 
 	            </div>
 	            </form>
+	            <%if(id==null) { %>
 	            <a class="item" href="./member/logout.jsp">
 	            	<i class="user large icon"></i>
-	            	로그아웃
+	            	로그인
 	            </a>
+	            <%}else{ %>
+	            <a class="item" href="viewmyfeed.do?user_id=<%=id%>"><i class="large id card icon"></i><%=id %></a>
+	            <a class="item" href="./member/logout.jsp">
+	            	<i class="user large icon"></i>
+	            	  로그아웃	  
+	            </a>
+	            <% } %>
 	        </div>
         </div>
     </div>
