@@ -132,5 +132,16 @@ $.ajax(
 	//autocomplete(document.getElementById("searchid"), countries);
 	autocomplete(document.getElementById("searchid"), temp);
 </script>
+<div class="footer">
+    <div class="ui divided grid">
+        <div class="row">
+          <div class="four wide column"><a><h2>Create By</h2><br>Hong Ji Sang<br>Son Jun Woo<br>Park Jun Hyung</a></div>
+          <div class="four wide column"><a><i class="huge envelope outline icon"></i><br>MAIL<br>xxx@xxxx.com</a></div>
+          <div class="four wide column"><a id="liked"><i class="huge phone icon"></i><br>CALL<br>Number : 053-421-2460<br>FAX : 053-356-3939</a></div>
+          <div class="four wide column"><a><i class="huge map marker alternate icon"></i><br>FIND US<br>대구광역시 중구 국채보상로 537 (수동, 5층)</a></div>
+        </div>
+    </div>    
+        <small> Thanks To : Yedam Vocational Training Institute<br>Copyright &copy; 2018 Yestagram</small>
+</div>
 </body>
 </html>

@@ -116,6 +116,12 @@
 		}
 	};
 	
+	$(document).ready(function(){
+        $(".info").click(function(){
+             $('.tiny.modal').modal('show');
+        });
+});
+	
 	/* 새로고침 막기 */
 	/* function doNotReload() {
 		if(	(event.ctrlKey == true && (event.keyCode == 78 || event.keyCode == 82)) // Ctrl+N , Ctrl+R 
@@ -146,13 +152,16 @@
 		    <!-- 카드 시작 -->
 		    <div class="card">
 		       <div class="content">
-		          <div class="right floated meta"><%= map.get(key).getDate() %></div>
-		            <% if(map.get(key).getProfile_img() == null) { %>
+		          <div class="right floated meta">
+		          <a class="info"><i class="ellipsis vertical icon" id="more<%=key%>"></i></a>
+                  </div>
+		          <% if(map.get(key).getProfile_img() == null) { %>
 		            	<img class="ui avatar image" src="profile_image/null.jpg">
 		            <% } else { %>
 		            	<img class="ui avatar image" src="profile_image/<%= map.get(key).getProfile_img() %>">
 		            <% } %>  
 		            <a href="viewmyfeed.do?user_id=<%= map.get(key).getUser_id() %>"><%= map.get(key).getUser_id() %></a>
+		            <%= map.get(key).getDate() %>
 				</div>
 				<div class="content" id="cardAddress">
 	     			<% if(map.get(key).getAddress() == null || map.get(key).getAddress().equals("null")) { %>

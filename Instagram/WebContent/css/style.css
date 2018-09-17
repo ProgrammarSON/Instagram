@@ -115,3 +115,14 @@ input[type="file"] {
     height: 152px;
   }
 }
+.footer {     width:100%;
+            position:relative; top:72%;
+             text-align:center;
+            font-size:15px;
+            background: linear-gradient(270deg, black, gray);
+        }
+    
+.footer h2 { color: #3498DB; }
+.footer a { color: #ABB2B9; }
+.footer i { color: #3498DB;}
+.footer small { color: white;}
