@@ -22,7 +22,7 @@
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 	<script src="js/script.js"></script>
 	<title>Yestagram</title>
-	
+
 	<!-- AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM <-이건 구글 API사용 할때 필요한 키에요-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM&callback=initMap" async defer></script>
 
