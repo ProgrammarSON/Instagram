@@ -212,7 +212,7 @@
 									<div id="div-reply-button">
 		                        		<button class="ui button fluid violet" type="submit" id="${dto.getComment_id()}_reply_write">작성하기</button>
 									</div>
-		                            <div class="comments" id="${dto.getComment_id()}_reply_id"></div>
+		                            <div class="ui small comments" id="${dto.getComment_id()}_reply_id"></div>
 								</div>
 							</div>
 						</div>
