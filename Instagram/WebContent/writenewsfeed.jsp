@@ -3,9 +3,9 @@
 <% String user_id = (String)session.getAttribute("id"); %>
 <% request.setCharacterEncoding("UTF-8");
 	//html에서부터 값 받아옴
-	String address = request.getParameter("add");
+	/* String address = request.getParameter("add");
 	String latitude = request.getParameter("lat");
-	String longitude = request.getParameter("lng");
+	String longitude = request.getParameter("lng"); */
 %>
 <!DOCTYPE html>
 <html>
@@ -26,6 +26,7 @@
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyASWjrAjmngCtIBhXu12ALY5G08SCFOBoM&callback=initMap"></script>	
 	
 	<script>
+		
 	/* 구글 맵 시작 */
 	var map;
 	var infowindow = new google.maps.InfoWindow();
@@ -188,6 +189,7 @@
 		geocodemaker = [];
 	}
 	/* 구글 맵 끝 */
+	
 	</script>
 	
 	<script>
@@ -199,6 +201,7 @@
 				closable: false,
 				selector: {
 					keyboardShortcuts : false,
+					approve : '.ok',
 					deny : '.cancel'
 				},
 			}).modal("show").modal("refresh");
@@ -212,6 +215,13 @@
 		if($('#lat').val().length <1 ) $('#lat').text("null");
 		if($('#lng').val().length <1 ) $('#lng').text("null");
 		document.feedform.submit();
+	};
+	
+	function setMaps(){
+		$('#add').val($('#add1').val());
+		$('#lat').val($('#lat1').val());
+		$('#lng').val($('#lng1').val());
+		document.getElementById('address_input').innerHTML = $('#add1').val();
 	};
 	
 // 	$(function() {
@@ -231,7 +241,8 @@
 	</script>
 	
 </head>
-<body onload="initialize()">  <!-- initialize(): Google Map API 구동 시 필요  -->
+ 	<body onload="initialize()">  <!-- initialize(): Google Map API 구동 시 필요  -->
+	
 	<!-- 내비게이션(메뉴) 바 시작 -->
     <jsp:include page="navbar.jsp"/>
     <!-- 내비게이션(메뉴) 바 끝 -->
@@ -247,11 +258,12 @@
 					<a class="ui small basic button violet" id="button_mapAPI">위치 추가</a>
 	           		<div id="div-address">
 <!-- 	           			주소 : <span id="address_input"></span> -->
-	           			<% if(address != null) { %>
+	           			<%-- <% if(address != null) { %>
 	           				주소 : <span id="address_input"><%= address %></span>
 	           			<% } else { %>
 	           				주소 없음
-	           			<% } %>
+	           			<% } %> --%>
+	           			주소 : <span id="address_input"></span>
 	           		</div>
 	            </div>
 	            
@@ -261,9 +273,11 @@
 					<div class="ui dimmer">
 						<label for="button_pic" class="ui inverted button violet">사진 선택</label>
 						<input type="file" name="fileName1" id="button_pic" onchange="readURL(this);">
-						<input type="hidden" id="add" name="address" value="<%=address %>">
-						<input type="hidden" id="lat" name="latitude" value="<%=latitude %>">
-						<input type="hidden" id="lng" name="longitude" value="<%=longitude %>">
+						<input type="hidden" id="add" name="address">
+						<input type="hidden" id="lat" name="latitude">
+						<input type="hidden" id="lng" name="longitude"> 
+						
+						
 					</div>
 					<img class="ui centered image dim_pic" src="images/wireframe/upload_image.png">
 				</div>
@@ -291,12 +305,13 @@
 			<div>
 				<input type="text" id="addr1" name="address" placeholder="주소 검색" style="width: 500px;"> 
 				<button type="button" onclick="codeAddress(); return false;" class="ui button basic violet">찾기</button>
+				
 			</div>
 			<div>
 				<input type="text" id="add1" name="add" placeholder="결과" style=" width: 500px;">
 				<input type="hidden" id="lat1" name="lat">
 				<input type="hidden" id="lng1" name="lng">
-				<button type="submit" class="ui button violet" id="map_submit">위치 추가</button> 
+				<button type="button" onclick='setMaps()' class="ui button violet ok" id="map_submit">위치 추가</button> 
 				<button type="reset" class="ui button cancel">취소</button>
 			</div>
 		</form>
@@ -308,5 +323,5 @@
 		</div>
 	</div>
 	<!-- mapAPI 모달 끝 -->
-
+	
 	<jsp:include page="footer.jsp"/>
