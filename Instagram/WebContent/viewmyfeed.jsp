@@ -229,10 +229,9 @@
 	            	</span>
                 </div>
             	
-                <div class="ui relaxed horizontal list">
+                <div class="ui divided very relaxed horizontal list" id="list-profile">
                     <div class="item">
                         <div class="content">
-                        
 							게시물 <span id="cardCount"></span>
                         </div>
                     </div>
