@@ -99,7 +99,14 @@
 		});
           
  	</c:forEach>
+ 	
+ 		$(".plus").click(function(){
+        	$('.ui.modal').modal('show');
+   		});
  		
+ 		$(".ui.button.red").click(function(){
+ 			document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>";
+ 		});
  		
     });
  	</script>
@@ -179,7 +186,8 @@
 	        		<div class="item">
 		        		<div class="right floated content">
 		        			<%if(user_id.equals(dto.getUser_id())){ %>
-								<i class="ellipsis horizontal circular violet link icon"></i>
+								<a class="plus"><i class="ellipsis horizontal circular violet link icon"></i></a>
+								
 							<%} %>
 						</div>
 						<img class="ui avatar image" src="profile_image/<%=dto.getProfile_img()%>">
@@ -275,5 +283,12 @@
 
     </div>
     <!-- 페이지 전체 컨테이너 끝 -->
+	
+	<div class="ui modal">
+		<div class="content" align="center">
+			<button type="button" class="ui button olive">게시물 수정하기</button>
+			<button type="button" class="ui button red">게시물 삭제하기</button>
+		</div>
+	</div>
 
     <jsp:include page="footer.jsp" />

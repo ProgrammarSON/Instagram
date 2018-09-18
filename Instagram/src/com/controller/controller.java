@@ -125,6 +125,10 @@ public class controller extends HttpServlet {
 			command = new viewModalFollowCommand();
 			command.execute(request, response);
 			return;
+		}else if(com.equals("/deletenewsfeed.do")) {
+			command = new deleteNewsFeed();
+			command.execute(request, response);
+			viewPage = "check_deletenewsfeed.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

@@ -377,6 +377,35 @@ public class feedDAO {
 		return check;
 	}
 	
+	public int deleteNewsFeed(String feed_id) {
+		Connection conn = null;
+		CallableStatement cstmt = null;
+		
+		int check = 0;
+		
+		try {
+			conn = getConnection();
+			cstmt = conn.prepareCall("{call deletenewsfeed_proc(?,?)}");
+			cstmt.setString(1, feed_id);
+			cstmt.registerOutParameter(2, java.sql.Types.INTEGER);
+			
+			cstmt.executeUpdate();			
+			check = cstmt.getInt(2);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(cstmt != null) cstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return check;
+	}
+	
 	private String CalDate(String d) {
 		String dateArray[] = d.split(" ");
 		

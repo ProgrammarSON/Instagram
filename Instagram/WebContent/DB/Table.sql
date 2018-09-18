@@ -56,12 +56,3 @@ CREATE TABLE HASHTAG(
   hashtag_contents VARCHAR2(2000),
   newsfeed_id NUMBER
 );
-
-create table Mapinfo
-(
-  map_id number primary key,
-  address varchar2(1000)
-);
-
-
-
