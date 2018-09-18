@@ -116,20 +116,7 @@
  		$('.ui.positive.right.button').click(function(){
  			document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>";
  		});
- 		
- 		<%-- $(".ui.button.red").click(function(){
- 			document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>";
- 					
- 		}); --%>
- 		
- 			
- 
- 		// attach events to buttons
- 		
- 		// show first now
- 		
- 	
- 		
+	
     });
  	</script>
  	
