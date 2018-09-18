@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ page import="com.member.*" %>
 
+<%	memberDTO dto = (memberDTO)request.getAttribute("dto"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -29,7 +31,7 @@
 		<!-- 프로필 구역 시작 -->
         <div class="ui segment">
         	<form class="ui large form" action="" method="">
-        		<h1 class="ui header">프로필 수정</h1>
+         		<h1 class="ui header">프로필 수정</h1>
         		
         		<div class="field">
         			<label>아이디</label>
@@ -52,11 +54,11 @@
         		<div class="two fields">
 					<div class="field">
 						<label>이름</label>
-						<input type="text" name="username" placeholder="이름">
+						<input type="text" name="username" placeholder="이름" value=<%=dto.getUsername() %>>
 					</div>
 					<div class="field">
 						<label>별명</label>
-						<input type="text" name="user_id" placeholder="별명">
+						<input type="text" name="user_id" placeholder="별명" value=<%=dto.getUser_id() %>>
 					</div>
 				</div>
 				
@@ -73,7 +75,7 @@
 				
 				<div class="field">
 					<label>프로필 소개</label>
-					<input type="text" name="contents" placeholder="프로필 소개">
+					<input type="text" name="contents" placeholder="프로필 소개" value=<%=dto.getContents() %>>
 				</div>
 				
 				<div class="two fields">

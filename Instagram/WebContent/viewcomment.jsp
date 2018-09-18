@@ -105,8 +105,14 @@
    		});
  		
  		$(".ui.button.red").click(function(){
- 			document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>";
+ 			<%-- document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>"; --%>
+ 			
+ 			$('.mini.modal')
+ 			  .modal('show')
+ 			;
  		});
+ 		
+ 	
  		
     });
  	</script>
@@ -186,9 +192,15 @@
 	        	<div class="ui large middle aligned list">
 	        		<div class="item">
 		        		<div class="right floated content">
+
+		        			<%if(user_id.equals(dto.getUser_id())){ %>
+								<a class="plus"><i class="ellipsis horizontal circular violet link icon"></i></a>
+							<%} %>
+
 	        			<%if(user_id.equals(dto.getUser_id())){ %>
 							<a class="a_edit"><i class="ellipsis horizontal circular violet link icon"></i></a>
 						<%} %>
+
 						</div>
 						<img class="ui avatar image" src="profile_image/<%=dto.getProfile_img()%>">
 						<div class="content">
@@ -294,5 +306,23 @@
 			<button type="button" class="ui button red"><i class="remove icon"></i>게시물 삭제</button>
 		</div>
 	</div>
+	
+	<div class="ui mini test modal transition active" style="display: block !important;">
+    	<div class="header">
+      		Delete Your Account
+    	</div>
+    <div class="content">
+      <p>Are you sure you want to delete your account</p>
+    </div>
+    <div class="actions">
+      <div class="ui negative button">
+        No
+      </div>
+      <div class="ui positive right labeled icon button">
+        Yes
+        <i class="checkmark icon"></i>
+      </div>
+    </div>
+  </div>
 
     <jsp:include page="footer.jsp" />
