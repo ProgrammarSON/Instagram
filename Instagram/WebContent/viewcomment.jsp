@@ -100,7 +100,7 @@
           
  	</c:forEach>
  	
- 		$(".plus").click(function(){
+ 		$(".a_edit").click(function(){
         	$('.ui.modal').modal('show');
    		});
  		
@@ -187,7 +187,7 @@
 	        		<div class="item">
 		        		<div class="right floated content">
 	        			<%if(user_id.equals(dto.getUser_id())){ %>
-							<a class="plus"><i class="ellipsis horizontal circular violet link icon"></i></a>
+							<a class="a_edit"><i class="ellipsis horizontal circular violet link icon"></i></a>
 						<%} %>
 						</div>
 						<img class="ui avatar image" src="profile_image/<%=dto.getProfile_img()%>">
