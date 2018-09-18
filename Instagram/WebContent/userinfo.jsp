@@ -76,7 +76,14 @@
 					<input type="text" name="contents" placeholder="프로필 소개">
 				</div>
 				
-				<div class="ui fluid large button violet">수정 완료</div>
+				<div class="two fields">
+					<div class="field">
+						<button type="reset" class="ui fluid large button" onclick="history.go(-1)">취소</button>
+					</div>
+					<div class="field">
+						<button type="submit" class="ui fluid large button violet">수정 완료</button>
+					</div>
+				</div>
         	</form>
         </div>
         <!-- 프로필 구역 끝 -->
