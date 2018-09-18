@@ -47,7 +47,6 @@ input[type="file"] {
 	width: 100%;
 	object-fit: cover;
 }
-
 .div-profile {
 	margin: 0 auto;
 }
@@ -121,6 +120,18 @@ input[type="file"] {
   .div-profile {
     width: 96px;
     height: 96px;
+  }
+  #list-profile .item:first-child {
+  	margin-left: 0;
+  }
+  #list-profile .item {
+	margin-left: 0.3rem;
+  }
+  #list-profile .item:not(:first-child) {
+  	padding-left: 0.3rem;
+  }
+  #list-profile .item:not(:last-child) {
+    padding-right: 0.3rem;
   }
 }
 @media (min-width: 768px) {
