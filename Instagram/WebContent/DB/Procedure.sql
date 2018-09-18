@@ -160,3 +160,42 @@ EXCEPTION
     rollback;
     pnewsfeed_id := -1;
 END newsfeed_proc;
+
+
+
+create or replace PROCEDURE deletenewsfeed_proc(  
+  pnewsfeed_id IN NUMBER, 
+  pcheck OUT NUMBER
+  ) IS
+  
+BEGIN
+    pcheck := 1;
+      
+    DELETE FROM hashtag 
+    WHERE NEWSFEED_ID = pnewsfeed_id;
+  
+    DELETE FROM likes
+    WHERE NEWSFEED_ID = pnewsfeed_id;
+    
+    DELETE FROM reply r
+    WHERE EXISTS(
+        SELECT 1
+        FROM comments c
+        WHERE r.comment_id = c.comment_id AND c.newsfeed_id = pnewsfeed_id
+     );
+     
+    DELETE FROM COMMENTS
+    WHERE NEWSFEED_ID = pnewsfeed_id;
+     
+    DELETE FROM newsfeed
+    WHERE NEWSFEED_ID = pnewsfeed_id;
+    
+    commit;
+
+EXCEPTION 
+ WHEN OTHERS THEN
+    rollback;
+    pcheck := -1;
+END deletenewsfeed_proc;
+
+
