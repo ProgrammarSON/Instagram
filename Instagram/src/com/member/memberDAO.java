@@ -252,7 +252,39 @@ public class memberDAO {
 		return dto;
 	}
 
-	
+	public int updateUserInfo(memberDTO dto,String o_user_id) {
+		Connection conn = null;
+		CallableStatement cstmt = null;
+		
+		int check = 0;
+		
+		try {
+			conn = getConnection();
+			cstmt = conn.prepareCall("{call modify_userinfo_proc(?,?,?,?,?,?,?)}");
+			cstmt.setString(1, o_user_id);
+			cstmt.setString(2, dto.getUser_id());
+			cstmt.setString(3, dto.getUsername());
+			cstmt.setString(4, dto.getPassword());
+			cstmt.setString(5, dto.getContents());
+			cstmt.setString(6, dto.getProfile_img());
+			cstmt.registerOutParameter(7, java.sql.Types.INTEGER);
+			
+			cstmt.executeUpdate();			
+			check = cstmt.getInt(7);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(cstmt != null) cstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return check;
+	}
 /*	public int updateMember(memberDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

@@ -309,17 +309,17 @@
 	
 	<div class="ui mini test modal second coupled">
     	<div class="header">
-      		Delete Your Account
+      		 삭제 확인
     	</div>
     <div class="content">
-      <p>Are you sure you want to delete your account</p>
+      <p>이 게시물을 삭제 하시겠습니까?</p>
     </div>
     <div class="actions">
       <div class="ui negative button">
-        No
+        	삭제 안 함
       </div>
       <div class="ui positive right button">
-        Yes
+        	삭제
       </div>
     </div>
   </div>

@@ -78,7 +78,6 @@ public class controller extends HttpServlet {
 			command.execute(request, response);
 			return;
 			
-			//viewPage = "viewcomment.jsp";
 		}else if(com.equals("/writereply.do")) {
 			command = new writeReplyCommand();
 			command.execute(request, response);
@@ -133,6 +132,10 @@ public class controller extends HttpServlet {
 			command = new viewUserInfo();
 			command.execute(request, response);
 			viewPage = "userinfo.jsp";
+		}else if(com.equals("/modifyuserinfo.do")) {
+			command = new modifyUserInfo();
+			command.execute(request, response);
+			viewPage = "check_deletenewsfeed.jsp";	//임시페이지 나중에 변경할꺼임
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);
