@@ -54,11 +54,11 @@
         		<div class="two fields">
 					<div class="field">
 						<label>이름</label>
-						<input type="text" name="username" placeholder="이름" value=<%=dto.getUsername() %>>
+						<input type="text" name="username" placeholder="이름" value="<%=dto.getUsername() %>">
 					</div>
 					<div class="field">
 						<label>별명</label>
-						<input type="text" name="user_id" placeholder="별명" value=<%=dto.getUser_id() %>>
+						<input type="text" name="user_id" placeholder="별명" value="<%=dto.getUser_id() %>">
 					</div>
 				</div>
 				
@@ -75,7 +75,7 @@
 				
 				<div class="field">
 					<label>프로필 소개</label>
-					<input type="text" name="contents" placeholder="프로필 소개" value=<%=dto.getContents() %>>
+					<input type="text" name="contents" placeholder="프로필 소개" value="<%=dto.getContents() %>">
 				</div>
 				
 				<div class="two fields">
