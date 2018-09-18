@@ -300,10 +300,10 @@
     </div>
     <!-- 페이지 전체 컨테이너 끝 -->
 	
-	<div class="ui modal">
+	<div class="ui basic modal">
 		<div class="content" align="center">
-			<button type="button" class="ui button olive">게시물 수정하기</button>
-			<button type="button" class="ui button red">게시물 삭제하기</button>
+			<button type="button" class="ui button olive"><i class="edit icon"></i>게시물 수정</button>
+			<button type="button" class="ui button red"><i class="remove icon"></i>게시물 삭제</button>
 		</div>
 	</div>
 	
