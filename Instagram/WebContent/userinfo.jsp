@@ -17,9 +17,7 @@
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
     <title>프로필 수정</title>
-    
-    <script>
-    </script>
+
 </head>
 
 <body>
@@ -33,17 +31,26 @@
 		<!-- 프로필 구역 시작 -->
         <div class="ui segment">
         	<form class="ui large form" action="" method="">
-        		<h1 class="ui header">username</h1>
-        		<div class="two fields">
-        			<div class="field">
-						<label>프로필 사진</label>
-					</div>
-					<div class="field">
-	        			<label>아이디</label>
-	        			<input type="email" name="email" placeholder="이메일" value=<%=dto.getEmail() %>>
-	        		</div>
+         		<h1 class="ui header">프로필 수정</h1>
+        		
+        		<div class="field">
+        			<label>아이디</label>
+        			<input type="email" name="email" placeholder="아이디">
         		</div>
         		
+       			<div class="field">
+					<label id="user_image_label">프로필 사진</label>
+					<div id="div-avatar">
+						<div class="image centered-and-cropped" id="choice_avatar">
+	                        <div class="ui dimmer">
+	                        	<label for="profilePath" class="ui inverted button violet">사진 선택</label>
+	                            <input type="file" name="profilePath" id="profilePath" onchange="readURL(this);">
+	                        </div>
+	                        <img class="image centered-and-cropped dim_pic" src="images/avatar/large/matthew.png">
+	                    </div>
+                    </div>
+				</div>
+				
         		<div class="two fields">
 					<div class="field">
 						<label>이름</label>
@@ -71,7 +78,14 @@
 					<input type="text" name="contents" placeholder="프로필 소개" value=<%=dto.getContents() %>>
 				</div>
 				
-				<div class="ui fluid large button violet">수정 완료</div>
+				<div class="two fields">
+					<div class="field">
+						<button type="reset" class="ui fluid large button" onclick="history.go(-1)">취소</button>
+					</div>
+					<div class="field">
+						<button type="submit" class="ui fluid large button violet">수정 완료</button>
+					</div>
+				</div>
         	</form>
         </div>
         <!-- 프로필 구역 끝 -->
@@ -80,6 +94,12 @@
         
 	</div>
 	<!-- 페이지 전체 컨테이너 끝 -->
+	
+	<script>
+	$('#choice_avatar.image').dimmer({
+        on: 'hover'
+    });
+	</script>
 	
 	<!-- 푸터 시작 -->
 	<jsp:include page="footer.jsp"/>

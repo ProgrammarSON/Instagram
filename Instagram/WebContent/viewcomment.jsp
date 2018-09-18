@@ -192,9 +192,15 @@
 	        	<div class="ui large middle aligned list">
 	        		<div class="item">
 		        		<div class="right floated content">
+
 		        			<%if(user_id.equals(dto.getUser_id())){ %>
 								<a class="plus"><i class="ellipsis horizontal circular violet link icon"></i></a>
 							<%} %>
+
+	        			<%if(user_id.equals(dto.getUser_id())){ %>
+							<a class="plus"><i class="ellipsis horizontal circular violet link icon"></i></a>
+						<%} %>
+
 						</div>
 						<img class="ui avatar image" src="profile_image/<%=dto.getProfile_img()%>">
 						<div class="content">
@@ -220,7 +226,9 @@
                       		<button class="ui button fluid violet" type="submit" id="<%=feed_id%>_comment_write">작성하기</button>
 	                </form>
 	            </div>
-	        	
+	        	<h4 class="ui text">
+	        		<i class="heart outline icon"></i> 좋아요 #개
+	        	</h4>
 	        	<h4 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h4>
 	        	
 				<div class="ui small comments">
