@@ -41,9 +41,8 @@
 	            <div class="ui simple dropdown item">
 	            	<i class="user large icon"></i><%=id %>
 		            <div class="menu">
-		            	<a class="item" href="./member/logout.jsp">
-							로그아웃	  
-		            	</a>
+		            	<a class="item" href="userinfo.jsp">프로필 수정</a>
+		            	<a class="item" href="./member/logout.jsp">로그아웃</a>
 		            </div>
 	            </div>
 	        </div>

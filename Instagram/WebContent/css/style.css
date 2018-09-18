@@ -33,7 +33,8 @@ input[type="file"] {
 }
 
 #feed_image {
-  width: 45px; height: 45px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
 }
 
@@ -66,7 +67,7 @@ input[type="file"] {
 
 .div-comments {
   display: block;
-  margin-bottom: 3em;
+  margin-bottom: 2em;
 }
 #div-reply-button {
 	margin-top: 12px;
@@ -86,7 +87,10 @@ input[type="file"] {
 	height: 100%;
 	width: 100%;
 }
-
+#div-avatar {
+	width: 300px;
+	height: 300px;
+}
 .ui.custom.popup {
   min-width: 400px;
 }
