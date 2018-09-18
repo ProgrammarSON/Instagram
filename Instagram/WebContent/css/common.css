@@ -125,10 +125,6 @@
     padding-right: 1em !important;
 }
 
-.end-div {
-	margin-bottom: 28px;
-}
-
 @media (max-width: 767px) {
 	.ui.secondary.pointing.menu .item {
 		padding: 1.5em 0.4em;

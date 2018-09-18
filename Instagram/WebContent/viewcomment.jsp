@@ -182,7 +182,7 @@
 
        	<!-- 왼쪽 영역 시작 -->
        	<div class="sixteen wide mobile ten wide tablet ten wide computer column">
-	        <div class="ui container end-div">	
+	        <div class="ui container">	
 				<img id="posted_image" class="ui image fluid" src="feed_image/<%=dto.getImage_path() %>" alt="upload image">
 	       	</div>
        	</div>
