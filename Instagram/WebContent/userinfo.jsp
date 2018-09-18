@@ -35,7 +35,7 @@
         		
         		<div class="field">
         			<label>아이디</label>
-        			<input type="email" name="email" placeholder="아이디">
+        			<input type="email" name="email" placeholder="아이디" value=<%=dto.getEmail() %>>
         		</div>
         		
        			<div class="field">

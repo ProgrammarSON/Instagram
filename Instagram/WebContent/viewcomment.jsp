@@ -101,16 +101,32 @@
  	</c:forEach>
  	
  		$(".a_edit").click(function(){
-        	$('.ui.modal').modal('show');
-   		});
- 		
- 		$(".ui.button.red").click(function(){
- 			<%-- document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>"; --%>
- 			
- 			$('.mini.modal')
- 			  .modal('show')
+ 			$('.coupled.modal')
+ 			  .modal({
+ 			    allowMultiple: false
+ 			  })
  			;
+        	$('.ui.basic.first.modal').modal('show');
+   			
+        	$('.mini.second.modal')
+ 		   .modal('attach events', '.ui.button.red')
+ 			; 	
  		});
+ 		
+ 		$('.ui.positive.right.button').click(function(){
+ 			document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>";
+ 		});
+ 		
+ 		<%-- $(".ui.button.red").click(function(){
+ 			document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>";
+ 					
+ 		}); --%>
+ 		
+ 			
+ 
+ 		// attach events to buttons
+ 		
+ 		// show first now
  		
  	
  		
@@ -193,10 +209,6 @@
 	        		<div class="item">
 		        		<div class="right floated content">
 
-		        			<%if(user_id.equals(dto.getUser_id())){ %>
-								<a class="plus"><i class="ellipsis horizontal circular violet link icon"></i></a>
-							<%} %>
-
 	        			<%if(user_id.equals(dto.getUser_id())){ %>
 							<a class="a_edit"><i class="ellipsis horizontal circular violet link icon"></i></a>
 						<%} %>
@@ -211,7 +223,8 @@
 	           	
 <!-- 		           	<div class="ui divider"></div> -->
 	        	
-	        	<div id="feed_contents"><% if(dto.getContents() != null) { %><span><%=dto.getContents() %></span>
+	        	<div id="feed_contents">
+	        	<% if(dto.getContents() != null) { %><span><%=dto.getContents() %></span>
 	        		<% } else { %><span></span><% } %></div>
 	           	<div id="feed_hashtag"></div>
 	           
@@ -300,14 +313,14 @@
     </div>
     <!-- 페이지 전체 컨테이너 끝 -->
 	
-	<div class="ui basic modal">
+	<div class="ui basic modal first coupled">
 		<div class="content" align="center">
 			<button type="button" class="ui button olive"><i class="edit icon"></i>게시물 수정</button>
 			<button type="button" class="ui button red"><i class="remove icon"></i>게시물 삭제</button>
 		</div>
 	</div>
 	
-	<div class="ui mini test modal transition active" style="display: block !important;">
+	<div class="ui mini test modal second coupled">
     	<div class="header">
       		Delete Your Account
     	</div>
@@ -318,9 +331,8 @@
       <div class="ui negative button">
         No
       </div>
-      <div class="ui positive right labeled icon button">
+      <div class="ui positive right button">
         Yes
-        <i class="checkmark icon"></i>
       </div>
     </div>
   </div>
