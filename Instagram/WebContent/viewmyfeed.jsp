@@ -81,10 +81,10 @@
         		url : "viewmodalfollow.do?user_id="+header_id+"&state=following",
         		success : function(result){
         			var modalData = JSON.parse(result);
-        			$('.ui.very.relaxed.list').html("");
+        			$('#list-follow').html("");
         			for(var i=0; i<modalData.length; i++){
         				console.log(modalData[i].follow_check);
-        				$('.ui.very.relaxed.list').append(
+        				$('#list-follow').append(
         					"<div class='item'>"+
         					 "<div class='left floated content'>"+
         					 	  	"<img class='ui avatar image' src='profile_image/"+ modalData[i].profile_img+"'>"+
@@ -141,11 +141,11 @@
     	    		url : "viewmodalfollow.do?user_id="+header_id+"&state=follower",
     	    		success : function(result){
     	    			var modalData = JSON.parse(result);
-    	    			$('.ui.very.relaxed.list').html("");
+    	    			$('#list-follow').html("");
     	    			
     	    			for(var i=0; i<modalData.length; i++){
     	    				console.log(modalData[i].user_id);
-    	    				$('.ui.very.relaxed.list').append(
+    	    				$('#list-follow').append(
     	    					"<div class='item'>"+
     	    					 "<div class='left floated content'>"+
     	    					 	  	"<img class='ui avatar image' src='profile_image/"+ modalData[i].profile_img+"'>"+
@@ -268,7 +268,7 @@
         <div class="ui tiny modal">
 <!-- 			<div class="header"></div> -->
 			<div class="scrolling content">
-				<div class="ui very relaxed list">
+				<div class="ui very relaxed list" id="list-follow">
 				</div>
 			</div>
 			<div class="actions">
