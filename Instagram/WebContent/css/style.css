@@ -122,6 +122,19 @@ input[type="file"] {
     width: 152px;
     height: 152px;
   }
+  #container_comment {
+  	max-height: 835px;
+  	overflow: hidden;
+  }
+  .ui.comments .comment .comments {
+ 	margin-left: 0;
+	padding: 1em 0;
+  }
+  #comment_id {
+  	overflow-y: scroll;
+    height: 555px;
+    padding-right: 15px;
+  }
 }
 .footer {     width:100%;
             position:relative; top:72%;

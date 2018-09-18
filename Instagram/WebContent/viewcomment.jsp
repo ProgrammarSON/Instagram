@@ -160,7 +160,7 @@
      }); --%>
      
      </script>
-    
+
 </head>
 
 <body>
@@ -169,7 +169,7 @@
     <!-- 내비게이션(메뉴) 바 끝 -->
     
 	<!-- 페이지 전체 컨테이너 시작 -->
-    <div class="ui grid container">
+    <div class="ui grid container" id="container_comment">
 
        	<!-- 왼쪽 영역 시작 -->
        	<div class="sixteen wide mobile ten wide tablet ten wide computer column">
@@ -215,14 +215,15 @@
                       		<button class="ui button fluid violet" type="submit" id="<%=feed_id%>_comment_write">작성하기</button>
 	                </form>
 	            </div>
-	        
+	        	
+	        	<h4 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h4>
+	        	
 				<div class="ui small comments">
-					<h4 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h4>
-	              
-	              	<!--  댓글 출력  -->
-	              <div id="comment_id">	
+					
+				<!--  댓글 출력  -->
+				<div id="comment_id">
 					<c:forEach items="${list}" var="dto">
-	                 <div class="comment"> 
+	                <div class="comment"> 
 						<a class="avatar">
 	                    	<c:if test="${dto.getImg_path() ne null}">
 								<img src="profile_image/${dto.getImg_path()}">
@@ -258,8 +259,8 @@
 					</c:forEach>
 	             </div>
 	             
-					<div class="comments" id="reply_id">
-						<!-- <div class="comment">
+					<!-- <div class="comments" id="reply_id">
+						<div class="comment">
 		    				<a class="avatar">
 		        				<img src="images/avatar/small/jenny.jpg">
 		    				</a>
@@ -275,8 +276,8 @@
 		            				<a class="reply">댓글쓰기</a>
 		        				</div>
 		    				</div>
-						</div> -->
-					</div>
+						</div>
+					</div> -->
 				</div>
 			</div>
 			
