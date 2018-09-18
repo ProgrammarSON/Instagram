@@ -79,7 +79,7 @@
 				success : function(result) {
 					var datas = JSON.parse(result);
 					
-					$("#${dto.getComment_id()}_reply_id").append(
+					$("#${dto.getComment_id()}_reply_id").prepend(
 			    		"<div class='comment'>" +
 			    		" <a class='avatar'> " +
                         " <img src='profile_image/"+profileimg+"'>"+
@@ -158,6 +158,7 @@
 			});  	
  		}); 
      }); --%>
+     
      </script>
     
 </head>
@@ -199,7 +200,8 @@
 	           	
 <!-- 		           	<div class="ui divider"></div> -->
 	        	
-	        	<div id="feed_contents"><%=dto.getContents() %></div>
+	        	<div id="feed_contents"><% if(dto.getContents() != null) { %><span><%=dto.getContents() %></span>
+	        		<% } else { %><span></span><% } %></div>
 	           	<div id="feed_hashtag"></div>
 	           
 	           	<!-- 댓글 달기 -->
