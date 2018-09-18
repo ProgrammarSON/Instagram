@@ -135,7 +135,15 @@ public class controller extends HttpServlet {
 		}else if(com.equals("/modifyuserinfo.do")) {
 			command = new modifyUserInfo();
 			command.execute(request, response);
-			viewPage = "check_deletenewsfeed.jsp";	//임시페이지 나중에 변경할꺼임
+			viewPage = "check_modify_userinfo.jsp";	//임시페이지 나중에 변경할꺼임
+		}else if(com.equals("/viewmodifynewsfeed.do")) {
+			command = new viewModifyNewsFeed();
+			command.execute(request, response);
+			viewPage = "modifynewsfeed.jsp";
+		}else if(com.equals("/modifynewsfeed.do")) {
+			command = new modifyNewsFeed();
+			command.execute(request, response);
+			viewPage = "check_modify_newsfeed.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

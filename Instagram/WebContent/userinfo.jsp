@@ -35,7 +35,7 @@
         		
         		<div class="field">
         			<label>아이디</label>
-        			<input type="email" name="email" placeholder="아이디" value=<%=dto.getEmail() %> disabled/>
+        			<input type="email" name="email" placeholder="아이디" value="<%=dto.getEmail() %>" disabled/>
         		</div>
         		
        			<div class="field">
@@ -44,7 +44,8 @@
 						<div class="image centered-and-cropped" id="choice_avatar">
 	                        <div class="ui dimmer">
 	                        	<label for="profilePath" class="ui inverted button violet">사진 선택</label>
-	                            <input type="file" name="profilePath" id="profilePath" onchange="readURL(this);" >
+	                        	
+	                            <input type="file" name="profilePath" id="profilePath" onchange="readURL(this);">
 	                        </div>
 	                        <img class="image centered-and-cropped dim_pic" src="profile_image/<%=dto.getProfile_img()%>">
 	                    </div>

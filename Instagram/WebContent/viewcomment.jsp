@@ -116,6 +116,10 @@
  		$('.ui.positive.right.button').click(function(){
  			document.location.href="deletenewsfeed.do?feed_id=<%=feed_id%>";
  		});
+ 		
+ 		$('.ui.button.olive').click(function(){
+ 			document.location.href="viewmodifynewsfeed.do?feed_id=<%=feed_id%>";
+ 		});
 	
     });
  	</script>

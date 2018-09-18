@@ -17,7 +17,7 @@ public class modifyUserInfo implements Command{
 	@Override
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
-		String uploadPath = request.getRealPath("/feed_image");
+		String uploadPath = request.getRealPath("/profile_image");
 		int maxSize = 1024 * 1024 * 10; 
 	   	    
 	    HttpSession session = request.getSession();
@@ -27,6 +27,7 @@ public class modifyUserInfo implements Command{
 	    String password = "";
 	    String contents = "";
 	    String profile_img = "";
+	    String filename="";
 	    int check = 0;
 	    
 	    memberDAO dao = memberDAO.getInstance();
@@ -43,22 +44,23 @@ public class modifyUserInfo implements Command{
 	        user_id = multi.getParameter("user_id");
 	        password = multi.getParameter("password");
 	        contents = multi.getParameter("contents");
-	        
+	        filename = multi.getParameter("profilePath");
+	        System.out.println("filename->"+filename);
 	        if(password.equals("")) password = "no";
 	        
 	        Enumeration files = multi.getFileNames();
 	         
-	        while(files.hasMoreElements())
+	        if(files.hasMoreElements())
 	        {
-	           String file1 = (String)files.nextElement();
+	        	String file1 = (String)files.nextElement();
+	            System.out.println("file1->"+file1);
 	            
-	            profile_img = multi.getFilesystemName(file1);
-	            	            
+	        	profile_img = multi.getFilesystemName(file1);
+	        	System.out.println("profile_img->"+profile_img);	            
 	            //image_path = image_path + "\\" + multi.getFilesystemName(file1);
 	            if(profile_img == null)
         		{
 	            	profile_img = "null.jpg";
-        			break;
         		}
 	        }
 	        
@@ -70,9 +72,15 @@ public class modifyUserInfo implements Command{
 	        dto.setProfile_img(profile_img);
 	        
 	        check = dao.updateUserInfo(dto, o_user_id);
-        
+	        
+	                 
 	    }catch(Exception e){
 	        e.printStackTrace();
+	    }
+	    if(!(o_user_id.equals(user_id)))
+	    {
+	    	session.removeAttribute("id");
+	    	session.setAttribute("id", user_id);
 	    }
 	    request.setAttribute("check", check);  
 	}

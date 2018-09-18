@@ -406,6 +406,91 @@ public class feedDAO {
 		return check;
 	}
 	
+	public feedDTO getModifyFeed(String feed_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		StringBuffer sql = new StringBuffer();
+		feedDTO dto = null;
+		sql.append("SELECT image_path, contents, address, latitude, longitude ");
+		sql.append("FROM newsfeed ");
+		sql.append("WHERE newsfeed_id = ?");
+		System.out.println(sql.toString());
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, feed_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new feedDTO();
+				dto.setImage_path(rs.getString("image_path"));
+				dto.setContents(rs.getString("contents"));				
+				if(rs.getString("address") == null || rs.getString("address").equals("null")) dto.setAddress("주소 없음");
+				else dto.setAddress(rs.getString("address"));
+				
+				dto.setLatitude(rs.getString("latitude"));
+				dto.setLongitude(rs.getString("longitude"));
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return dto;
+	}
+	
+	public int updateNewsFeed(feedDTO dto,String feed_id) {
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		StringBuffer sql = new StringBuffer();
+		int check = 0;
+		sql.append("UPDATE newsfeed ");
+		sql.append("SET contents = ?, ");
+		sql.append("address = ?, ");
+		sql.append("latitude = ?, ");
+		sql.append("longitude = ? ");
+		sql.append("WHERE newsfeed_id = ? ");
+			
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, dto.getContents());
+			pstmt.setString(2, dto.getAddress());
+			pstmt.setString(3, dto.getLatitude());
+			pstmt.setString(4, dto.getLongitude());
+			pstmt.setString(5, feed_id);
+			
+			check = pstmt.executeUpdate();
+						
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return check;
+	}
+	
+	
+	
+	
 	private String CalDate(String d) {
 		String dateArray[] = d.split(" ");
 		

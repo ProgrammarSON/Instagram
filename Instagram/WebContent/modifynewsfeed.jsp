@@ -1,6 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% String user_id = (String)session.getAttribute("id"); %>
+<%@ page import="com.newsfeed.*" %>    
+<% 
+	feedDTO dto = (feedDTO)request.getAttribute("dto");
+	String feed_id = (String)request.getAttribute("feed_id");
+%>
 <% request.setCharacterEncoding("UTF-8");
 	//html에서부터 값 받아옴
 	/* String address = request.getParameter("add");
@@ -211,7 +215,7 @@
 	
 	/* 구글 맵 좌표 입력하기 */
 	function formchk() {
-		if($('#add').val().length <1 ) $('#add').text("주소없음");
+		if($('#add').val().length <1 ) $('#add').text("null");
 		if($('#lat').val().length <1 ) $('#lat').text("null");
 		if($('#lng').val().length <1 ) $('#lng').text("null");
 		document.feedform.submit();
@@ -264,7 +268,7 @@
     <!-- 페이지 전체 컨테이너 시작 -->
 	<div class="ui container">
 		
-		<form action="writenewsfeed.do" name="feedform" method="post" enctype="Multipart/form-data" class="ui form" onSubmit="formchk()">
+		<form action="modifynewsfeed.do" name="feedform" method="post" class="ui form" onSubmit="formchk()">
 			<div class="ui container">
 	            <h1>작성하기</h1>
 	            
@@ -272,12 +276,8 @@
 					<a class="ui small basic button violet" id="button_mapAPI">위치 추가</a>
 	           		<div id="div-address">
 <!-- 	           			주소 : <span id="address_input"></span> -->
-	           			<%-- <% if(address != null) { %>
-	           				주소 : <span id="address_input"><%= address %></span>
-	           			<% } else { %>
-	           				주소 없음
-	           			<% } %> --%>
-	           			주소 : <span id="address_input"></span>
+	           		<span id="address_input"><%=dto.getAddress() %></span>
+	           		        	           			
 	           		</div>
 	            </div>
 	            
@@ -285,25 +285,22 @@
             	
 				<div class="bordered image centered-and-cropped" id="dimmer_pic">
 					<div class="ui dimmer">
-						<label for="button_pic" class="ui inverted button violet">사진 선택</label>
-						<input type="file" name="fileName1" id="button_pic" onchange="readURL(this);">
-						<input type="hidden" id="add" name="address">
-						<input type="hidden" id="lat" name="latitude">
-						<input type="hidden" id="lng" name="longitude"> 
-						
-						
+						<input type="hidden" id="add" name="address" value="<%=dto.getAddress() %>">
+						<input type="hidden" id="lat" name="latitude" value="<%=dto.getLatitude() %>">
+						<input type="hidden" id="lng" name="longitude" value="<%=dto.getLongitude() %>"> 
+						<input type="hidden" name="feed_id" value="<%=feed_id %>">				
 					</div>
-					<img class="ui centered image dim_pic" src="images/wireframe/upload_image.png">
+					<img class="ui centered image dim_pic" src="feed_image/<%=dto.getImage_path() %>">
 				</div>
 	        </div>
 	        
 	        <div class="ui container div-text-input">
-				<textarea name="contents" rows="4"></textarea>
+				<textarea name="contents" rows="4" value="<%=dto.getContents() %>"><%=dto.getContents() %></textarea>
 			</div>
 			<div class="column">
 	            <div class="ui right aligned container">
 	                <button type="reset" class="ui button">취소하기</button>
-	                <button type="submit" class="ui button violet">작성하기</button>
+	                <button type="submit" class="ui button violet">수정하기</button>
 	            </div>
 	        </div>
 		</form>
@@ -323,8 +320,8 @@
 			</div>
 			<div>
 				<input type="text" id="add1" name="add" placeholder="결과" style=" width: 500px;">
-				<input type="hidden" id="lat1" name="lat">
-				<input type="hidden" id="lng1" name="lng">
+				<input type="hidden" id="lat1" name="lat" value="<%=dto.getLatitude() %>">
+				<input type="hidden" id="lng1" name="lng" value="<%=dto.getLongitude() %>">
 				<button type="button" onclick='setMaps()' class="ui button violet ok" id="map_submit">위치 추가</button> 
 				<button type="reset" class="ui button cancel">취소</button>
 			</div>
