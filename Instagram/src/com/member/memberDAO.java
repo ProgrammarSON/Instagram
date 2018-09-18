@@ -208,6 +208,51 @@ public class memberDAO {
 		return user_id;
 	}
 	
+	public memberDTO getMemberinfo(String user_id) {
+		
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		memberDTO dto = null;
+		
+		StringBuffer sql = new StringBuffer();
+		sql.append("SELECT email, username, profile_img, contents ");
+		sql.append("FROM member m JOIN myfeed f ");
+		sql.append("ON m.user_id = f.USER_ID ");
+		sql.append("WHERE m.user_id = ? ");
+				
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dto = new memberDTO();
+				dto.setEmail(rs.getString("email"));
+				dto.setUsername(rs.getString("username"));
+				dto.setProfile_img(rs.getString("profile_img"));
+				dto.setContents(rs.getString("contents"));
+				dto.setUser_id(user_id);
+			}
+			
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(pstmt != null) pstmt.close();
+				if(conn != null) conn.close();
+				if(rs != null) rs.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return dto;
+	}
+
+	
 /*	public int updateMember(memberDTO dto) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;

@@ -129,6 +129,10 @@ public class controller extends HttpServlet {
 			command = new deleteNewsFeed();
 			command.execute(request, response);
 			viewPage = "check_deletenewsfeed.jsp";
+		}else if(com.equals("/userinfo.do")) {
+			command = new viewUserInfo();
+			command.execute(request, response);
+			viewPage = "userinfo.jsp";
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);
