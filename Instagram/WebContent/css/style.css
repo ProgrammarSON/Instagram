@@ -135,7 +135,7 @@ input[type="file"] {
 	padding: 1em 0;
   }
   #comment_id {
-  	overflow-y: scroll;
+  	overflow-y: auto;
     height: 555px;
     padding-right: 15px;
   }
