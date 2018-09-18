@@ -199,3 +199,66 @@ EXCEPTION
 END deletenewsfeed_proc;
 
 
+create or replace PROCEDURE modify_userinfo_proc(  
+  o_user_id IN MEMBER.USERNAME%TYPE,
+  puser_id IN MEMBER.USER_ID%TYPE,
+  
+  pusername IN MEMBER.USERNAME%TYPE,
+  p_password IN MEMBER.PASSWORD%TYPE,
+  pcontents IN MYFEED.CONTENTS%TYPE,
+  p_profile_img IN MYFEED.PROFILE_IMG%TYPE,
+  pcheck OUT NUMBER
+  ) IS
+  
+BEGIN
+    pcheck := 1;
+      
+    if(p_password = 'no') then
+      UPDATE member
+      SET user_id = puser_id, 
+          USERNAME = pusername
+      WHERE user_id = o_user_id;
+    else
+      UPDATE member
+      SET user_id = puser_id, 
+          USERNAME = pusername,
+          PASSWORD = p_password
+      WHERE user_id = o_user_id;
+    end if;
+    
+    UPDATE myfeed
+    SET user_id = puser_id,
+        contents = pcontents,
+        profile_img =  p_profile_img
+    WHERE user_id = o_user_id;
+    
+    if(o_user_id != puser_id) then
+      UPDATE COMMENTS
+      SET user_id = puser_id
+      WHERE user_id = o_user_id;
+    
+      UPDATE follow
+      SET user_id = puser_id,
+          following = puser_id
+      WHERE user_id = o_user_id OR following = o_user_id;
+    
+      UPDATE likes
+      SET USER_ID = puser_id
+      WHERE user_id = o_user_id;
+    
+      UPDATE NEWSFEED
+      SET user_id = puser_id
+      WHERE user_id = o_user_id;
+    
+      UPDATE reply
+      SET user_id = puser_id
+      WHERE user_id = o_user_id;   
+    end if;
+    commit;
+
+EXCEPTION 
+ WHEN OTHERS THEN
+    rollback;
+    pcheck := -1;
+END modify_userinfo_proc;
+
