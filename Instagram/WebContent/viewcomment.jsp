@@ -69,10 +69,10 @@
 		    	}
 		    }
     	});
+    	
     	$("#${dto.getComment_id()}_reply_write").click(function(){
 			var id = "<%=user_id%>";
 			var contents = $("#${dto.getComment_id()}_reply_contents").val();
-			var profileimg = "<%=dto.getProfile_img()%>";
 			
 			$.ajax({
 				url:"writereply.do?comment_id=${dto.getComment_id()}&user_id="+id+"&contents="+contents,
@@ -82,7 +82,7 @@
 					$("#${dto.getComment_id()}_reply_id").prepend(
 			    		"<div class='comment'>" +
 			    		" <a class='avatar'> " +
-                        " <img src='profile_image/"+profileimg+"'>"+
+                        " <img src='profile_image/"+datas[i].img_path+"'>"+
                       	" </a> " +
                       	"<div class='content'> "+
                       		"<a class='author'> " + id + "</a>" +

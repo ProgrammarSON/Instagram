@@ -105,10 +105,8 @@
     });
 	
 	$('#deleteimg').click(function(){
-		
 		$('#defaultimg').attr('src','profile_image/jenny.jpg');
-		$('#original_img').val('jenny.jpg');
-		
+		$('#original_img').val('jenny.jpg');		
 	});
 	</script>
 	

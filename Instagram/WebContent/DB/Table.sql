@@ -33,7 +33,8 @@ CREATE TABLE reply(
   reply_id NUMBER,
   comment_id NUMBER,
   user_id VARCHAR2(100),
-  contents VARCHAR2(2000)
+  contents VARCHAR2(2000),
+  reply_date DATE
 );
 
 CREATE TABLE member(
