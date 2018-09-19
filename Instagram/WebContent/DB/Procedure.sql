@@ -200,7 +200,7 @@ END deletenewsfeed_proc;
 
 
 create or replace PROCEDURE modify_userinfo_proc(  
-  o_user_id IN MEMBER.USERNAME%TYPE,
+  o_user_id IN MEMBER.USER_ID%TYPE,
   puser_id IN MEMBER.USER_ID%TYPE,
   
   pusername IN MEMBER.USERNAME%TYPE,
@@ -238,10 +238,13 @@ BEGIN
       WHERE user_id = o_user_id;
     
       UPDATE follow
-      SET user_id = puser_id,
-          following = puser_id
-      WHERE user_id = o_user_id OR following = o_user_id;
-    
+      SET user_id = puser_id
+      WHERE user_id = o_user_id;
+      
+      UPDATE follow
+      SET following = puser_id
+      WHERE following = o_user_id;
+        
       UPDATE likes
       SET USER_ID = puser_id
       WHERE user_id = o_user_id;
@@ -253,7 +256,8 @@ BEGIN
       UPDATE reply
       SET user_id = puser_id
       WHERE user_id = o_user_id;   
-    end if;
+   end if;
+   
     commit;
 
 EXCEPTION 
