@@ -37,9 +37,7 @@ public class writeNewsfeedCommand implements Command{
 		    feedDAO dao =feedDAO.getinstance();
 		    Set<String> set = new HashSet<>();
 		    //String address = request.getParameter("add1");
-		    
-		 		         
-		     
+		    	     
 		    
 		    MultipartRequest multi = null;
 		     
@@ -70,11 +68,12 @@ public class writeNewsfeedCommand implements Command{
 		        }
 		        
 		        
-		        String array[] = contents.split(" ");
 		        
+		        String array[] = contents.split("(\r\n)|\\s|\t");
 		        for(int i=0;i<array.length;i++)
 		        {
 		        	int idx = array[i].indexOf("#");
+		        	
 		        	if(idx > -1)
 		        	{
 		        		set.add(array[i].substring(idx+1));
