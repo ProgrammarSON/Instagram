@@ -16,6 +16,7 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
+    <script src="js/signup.js"></script>
     <title>프로필 수정</title>
 
 	
@@ -73,7 +74,7 @@
 					</div>
 					<div class="field">
 						<label>비밀번호 확인</label>
-						<input type="password" name="password_check" placeholder="비밀번호 확인">
+						<input type="password" name="password-check" placeholder="비밀번호 확인">
 					</div>
 				</div>
 				

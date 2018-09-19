@@ -1,59 +1,59 @@
 // Signup
 $(document).ready(function() {
-    // $('.ui.form').form({
-    //     fields: {
-    //         email: {
-    //             identifier: 'email',
-    //             rules: [{
-    //                     type: 'empty',
-    //                     prompt: '이메일을 입력하세요.'
-    //                 },
-    //                 {
-    //                     type: 'email',
-    //                     prompt: '올바른 이메일 형식을 입력하세요.'
-    //                 }
-    //             ]
-    //         },
-    //         password: {
-    //             identifier: 'password',
-    //             rules: [{
-    //                     type: 'empty',
-    //                     prompt: '비밀번호를 입력하세요.'
-    //                 },
-    //                 {
-    //                     type: 'minLength[8]',
-    //                     prompt: '적어도 8자 이상이어야 합니다.'
-    //                 },
-    //                 {
-    //                     type: 'regExp[^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).+$]',
-    //                     prompt: '하나 이상의 영문 및 숫자, 특수 기호를 포함해야 합니다.'
-    //                 }
-    //             ]
-    //         },
-    //         passwordCheck: {
-    //             identifier: 'password-check',
-    //             rules: [{
-    //                     type: 'empty',
-    //                     prompt: '비밀번호를 한 번 더 입력하세요.'
-    //                 },
-    //                 {
-    //                     type: 'match[password]',
-    //                     prompt: '동일한 비밀번호를 입력해주세요.'
-    //                 }
-    //             ]
-    //         },
-    //         username: {
-    //             identifier: 'username',
-    //             rules: [{
-    //                     type: 'empty',
-    //                     prompt: '이름을 입력하세요.'
-    //                 },
-    //                 {
-    //                     type: 'regExp[^([가-힣]){2,}$]',
-    //                     prompt: '한글만, 최소 2자 입력할 수 있습니다.'
-    //                 }
-    //             ]
-    //         },
+     $('.ui.form').form({
+         fields: {
+             email: {
+                 identifier: 'email',
+                 rules: [{
+                         type: 'empty',
+                         prompt: '이메일을 입력하세요.'
+                     },
+                     {
+                         type: 'email',
+                         prompt: '올바른 이메일 형식을 입력하세요.'
+                     }
+                 ]
+             },
+             password: {
+                 identifier: 'password',
+                 rules: [{
+                         type: 'empty',
+                         prompt: '비밀번호를 입력하세요.'
+                     },
+                     {
+                         type: 'minLength[8]',
+                         prompt: '적어도 8자 이상이어야 합니다.'
+                     },
+                     {
+                         type: 'regExp[^(?=.*?[a-z])(?=.*?[0-9])(?=.*?[#?!@$%^&*-]).+$]',
+                         prompt: '하나 이상의 영문 및 숫자, 특수 기호를 포함해야 합니다.'
+                     }
+                 ]
+             },
+             passwordCheck: {
+                 identifier: 'password-check',
+                 rules: [{
+                         type: 'empty',
+                         prompt: '비밀번호를 한 번 더 입력하세요.'
+                     },
+                     {
+                         type: 'match[password]',
+                         prompt: '동일한 비밀번호를 입력해주세요.'
+                     }
+                 ]
+             },
+             username: {
+                 identifier: 'username',
+                 rules: [{
+                         type: 'empty',
+                         prompt: '이름을 입력하세요.'
+                     },
+                     {
+                         type: 'regExp[^([가-힣]){2,}$]',
+                         prompt: '한글만, 최소 2자 입력할 수 있습니다.'
+                     }
+                 ]
+             }//,
     //         user_id: {
     //             identifier: 'user_id',
     //             rules: [{
@@ -70,8 +70,8 @@ $(document).ready(function() {
     //                 },
     //             ]
     //         }
-    //     }
-    // });
+         }
+     });
 
     $('#choice_avatar.image').dimmer({
         on: 'hover'
