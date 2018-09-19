@@ -18,6 +18,7 @@
     <script src="js/script.js"></script>
     <title>프로필 수정</title>
 
+	
 </head>
 
 <body>
@@ -44,10 +45,12 @@
 						<div class="image centered-and-cropped" id="choice_avatar">
 	                        <div class="ui dimmer">
 	                        	<label for="profilePath" class="ui inverted button violet">사진 선택</label>
-	                        	
+	                        	<label class="ui inverted button violet" id="deleteimg">사진 삭제</label>
+	                            
 	                            <input type="file" name="profilePath" id="profilePath" onchange="readURL(this);">
+	                            <input type="hidden" name="original_img" id="original_img" value="<%=dto.getProfile_img()%>">
 	                        </div>
-	                        <img class="image centered-and-cropped dim_pic" src="profile_image/<%=dto.getProfile_img()%>">
+	                        <img class="image centered-and-cropped dim_pic" id="defaultimg" src="profile_image/<%=dto.getProfile_img()%>">
 	                    </div>
                     </div>
 				</div>
@@ -100,6 +103,13 @@
 	$('#choice_avatar.image').dimmer({
         on: 'hover'
     });
+	
+	$('#deleteimg').click(function(){
+		
+		$('#defaultimg').attr('src','profile_image/jenny.jpg');
+		$('#original_img').val('jenny.jpg');
+		
+	});
 	</script>
 	
 	<!-- 푸터 시작 -->

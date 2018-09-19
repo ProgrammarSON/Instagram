@@ -28,6 +28,7 @@ public class modifyUserInfo implements Command{
 	    String contents = "";
 	    String profile_img = "";
 	    String filename="";
+	    String original_img ="";
 	    int check = 0;
 	    
 	    memberDAO dao = memberDAO.getInstance();
@@ -44,7 +45,7 @@ public class modifyUserInfo implements Command{
 	        user_id = multi.getParameter("user_id");
 	        password = multi.getParameter("password");
 	        contents = multi.getParameter("contents");
-	        filename = multi.getParameter("profilePath");
+	        original_img = multi.getParameter("original_img");
 	        System.out.println("filename->"+filename);
 	        if(password.equals("")) password = "no";
 	        
@@ -60,7 +61,7 @@ public class modifyUserInfo implements Command{
 	            //image_path = image_path + "\\" + multi.getFilesystemName(file1);
 	            if(profile_img == null)
         		{
-	            	profile_img = "null.jpg";
+	            	profile_img = original_img;
         		}
 	        }
 	        
