@@ -73,7 +73,7 @@ public class commentDAO {
 		ResultSet rs = null;
 		List<commentDTO> list = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT comment_id, c.user_id, comment_date, c.contents, profile_img ");
+		sql.append("SELECT comment_id, c.user_id, to_char(comment_date,'yyyy mm dd HH24 MI SS') AS comment_date, c.contents, profile_img ");
 		sql.append("FROM comments c JOIN myfeed m ");
 		sql.append("ON c.user_id = m.user_id ");
 		sql.append("WHERE c.NEWSFEED_ID = ? ");
@@ -90,7 +90,7 @@ public class commentDAO {
 				commentDTO dto = new commentDTO();
 				dto.setComment_id(rs.getString("comment_id"));
 				dto.setUser_id(rs.getString("user_id"));
-				dto.setComment_date(rs.getString("comment_date"));
+				dto.setComment_date(CalDate(rs.getString("comment_date")));
 				dto.setContent(rs.getString("contents"));
 				dto.setImg_path(rs.getString("profile_img"));
 				list.add(dto);
@@ -120,7 +120,7 @@ public class commentDAO {
 		StringBuffer sql = new StringBuffer();
 		int check=0;
 		sql.append("INSERT INTO reply ");
-		sql.append("VALUES(reply_seq.nextval, ?, ?, ?)");
+		sql.append("VALUES(reply_seq.nextval, ?, ?, ?, sysdate)");
 		
 		try {
 			conn = getConnection();
@@ -151,7 +151,7 @@ public class commentDAO {
 		ResultSet rs = null;
 		List<replyDTO> list = new ArrayList<>();
 		StringBuffer sql = new StringBuffer();
-		sql.append("SELECT r.user_id, r.contents, profile_img ");
+		sql.append("SELECT r.user_id, r.contents, profile_img, to_char(reply_date,'yyyy mm dd HH24 MI SS') AS reply_date ");
 		sql.append("FROM reply r JOIN myfeed m ");
 		sql.append("ON r.user_id = m.user_id ");
 		sql.append("WHERE r.comment_id = ?");
@@ -168,6 +168,7 @@ public class commentDAO {
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setContents(rs.getString("contents"));
 				dto.setImg_path(rs.getString("profile_img"));
+				dto.setReply_date(CalDate(rs.getString("reply_date")));
 				list.add(dto);
 				//System.out.println(id+" ggg "+contents);
 				//map.get(feedid).getReplys().add(new reply(id,contents));
@@ -187,6 +188,39 @@ public class commentDAO {
 			}
 		}		
 		return list;
+	}
+	
+	private String CalDate(String d) {
+		String dateArray[] = d.split(" ");
+		
+		int dbyear = Integer.parseInt(dateArray[0]);
+		int dbmon = Integer.parseInt(dateArray[1]);
+		int dbday = Integer.parseInt(dateArray[2]);
+		
+		int dbhour = Integer.parseInt(dateArray[3]);
+		int dbmin = Integer.parseInt(dateArray[4]);
+		int dbsec = Integer.parseInt(dateArray[5]);
+			 
+		//Calendar calendar = new GregorianCalendar(Locale.KOREA);
+		Calendar calendar = Calendar.getInstance();
+		int year = calendar.get(Calendar.YEAR);
+		int month = calendar.get(Calendar.MONTH) + 1;
+		int day = calendar.get(Calendar.DAY_OF_MONTH);
+		
+		int hour = calendar.get(Calendar.HOUR_OF_DAY);
+		int minute = calendar.get(Calendar.MINUTE);
+		int second = calendar.get(Calendar.SECOND);
+		
+		
+		String result="";
+		if(year-dbyear > 0) result = dateArray[0]+"-"+dateArray[1]+"-"+dateArray[2];
+		else if(month - dbmon > 0) result = dateArray[1]+"월 " + dateArray[2]+"일";
+		else if(day - dbday  > 0) result = Integer.toString(day-dbday) +"일 전";
+		else if(hour - dbhour > 0) result = Integer.toString(hour-dbhour)+"시간 전";
+		else if(minute - dbmin > 0) result = Integer.toString(minute - dbmin) +"분 전";
+		else result = Integer.toString(second-dbsec)+"초 전";
+		
+		return result;
 	}
 	
 }

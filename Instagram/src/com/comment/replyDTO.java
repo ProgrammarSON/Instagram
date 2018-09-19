@@ -1,13 +1,20 @@
 package com.comment;
 
 public class replyDTO {
-	String reply_id;
-	String comment_id;
-	String user_id;
-	String contents;
-	String img_path;
+	private String reply_id;
+	private String comment_id;
+	private String user_id;
+	private String contents;
+	private String img_path;
+	private String reply_date;
 	
 	
+	public String getReply_date() {
+		return reply_date;
+	}
+	public void setReply_date(String reply_date) {
+		this.reply_date = reply_date;
+	}
 	public String getImg_path() {
 		return img_path;
 	}

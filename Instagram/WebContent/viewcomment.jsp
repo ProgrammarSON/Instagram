@@ -60,7 +60,7 @@
 	                  	"<div class='content'> "+
 	                  		"<a class='author'> " + datas[i].user_id + "</a>" +
 	                  	"<div class='metadata'>" +
-	        				"<span class='date'>방금 전</span> " +
+	        				"<span class='date'> "+datas[i].reply_date +"</span> " +
 		      				"</div> " +
 	    				"<div class='text'> " + datas[i].contents + "</div>" +
 	        			"</div>"+
