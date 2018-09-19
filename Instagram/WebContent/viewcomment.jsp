@@ -231,7 +231,7 @@
 	                </form>
 	            </div>
 	        	<h4 class="ui text">
-	        		<i class="heart outline icon"></i> 좋아요 #개
+	        		<i class="heart outline icon"></i> 좋아요 <%=dto.getLike_count() %>개
 	        	</h4>
 	        	<h4 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h4>
 	        	
@@ -319,10 +319,11 @@
       <p>이 게시물을 삭제 하시겠습니까?</p>
     </div>
     <div class="actions">
-      <div class="ui negative button">
+      <div class="ui positive right button">
         	삭제 안 함
       </div>
-      <div class="ui positive right button">
+      
+       <div class="ui negative button">
         	삭제
       </div>
     </div>

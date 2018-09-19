@@ -171,9 +171,9 @@
 				<div class="extra content">
 					<span class="right floated" id="<%=key%>like">
 					<%if(map.get(key).getLike_state().equals("unlike")){ %>
-						<i class="heart like icon outline"></i> <%=map.get(key).getLike_count() %>
+						<i class="heart like icon outline"></i> 
 					<%}else{ %>
-						<i class="heart like icon" style="color: #ff2733"></i> <%=map.get(key).getLike_count() %>
+						<i class="heart like icon" style="color: #ff2733"></i>
 					<%} %>
 					</span>
 					<span>
