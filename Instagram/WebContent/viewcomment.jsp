@@ -98,6 +98,23 @@
 				}
 			});  	
 		});
+    	
+  <%--   	$("#${dto.getComment_id()}_comment_delete").click(function(){
+    		var comment_id = "${dto.getComment_id()}";
+    		var feed_id = "<%=feed_id%>";
+    		
+    		$.ajax({
+				url:"deletecomment.do?comment_id="+comment_id+"&feed_id="+feed_id,
+				success : function(result) {
+					var datas = JSON.parse(result);
+					
+					for(var i=0; i<datas.length; i++){
+						
+					}
+				}
+			});  	
+    		
+    	}); --%>
           
  	</c:forEach>
  	
@@ -296,6 +313,7 @@
 	                        <div class="actions">
 	                            <a class="reply" id="${dto.getComment_id()}_reply_show">댓글 보기</a>
 	                            <a class="reply" id="${dto.getComment_id()}_reply_hide">댓글 숨기기</a>
+	                        	<a class="reply" id="${dto.getComment_id()}_comment_delete">댓글 삭제</a>
 	                        </div>
 	                        <div class="ui reply form">
 	                        	<div class="field" id="${dto.getComment_id()}">

@@ -190,6 +190,37 @@ public class commentDAO {
 		return list;
 	}
 	
+	public int deleteComment(String comment_id,String feed_id) {
+		Connection conn = null;
+		CallableStatement cstmt = null;
+		StringBuffer sql = new StringBuffer();
+		sql.append("{call deleteComment_proc(?,?,?)}");
+		int check = 0;
+		
+		try {
+			conn = getConnection();
+			cstmt = conn.prepareCall(sql.toString());
+			cstmt.setString(1, comment_id);
+			cstmt.setString(2, feed_id);
+			cstmt.registerOutParameter(3, java.sql.Types.INTEGER);
+			cstmt.executeUpdate();
+			
+			check = cstmt.getInt(3);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(conn != null) conn.close();
+				if(cstmt != null) cstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return check;
+	}
+	
 	private String CalDate(String d) {
 		String dateArray[] = d.split(" ");
 		

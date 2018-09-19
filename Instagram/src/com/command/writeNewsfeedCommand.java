@@ -68,7 +68,7 @@ public class writeNewsfeedCommand implements Command{
 		        }
 		        
 		        
-		        
+		        /*textarea 에서 해쉬태그 선정후 DB에 저장 */
 		        String array[] = contents.split("(\r\n)|\\s|\t");
 		        for(int i=0;i<array.length;i++)
 		        {
