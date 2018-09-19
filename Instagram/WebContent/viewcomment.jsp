@@ -26,6 +26,7 @@
 	<!-- 대댓글  -->
     <script>
     $(document).ready(function(){
+    	
     <c:forEach items="${list}" var="dto">
         
     	 $("#${dto.getComment_id()}").hide();
@@ -120,6 +121,37 @@
  		$('.ui.button.olive').click(function(){
  			document.location.href="viewmodifynewsfeed.do?feed_id=<%=feed_id%>";
  		});
+ 		
+		var key="<%=feed_id%>";
+		
+		$("#"+key+"like").click(function(){
+			//$(this).find('i').toggleClass('outline')
+			if($(this).find('i').hasClass('outline')) {
+				$(this).find('i').removeClass('outline').css('color','#ff2733');
+				$.ajax({
+					url: "like.do?feed_id="+key+"&check=like",
+					success : function(result){
+						var check = JSON.parse(result);
+						var value = parseInt($('#like_count').text())+1;
+						$('#like_count').text(value);
+						console.log(value);
+					}
+					
+				});
+			} else {
+				$(this).find('i').addClass('outline').css('color','rgba(0,0,0,.4)');
+				$.ajax({
+					url: "like.do?feed_id="+key+"&check=unlike",
+					success : function(result){
+						var check = JSON.parse(result);
+						var value = parseInt($('#like_count').text())-1;
+						$('#like_count').text(value);
+						console.log(value);
+					}
+				});
+			};
+		});
+ 		
 	
     });
  	</script>
@@ -212,7 +244,6 @@
 	        		</div>
 	        	</div>
 	           	
-<!-- 		           	<div class="ui divider"></div> -->
 	        	
 	        	<div id="feed_contents">
 	        	<% if(dto.getContents() != null) { %><span><%=dto.getContents() %></span>
@@ -230,9 +261,15 @@
                       		<button class="ui button fluid violet" type="submit" id="<%=feed_id%>_comment_write">작성하기</button>
 	                </form>
 	            </div>
-	        	<h4 class="ui text">
-	        		<i class="heart outline icon"></i> 좋아요 <%=dto.getLike_count() %>개
+	        	<h4 class="ui text" id="<%=feed_id%>like">
+	        		<%if(dto.getLike_state().equals("unlike")){ %>
+						<i class="heart like icon outline"></i> 
+					<%}else{ %>
+						<i class="heart like icon" style="color: #ff2733"></i>
+					<%} %>
+					좋아요 <like id="like_count"> <%=dto.getLike_count() %></like> 개
 	        	</h4>
+	        	
 	        	<h4 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h4>
 	        	
 				<div class="ui small comments">
@@ -274,27 +311,7 @@
 						</div>
 					</div>
 					</c:forEach>
-	             </div>
-	             
-					<!-- <div class="comments" id="reply_id">
-						<div class="comment">
-		    				<a class="avatar">
-		        				<img src="images/avatar/small/jenny.jpg">
-		    				</a>
-		    				<div class="content">
-		        				<a class="author">Jenny Hess</a>
-		        				<div class="metadata">
-		            				<span class="date">방금 전</span>
-		        				</div>
-		        				<div class="text">
-		            				친구 넌 항상 옳아 :)
-		        				</div>
-		        				<div class="actions">
-		            				<a class="reply">댓글쓰기</a>
-		        				</div>
-		    				</div>
-						</div>
-					</div> -->
+	             </div>				
 				</div>
 			</div>
 			

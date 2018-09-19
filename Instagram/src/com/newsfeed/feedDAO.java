@@ -215,22 +215,26 @@ public class feedDAO {
 		return check;
 	}
 	
-	public feedDTO getOneFeed(String feed_id) {
+	public feedDTO getOneFeed(String feed_id,String user_id) {
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		StringBuffer sql = new StringBuffer();
 		feedDTO dto = new feedDTO();
-		sql.append("SELECT n.image_path, n.contents, n.comment_count, m.user_id, m.profile_img, like_count ");
+		sql.append("SELECT n.image_path, n.contents, n.comment_count, m.user_id, m.profile_img, like_count, ");
+		sql.append("NVL2(l.newsfeed_id,'like','unlike') like_state ");
 		sql.append("FROM newsfeed n JOIN myfeed m ");
-		sql.append("ON n.user_id = m.user_id ");
-		sql.append("WHERE newsfeed_id = ?");
+		sql.append("ON n.user_id = m.user_id LEFT OUTER JOIN likes l ");
+		sql.append("ON l.newsfeed_id = n.newsfeed_id AND l.user_id = ? ");
+		sql.append("WHERE n.newsfeed_id = ?");
 		System.out.println(sql.toString());
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
-			pstmt.setString(1, feed_id);
+			pstmt.setString(1, user_id);
+			pstmt.setString(2, feed_id);
+			
 			rs = pstmt.executeQuery();
 			
 			if(rs.next()) {
@@ -240,6 +244,7 @@ public class feedDAO {
 				dto.setUser_id(rs.getString("user_id"));
 				dto.setProfile_img(rs.getString("profile_img"));
 				dto.setLike_count(rs.getString("like_count"));
+				dto.setLike_state(rs.getString("like_state"));
 			}
 			
 		} catch (SQLException e) {
