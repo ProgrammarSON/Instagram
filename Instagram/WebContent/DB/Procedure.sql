@@ -37,14 +37,15 @@ create or replace PROCEDURE deleteComment_proc(
   pcomment_id COMMENTS.COMMENT_ID%TYPE,
   pnewsfeed_id NEWSFEED.NEWSFEED_ID%TYPE,
   pcheck OUT NUMBER
-  ) IS
-  
-  commentID NUMBER;
+  ) IS  
 
 BEGIN
     pcheck := 1;
     
     DELETE FROM comments
+    WHERE COMMENT_ID = pcomment_id;
+    
+    DELETE FROM REPLY
     WHERE COMMENT_ID = pcomment_id;
     
     UPDATE NEWSFEED
