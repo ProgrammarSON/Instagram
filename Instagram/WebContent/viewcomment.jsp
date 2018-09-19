@@ -99,22 +99,58 @@
 			});  	
 		});
     	
-  <%--   	$("#${dto.getComment_id()}_comment_delete").click(function(){
+    	/*댓글 삭제*/
+     	$("#${dto.getComment_id()}_comment_delete").click(function(){
     		var comment_id = "${dto.getComment_id()}";
     		var feed_id = "<%=feed_id%>";
     		
     		$.ajax({
 				url:"deletecomment.do?comment_id="+comment_id+"&feed_id="+feed_id,
 				success : function(result) {
-					var datas = JSON.parse(result);
-					
+					//var datas = JSON.parse(result);
+										
+					var value = parseInt($('#comment_count').text())-1;
+					$('#comment_count').text(value);
+					$('#'+comment_id+'_comment_root').remove();
+					alert("삭제 완료");
+					/*
+					$('#comment_id').html("");
 					for(var i=0; i<datas.length; i++){
-						
-					}
+						//$('#comment_id').append(
+							var t = "<div class='comment'>"+ 
+							"<a class='avatar'>"+
+		                    	"<img src='profile_image/"+datas[i].img_path+"'>"+
+		                     "</a>"+
+							"<div class='content'>"+
+								"<a class='author' href='viewmyfeed.do?user_id="+datas[i].user_id+"'>"+datas[i].user_id+"</a>"+
+		                        "<div class='metadata'>"+
+		                            "<span class='date'>"+datas[i].comment_date+"</span>"+
+		                        "</div>"+
+		                        "<div class='text'>"+datas[i].content+"</div>"+
+		                        "<div class='actions'>"+
+		                            "<a class='reply' id='"+datas[i].comment_id+"_reply_show'>댓글 보기</a>"+
+		                            "<a class='reply' id='"+datas[i].comment_id+"_reply_hide'>댓글 숨기기</a>"+
+		                        	"<a class='reply' id='"+datas[i].comment_id+"_comment_delete'>댓글 삭제</a>"+
+		                        "</div>"+
+		                        "<div class='ui reply form'>"+
+		                        	"<div class='field' id='"+datas[i].comment_id+"'>"+
+		                            	"<textarea placeholder='댓글을 작성해보세요.' id='"+datas[i].comment_id+"_reply_contents'>"+"</textarea>"+
+										"<div id='div-reply-button'>"+
+			                        		"<button class='ui button fluid violet' type='submit' id='"+datas[i].comment_id+"_reply_write'>작성하기</button>"+
+										"</div>"+
+										
+										
+			                            "<div class='ui small comments' id='"+datas[i].comment_id+"_reply_id'></div>"+
+									"</div>"+
+								"</div>"+
+							"</div>"+
+						"</div>"
+					   //);	
+					}*/
 				}
 			});  	
     		
-    	}); --%>
+    	}); 
           
  	</c:forEach>
  	
@@ -287,14 +323,14 @@
 					좋아요 <like id="like_count"> <%=dto.getLike_count() %></like> 개
 	        	</h4>
 	        	
-	        	<h4 class="ui dividing header"><%=dto.getComment_count() %>개의 댓글</h4>
+	        	<h4 class="ui dividing header"><comment id="comment_count"><%=dto.getComment_count() %></comment>개의 댓글</h4>
 	        	
 				<div class="ui small comments">
 					
 				<!--  댓글 출력  -->
 				<div id="comment_id">
 					<c:forEach items="${list}" var="dto">
-	                <div class="comment"> 
+	                <div class="comment" id="${dto.getComment_id()}_comment_root"> 
 						<a class="avatar">
 	                    	<c:if test="${dto.getImg_path() ne null}">
 								<img src="profile_image/${dto.getImg_path()}">
