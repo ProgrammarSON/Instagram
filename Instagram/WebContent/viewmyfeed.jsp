@@ -95,7 +95,7 @@
         		              "<button type='button'class='ui tiny button violet btn_follow'  id="+modalData[i].user_id+"_following_btn onclick=\"following('"+id+"','"+modalData[i].user_id+"');\">팔로우</button>"+
         		              "</div>"+
         					   "<div class='content'>"+
-        							"<a class='header'>"+modalData[i].user_id+"</a>"+
+        							"<a class='header' href='viewmyfeed.do?user_id="+modalData[i].user_id+"'>"+modalData[i].user_id+"</a>"+
         						"<div class='description'>"+modalData[i].contents+"</div>"+
         						"</div>"+
         					"</div>"
@@ -157,7 +157,7 @@
     	    		             
     	    		              "</div>"+
     	    					   "<div class='content'>"+
-    	    							"<a class='header'>"+modalData[i].user_id+"</a>"+
+    	    							"<a class='header' href='viewmyfeed.do?user_id="+modalData[i].user_id+"'>"+modalData[i].user_id+"</a>"+
     	    							"<div class='description'>"+modalData[i].contents+"</div>"+
     	    						"</div>"+
     	    					"</div>"
