@@ -349,7 +349,10 @@
 	                        <div class="actions">
 	                            <a class="reply" id="${dto.getComment_id()}_reply_show">댓글 보기</a>
 	                            <a class="reply" id="${dto.getComment_id()}_reply_hide">댓글 숨기기</a>
+	                         
+	                         <c:if test="${dto.getUser_id() eq sessionScope.id}">   
 	                        	<a class="reply" id="${dto.getComment_id()}_comment_delete">댓글 삭제</a>
+	                         </c:if>
 	                        </div>
 	                        <div class="ui reply form">
 	                        	<div class="field" id="${dto.getComment_id()}">
