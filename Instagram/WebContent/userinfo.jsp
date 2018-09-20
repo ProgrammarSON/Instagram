@@ -16,7 +16,7 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
-    <script src="js/signup.js"></script>
+    
     <title>프로필 수정</title>
 
 	

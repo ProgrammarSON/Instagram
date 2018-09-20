@@ -51,7 +51,7 @@ public class modifyUserInfo implements Command{
 	        
 	        Enumeration files = multi.getFileNames();
 	         
-	        if(files.hasMoreElements())
+	        while(files.hasMoreElements())
 	        {
 	        	String file1 = (String)files.nextElement();
 	            System.out.println("file1->"+file1);
@@ -62,6 +62,7 @@ public class modifyUserInfo implements Command{
 	            if(profile_img == null)
         		{
 	            	profile_img = original_img;
+	            	break;
         		}
 	        }
 	        
