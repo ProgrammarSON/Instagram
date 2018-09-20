@@ -238,13 +238,13 @@
 
                     <div class="item">
                         <div class="content">
-							<a id="show_modal_follower">팔로워 <span><%=dto.getFollower_num() %></span></a>
+							<a id="show_modal_follower">팔로워 <span id="follower_count"><%=dto.getFollower_num() %></span></a>
                         </div>
                     </div>
 
                     <div class="item">
                         <div class="content">
-							 <a id="show_modal_following">팔로우 <span><%=dto.getFollowing_num() %></span></a>
+							 <a id="show_modal_following">팔로우 <span id="following_count"><%=dto.getFollowing_num() %></span></a>
                         </div>
                     </div>
                 </div>

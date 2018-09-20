@@ -209,6 +209,11 @@ function followingjung(id,follow){
 	$('#'+follow+'_followingjung_btn').hide();
 	$('#'+follow+'_following_btn').show();
 	
+	var val = parseInt(document.getElementById("following_count").innerText);
+	document.getElementById("following_count").innerText = val - 1; 
+	console.log(val);
+		
+	
 }
 
 function following(id,follow){
@@ -218,12 +223,14 @@ function following(id,follow){
         	var check = JSON.parse(result);
 			console.log(check);                
     	}
-	})
-	
+	})	
 	
 	$('#'+follow+'_followingjung_btn').show();
 	$('#'+follow+'_following_btn').hide();
 	
+	var val = parseInt(document.getElementById("following_count").innerText);
+	document.getElementById("following_count").innerText = val + 1; 
+	console.log(val);
 }
 
 
