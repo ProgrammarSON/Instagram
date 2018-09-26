@@ -1,6 +1,6 @@
 // Login
 $(document).ready(function() {
-     $('.ui.form').form({
+    /* $('.ui.form').form({
          inline : true,
          on     : 'blur',
          fields: {
@@ -33,5 +33,5 @@ $(document).ready(function() {
                  ]
              }
          }
-     });
+     });*/
 });

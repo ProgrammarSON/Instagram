@@ -26,7 +26,7 @@
     <link rel="stylesheet" type="text/css" href="css/common.css">
     <link rel="stylesheet" type="text/css" href="css/style.css">
     <script src="js/script.js"></script>
-    <title>Yestagram</title>
+     <title>Yestagram</title>
     
     <script>
     $(document).ready(function(){
@@ -73,7 +73,7 @@
     		$("#followingjung_btn").hide();
        	});
     
-    	$('#show_modal_following').click(function(){
+    	  $('#show_modal_following').click(function(){
             var header_id = document.getElementById('header_userid').innerText;
            
             //$(this).find('i').hasClass('outline')
@@ -101,7 +101,7 @@
         					"</div>"
         				);
         				//setModalData(modalData[i].user_id);
-        				console.log(id+" "+modalData[i].user_id+" "+modalData[i].follow_check)
+        				
         				if(id == modalData[i].user_id)
     	    			{
     	    				$('#'+modalData[i].user_id+'_followingjung_btn').hide();
@@ -114,12 +114,12 @@
     	    				$('#'+modalData[i].user_id+'_following_btn').hide();
     	    			}        				
         			}
-        			
+	
         		},
         		error : function(xhr, status, error) {
         			alert("ERROR!!!");
         		}
-          	})        
+          	})         
                     
             $('.ui.modal')
             .modal({
@@ -131,7 +131,7 @@
             })
             .modal('show');
         	
-        });
+        }); 
     	
     	 $('#show_modal_follower').click(function(){
     	        var header_id = document.getElementById('header_userid').innerText;
@@ -209,7 +209,7 @@
 
 		<!-- 프로필 구역 시작 -->
         <div class="ui grid container">
-
+		
             <div class="five wide column center aligned">
 	            <div class="div-profile">
 	            	<div class="div-profile-img">
@@ -266,7 +266,7 @@
         
         <!-- 모달 시작 -->
         <div class="ui tiny modal">
-<!-- 			<div class="header"></div> -->
+<!--<div class="header"></div> -->
 			<div class="scrolling content">
 				<div class="ui very relaxed list" id="list-follow">
 				</div>
@@ -279,25 +279,25 @@
         
 		<!-- 카드 -->
         <div class="ui three cards dim-card">
-            <% for(String key : map.keySet()) { %>
+            <% for(String feed_id : map.keySet()) { %>
 			<div class="card">
-				<a class="image centered-and-cropped" href="viewcomment.do?feed_id=<%=key%>">
+				<a class="image centered-and-cropped" href="viewcomment.do?feed_id=<%=feed_id%>">
 					<div class="ui dimmer">
 		            	<div class="content">
 		            		<!-- 좋아요 표시 시작 --><!-- 좋아요 표시 끝 -->
 		            		<i class="heart icon"></i>
-		            		<span style="margin-right: 25px;"><%=map.get(key).getLike_count() %></span>
+		            		<span style="margin-right: 25px;"><%=map.get(feed_id).getLike_count() %></span>
 		            		<!-- 댓글 표시 시작 -->
 							<i class="comment icon"></i>
-							<span><%=map.get(key).getComment_count() %></span>
+							<span><%=map.get(feed_id).getComment_count() %></span>
 							<!-- 댓글 표시 끝 -->
 		            	</div>
 	              	</div>
 	              	<div class="cropped-image">
-              	<% if(map.get(key).getImage_path() == null) { %>
+              	<% if(map.get(feed_id).getImage_path() == null) { %>
 	            		<img class="image centered-and-cropped" src="./feed_image/null.jpg">
 	            <% } else { %>
-	                	<img class="image centered-and-cropped" src="./feed_image/<%= map.get(key).getImage_path() %>">
+	                	<img class="image centered-and-cropped" src="./feed_image/<%= map.get(feed_id).getImage_path() %>">
               	<% } %>
               		</div>
 				</a>
@@ -305,16 +305,7 @@
 			<% } %>
     	</div>
     </div>
-    
-<!--     <script>
-	function setModalData(x){
-		//temp.push(x);
-			console.log(x);
-			//$('#'+x+'_following_btn').show();
-			//$('#'+x+'_followingjung_btn').hide();
-			
-	}
-	</script> -->
+  
     <!-- 페이지 전체 컨테이너 끝 -->
 	
 	<script>

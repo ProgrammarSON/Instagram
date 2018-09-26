@@ -18,7 +18,7 @@
 
 <body>
     <div class="ui container">
-        <jsp:include page="navbar.jsp"/>
+     
 
 
         <div class="ui three stackable cards">

@@ -51,13 +51,6 @@ public class feedDAO {
 		sql.append("ON l.newsfeed_id = n.newsfeed_id AND l.USER_ID = ? ");
 		sql.append("ORDER BY n.feed_date DESC");
 		
-/*		sql.append("SELECT n.contents, n.user_id, n.NEWSFEED_ID, n.FEED_DATE, n.image_path, m.PROFILE_IMG ");
-		sql.append("FROM NEWSFEED n JOIN (SELECT following FROM follow ");
-		sql.append("WHERE user_id = ?) p ");
-		sql.append("ON n.user_id = p.following ");
-		sql.append("JOIN myfeed m ");
-		sql.append("ON m.user_id = n.user_id ");
-		sql.append("ORDER BY n.feed_date DESC");*/
 		
 		System.out.println(sql.toString());
 		
@@ -84,8 +77,7 @@ public class feedDAO {
 				dto.setLatitude(rs.getString("latitude"));
 				dto.setLongitude(rs.getString("longitude"));
 				map.put(rs.getString("newsfeed_id"), dto);
-				//System.out.println(rs.getString("contents"));
-				//System.out.println(rs.getString("image_path"));
+
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -358,6 +350,7 @@ public class feedDAO {
 		else
 			sql.append("{call deletelike_proc(?,?,?)}");
 		
+		System.out.println(feed_id+"---"+user_id);
 		try {
 			conn = getConnection();
 			cstmt = conn.prepareCall(sql.toString());

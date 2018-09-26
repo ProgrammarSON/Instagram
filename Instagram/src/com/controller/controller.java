@@ -148,6 +148,10 @@ public class controller extends HttpServlet {
 			command = new deleteCommentCommand(); 
 			command.execute(request, response);
 			return;
+		}else if(com.equals("/activelog.do")) {
+			command = new viewActiveLog();
+			command.execute(request, response);
+			return;
 		}
 		
 		RequestDispatcher dispatcher =request.getRequestDispatcher(viewPage);

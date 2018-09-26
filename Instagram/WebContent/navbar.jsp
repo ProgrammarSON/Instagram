@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <% String id = (String)session.getAttribute("id"); %>
+<script src="js/activelog.js"></script>
 
 	<div class="menu_padding"></div>
     <div class="ui large secondary pointing main menu violet">
@@ -19,7 +20,7 @@
 	        	<i class="images outline large icon"></i>
 <!-- 	        	내 피드 -->
 	        </a>
-	        <a class="item disabled" id="liked">
+	        <a class="item" id="liked-icon">
 	        	<i class="heart outline large icon"></i>
 <!-- 	        	좋아한 글 -->
 	        </a>
@@ -48,5 +49,18 @@
 	        </div>
         </div>
     </div>
+    
+            <!-- 모달 시작 -->
+        <div class="ui tiny modal" id="active-modal">
+<!--<div class="header"></div> -->
+			<div class="scrolling content">
+				<div class="ui very relaxed celled selection list" id="active_feed">
+				</div>
+			</div>
+			<div class="actions">
+				<button class="ui tiny button basic close">닫기</button>
+			</div>
+		</div>
+        <!-- 모달 끝 -->
 
 <!--     <div class="ui custom popup bottom center transition hidden"></div> -->

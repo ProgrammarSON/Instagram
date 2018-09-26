@@ -74,32 +74,37 @@
 	/* 구글 맵 끝 */
 	
 	/* 좋아요 기능 */
+	
 	<%for(String key : map.keySet()) { %>
-	$(function(){
+	$(document).ready(function(){
 		var key="<%=key%>";
 		
-		$("#"+key+"like").click(function(){
+		$("#"+key+"_like").click(function(){
 			//$(this).find('i').toggleClass('outline')
+			
 			if($(this).find('i').hasClass('outline')) {
 				$(this).find('i').removeClass('outline').css('color','#ff2733');
 				$.ajax({
 					url: "like.do?feed_id="+key+"&check=like",
 					success : function(result){
-						var check = JSON.parse(result);
+						//var check = JSON.parse(result);
+						alert("hi");
 					}
 				});
 			} else {
+				alert(key);
 				$(this).find('i').addClass('outline').css('color','rgba(0,0,0,.4)');
 				$.ajax({
 					url: "like.do?feed_id="+key+"&check=unlike",
 					success : function(result){
-						var check = JSON.parse(result);
+						//var check = JSON.parse(result);
 					}
 				});
 			};
 		});
-	});
+	});	
 	<%} %>
+	
 	
 	function readURL(input){ 
 		if (input.files && input.files[0]) { 
@@ -169,7 +174,7 @@
 					</div>
 				</a>
 				<div class="extra content">
-					<span class="right floated" id="<%=key%>like">
+					<span class="right floated" id="<%=key%>_like">
 					<%if(map.get(key).getLike_state().equals("unlike")){ %>
 						<i class="heart like icon outline"></i> 
 					<%}else{ %>
@@ -196,8 +201,6 @@
 		</div>
 	</div>
 	<!-- 모달 끝 -->
-
-
 	<!-- 푸터 시작 -->
 	<jsp:include page="footer.jsp"/>
 	<!-- 푸터 끝 -->
