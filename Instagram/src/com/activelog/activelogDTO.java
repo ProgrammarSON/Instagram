@@ -1,19 +1,20 @@
 package com.activelog;
 
 public class activelogDTO {
-	private String like_id;
-	private String comment_id;
+	private String like_user;
+	private String comment_user;
 	
-	public String getLike_id() {
-		return like_id;
+	public String getLike_user() {
+		return like_user;
 	}
-	public void setLike_id(String like_id) {
-		this.like_id = like_id;
+	public void setLike_user(String like_user) {
+		this.like_user = like_user;
 	}
-	public String getComment_id() {
-		return comment_id;
+	public String getComment_user() {
+		return comment_user;
 	}
-	public void setComment_id(String comment_id) {
-		this.comment_id = comment_id;
+	public void setComment_user(String comment_user) {
+		this.comment_user = comment_user;
 	}	
+
 }

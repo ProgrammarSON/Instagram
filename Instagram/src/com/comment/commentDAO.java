@@ -94,9 +94,7 @@ public class commentDAO {
 				dto.setContent(rs.getString("contents"));
 				dto.setImg_path(rs.getString("profile_img"));
 				list.add(dto);
-				//System.out.println(id+" ggg "+contents);
-				//map.get(feedid).getReplys().add(new reply(id,contents));
-			
+							
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block

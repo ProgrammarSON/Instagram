@@ -42,7 +42,7 @@ private static activelogDAO instance = new activelogDAO();
 		List<activelogDTO> list = null;
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("SELECT l.user_id AS like_id, c.user_id AS comment_id ");
+		sql.append("SELECT l.user_id AS like_user, c.user_id AS comment_user ");
 		sql.append("FROM (SELECT * FROM likes ");
 		sql.append("	  WHERE newsfeed_id IN (SELECT newsfeed_id FROM newsfeed ");
 		sql.append("							WHERE user_id = ? )) l FULL OUTER JOIN COMMENTS c ");
@@ -59,10 +59,13 @@ private static activelogDAO instance = new activelogDAO();
 			
 			while(rs.next()) {
 				activelogDTO dto = new activelogDTO();
-				if(rs.getString("like_id") != null) {
-					dto.setLike_id(rs.getString("like_id"));
+				if(rs.getString("like_user") != null && rs.getString("comment_user") != null) {
+					dto.setLike_user(rs.getString("like_user"));
+					dto.setComment_user(rs.getString("comment_user"));
+				}else if(rs.getString("like_user") != null) {
+					dto.setLike_user(rs.getString("like_user"));
 				}else {
-					dto.setComment_id(rs.getString("comment_id"));
+					dto.setComment_user(rs.getString("comment_user"));
 				}
 				list.add(dto);
 			}

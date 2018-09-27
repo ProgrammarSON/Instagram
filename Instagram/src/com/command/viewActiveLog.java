@@ -22,12 +22,6 @@ public class viewActiveLog implements Command{
 		activelogDAO dao = activelogDAO.getinstance();
 		List<activelogDTO> list = dao.getActiveLog(user_id);
 		
-		for(activelogDTO dto :list) {
-			if(dto.getLike_id() == null)
-				System.out.println("comment_id "+ dto.getComment_id());
-			else
-				System.out.println("like_id "+ dto.getLike_id());
-		}
 		PrintWriter pw;
 		
 		try {
