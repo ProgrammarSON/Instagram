@@ -27,6 +27,7 @@ CREATE TABLE comments(
 CREATE TABLE likes(
   newsfeed_id NUMBER,
   user_id VARCHAR2(100)
+  like_date DATE
 );
 
 CREATE TABLE reply(

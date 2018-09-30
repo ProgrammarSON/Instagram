@@ -35,38 +35,78 @@ private static activelogDAO instance = new activelogDAO();
 		return connection;
 	}
 	
-	public List<activelogDTO> getActiveLog(String user_id){
+	public List<activelogDTO> getLikeLog(String user_id){
 		Connection conn = null;
 		PreparedStatement pstmt = null;
 		ResultSet rs = null;
 		List<activelogDTO> list = null;
 		StringBuffer sql = new StringBuffer();
 		
-		sql.append("SELECT l.user_id AS like_user, c.user_id AS comment_user ");
-		sql.append("FROM (SELECT * FROM likes ");
-		sql.append("	  WHERE newsfeed_id IN (SELECT newsfeed_id FROM newsfeed ");
-		sql.append("							WHERE user_id = ? )) l FULL OUTER JOIN COMMENTS c ");
-		sql.append("ON c.NEWSFEED_ID = l.newsfeed_id AND c.USER_ID = ? ");
+		sql.append("SELECT l.user_id AS like_user, like_date, m.PROFILE_IMG ");
+		sql.append("FROM likes l JOIN myfeed m ");
+		sql.append("ON l.user_id = m.user_id AND ");
+		sql.append("l.newsfeed_id IN (SELECT newsfeed_id FROM newsfeed ");
+		sql.append("				  WHERE user_id = ? )");
 		
 		
 		try {
 			conn = getConnection();
 			pstmt = conn.prepareStatement(sql.toString());
 			pstmt.setString(1, user_id);
-			pstmt.setString(2, user_id);
 			rs = pstmt.executeQuery();
 			list = new ArrayList<>();
 			
 			while(rs.next()) {
 				activelogDTO dto = new activelogDTO();
-				if(rs.getString("like_user") != null && rs.getString("comment_user") != null) {
-					dto.setLike_user(rs.getString("like_user"));
-					dto.setComment_user(rs.getString("comment_user"));
-				}else if(rs.getString("like_user") != null) {
-					dto.setLike_user(rs.getString("like_user"));
-				}else {
-					dto.setComment_user(rs.getString("comment_user"));
-				}
+				dto.setLike_user(rs.getString("like_user"));
+				dto.setLog_date(rs.getDate("like_date").getTime());
+				dto.setProfile_img(rs.getString("profile_img"));
+				//dto.setLog_date(rs.getString("like_date"));
+				list.add(dto);
+			}
+			
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}finally {
+			try {
+				if(rs != null) rs.close();
+				if(conn != null) conn.close();
+				if(pstmt != null) pstmt.close();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public List<activelogDTO> getCommentLog(String user_id){
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<activelogDTO> list = null;
+		StringBuffer sql = new StringBuffer();
+		
+		sql.append("SELECT c.user_id AS comment_user, comment_date, m.PROFILE_IMG ");
+		sql.append("FROM COMMENTS c JOIN myfeed m ");
+		sql.append("ON c.user_id = m.user_id AND ");
+		sql.append("c.newsfeed_id IN (SELECT newsfeed_id FROM newsfeed ");
+		sql.append("				  WHERE user_id = ?)");
+		
+		try {
+			conn = getConnection();
+			pstmt = conn.prepareStatement(sql.toString());
+			pstmt.setString(1, user_id);
+			rs = pstmt.executeQuery();
+			list = new ArrayList<>();
+			
+			while(rs.next()) {
+				activelogDTO dto = new activelogDTO();
+				dto.setComment_user(rs.getString("comment_user"));
+				dto.setLog_date(rs.getDate("comment_date").getTime());
+				dto.setProfile_img(rs.getString("profile_img"));
+				//dto.setLog_date(rs.getString("comment_date"));
 				list.add(dto);
 			}
 			

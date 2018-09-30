@@ -20,18 +20,26 @@ public class viewActiveLog implements Command{
 		String user_id = (String)session.getAttribute("id");
 		
 		activelogDAO dao = activelogDAO.getinstance();
-		List<activelogDTO> list = dao.getActiveLog(user_id);
+		List<activelogDTO> list = dao.getLikeLog(user_id);
+		list.addAll(dao.getCommentLog(user_id));
 		
-		PrintWriter pw;
+		Collections.sort(list);
+		
+		
+		for(activelogDTO d : list) {
+			if(d.getComment_user() == null) System.out.print("like -> "+d.getLike_user());
+			else System.out.print("comment -> "+d.getComment_user());
+			System.out.println("date -> "+d.getLog_date());
+		}
+		PrintWriter out;
 		
 		try {
-			pw = response.getWriter();
-			pw.print(JSONArray.fromObject(list).toString());
+			out = response.getWriter();
+			out.print(JSONArray.fromObject(list).toString());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		
 	}
-
 }

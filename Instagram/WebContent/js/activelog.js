@@ -23,7 +23,7 @@ $(function(){
 				var contents="";
 				var str = "<div class='item'>"+
 			           "<div class='left floated content'>"+
-			               "<img class='ui avatar image' src='images/avatar/small/daniel.jpg'>"+
+			               "<img class='ui avatar image' src='profile_image/"+datas[i].profile_img+"'>"+
 			           "</div>"+
 			           "<div class='right floated content'>"+
 			               "<button class='ui tiny button violet btn_follow'>"+"팔로우</button>"+
@@ -31,7 +31,7 @@ $(function(){
 			           "<div class='middle aligned content'>"+
 			               "<div class='description'>";
 			        
-				if(datas[i].like_user != "" && datas[i].comment_user != ""){
+			/*	if(datas[i].like_user != "" && datas[i].comment_user != ""){
 					var temp = str;
 					contents = "<a class='header'>"+datas[i].comment_user+"</a>"+
 								"님이 회원님의 사진에 댓글을 남겼습니다.";
@@ -45,7 +45,8 @@ $(function(){
 					str +=  "</div></div></div>";
 					$('#active_feed').append(str);
 					continue;						
-				}else if(datas[i].like_user === ""){            
+				}*/
+				if(datas[i].like_user === ""){            
 			        contents = "<a class='header'>"+datas[i].comment_user+"</a>"+
 			                     "님이 회원님의 사진에 댓글을 남겼습니다.";
 			    }else{
