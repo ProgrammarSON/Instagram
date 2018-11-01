@@ -121,7 +121,7 @@
         		}
           	})         
                     
-            $('.ui.modal')
+            $('#follow-modal')
             .modal({
                 closable: false,
                 transition: 'fade',
@@ -183,7 +183,7 @@
     	    		}
     	      	})        
     	                
-    	        $('.ui.modal')
+    	        $('#follow-modal')
     	        .modal({
     	            closable: false,
     	            transition: 'fade',
@@ -265,7 +265,7 @@
         <!-- 프로필 구역 끝 -->
         
         <!-- 모달 시작 -->
-        <div class="ui tiny modal">
+        <div class="ui tiny modal" id="follow-modal">
 <!--<div class="header"></div> -->
 			<div class="scrolling content">
 				<div class="ui very relaxed list" id="list-follow">
