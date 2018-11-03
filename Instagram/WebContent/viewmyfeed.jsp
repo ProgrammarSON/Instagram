@@ -83,7 +83,7 @@
         			var modalData = JSON.parse(result);
         			$('#list-follow').html("");
         			for(var i=0; i<modalData.length; i++){
-        				
+        				console.log(modalData[i].follow_check);
         				$('#list-follow').append(
         					"<div class='item'>"+
         					 "<div class='left floated content'>"+
@@ -121,7 +121,7 @@
         		}
           	})         
                     
-            $('#myfeed-modal')
+            $('#follow-modal')
             .modal({
                 closable: false,
                 transition: 'fade',
@@ -183,7 +183,7 @@
     	    		}
     	      	})        
     	                
-    	        $('#myfeed-modal')
+    	        $('#follow-modal')
     	        .modal({
     	            closable: false,
     	            transition: 'fade',
@@ -265,7 +265,7 @@
         <!-- 프로필 구역 끝 -->
         
         <!-- 모달 시작 -->
-        <div class="ui tiny modal" id="myfeed-modal">
+        <div class="ui tiny modal" id="follow-modal">
 <!--<div class="header"></div> -->
 			<div class="scrolling content">
 				<div class="ui very relaxed list" id="list-follow">
