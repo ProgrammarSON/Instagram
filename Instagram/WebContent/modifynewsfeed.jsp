@@ -242,20 +242,6 @@
 		
 	});
 	
-// 	$(function() {
-// 		$("#map_submit").click(function() {
-// 			$.ajax({
-// 				type: "post",
-// 				url: "writenewsfeed.jsp",
-// 				data: $("#add1").attr("value"),
-// 				success: function(result) {
-// 					$("#address_input").html(result);
-// 				}
-// 			});
-// 			$(".ui.modal").modal("close");
-// 			return false;
-// 		});
-// 	});
 	</script>
 	
 </head>

@@ -18,8 +18,8 @@ public class writeReplyCommand implements Command{
 	public void execute(HttpServletRequest request, HttpServletResponse response) {
 		// TODO Auto-generated method stub
 	
-//		response.setContentType("text/html;charset=UTF-8");
-//		response.setCharacterEncoding("UTF-8");
+		//response.setContentType("text/html;charset=UTF-8");
+		//response.setCharacterEncoding("UTF-8");
 		
 		String user_id = request.getParameter("user_id");
 		String comment_id = request.getParameter("comment_id");

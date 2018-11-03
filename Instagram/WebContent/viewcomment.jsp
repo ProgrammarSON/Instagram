@@ -24,11 +24,9 @@
     <title>포스트</title>
 	
 	<!-- 대댓글  -->
-    <script>
-    $(document).ready(function(){
-    	
+    <script>    	
     <c:forEach items="${list}" var="dto">
-        
+    $(document).ready(function(){    
     	 $("#${dto.getComment_id()}").hide();
     	 $("#${dto.getComment_id()}_reply_hide").hide();
     	     	 
@@ -50,9 +48,7 @@
 		    	var datas = JSON.parse(result);
 		    	//console.log(dates[0].contents);
 		    	for(i=0; i<datas.length; i++){
-		    	//	$("#${dto.getComment_id()}").html("hhhhhhhh"+datas[0].contents);
-		    		console.log(datas[i].contents);
-		    				    		
+		    		    				    		
 		    		$("#${dto.getComment_id()}_reply_id").append(
 			    		"<div class='comment'>" +
 			    		" <a class='avatar'> " +
@@ -112,48 +108,15 @@
 					var value = parseInt($('#comment_count').text())-1;
 					$('#comment_count').text(value);
 					$('#'+comment_id+'_comment_root').remove();
-					alert("삭제 완료");
-					/*
-					$('#comment_id').html("");
-					for(var i=0; i<datas.length; i++){
-						//$('#comment_id').append(
-							var t = "<div class='comment'>"+ 
-							"<a class='avatar'>"+
-		                    	"<img src='profile_image/"+datas[i].img_path+"'>"+
-		                     "</a>"+
-							"<div class='content'>"+
-								"<a class='author' href='viewmyfeed.do?user_id="+datas[i].user_id+"'>"+datas[i].user_id+"</a>"+
-		                        "<div class='metadata'>"+
-		                            "<span class='date'>"+datas[i].comment_date+"</span>"+
-		                        "</div>"+
-		                        "<div class='text'>"+datas[i].content+"</div>"+
-		                        "<div class='actions'>"+
-		                            "<a class='reply' id='"+datas[i].comment_id+"_reply_show'>댓글 보기</a>"+
-		                            "<a class='reply' id='"+datas[i].comment_id+"_reply_hide'>댓글 숨기기</a>"+
-		                        	"<a class='reply' id='"+datas[i].comment_id+"_comment_delete'>댓글 삭제</a>"+
-		                        "</div>"+
-		                        "<div class='ui reply form'>"+
-		                        	"<div class='field' id='"+datas[i].comment_id+"'>"+
-		                            	"<textarea placeholder='댓글을 작성해보세요.' id='"+datas[i].comment_id+"_reply_contents'>"+"</textarea>"+
-										"<div id='div-reply-button'>"+
-			                        		"<button class='ui button fluid violet' type='submit' id='"+datas[i].comment_id+"_reply_write'>작성하기</button>"+
-										"</div>"+
-										
-										
-			                            "<div class='ui small comments' id='"+datas[i].comment_id+"_reply_id'></div>"+
-									"</div>"+
-								"</div>"+
-							"</div>"+
-						"</div>"
-					   //);	
-					}*/
+					alert("삭제 완료");				
 				}
 			});  	
     		
     	}); 
-          
+    });    
  	</c:forEach>
  	
+ 	$(document).ready(function(){ 
  		$(".a_edit").click(function(){
  			$('.coupled.modal')
  			  .modal({
@@ -204,9 +167,7 @@
 				});
 			};
 		});
- 		
-	
-    });
+ 	});	
  	</script>
  	
     <script>     
@@ -238,27 +199,6 @@
         });
      </script>
      
-     <script>
-    <%--  $(document).ready(function(){
-    	 var feedid = "<%=feed_id%>"; 
-    	 $('#'+feedid+'_comment_write').click(function(){
- 			var id = "<%=user_id%>";
- 			var contents = $("#comment_text").val();
- 			
- 			console.log(contents);
- 			$.ajax({
-				url:"writecomment.do?comment_feed_id="+feedid+"&comment_content="+contents,
-				success : function(result) {
-					var datas = JSON.parse(result);
-					
-					
-				}
-			});  	
- 		}); 
-     }); --%>
-     
-     </script>
-
 </head>
 
 <body>

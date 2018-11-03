@@ -24,13 +24,7 @@ public class viewActiveLog implements Command{
 		list.addAll(dao.getCommentLog(user_id));
 		
 		Collections.sort(list);
-		
-		
-		for(activelogDTO d : list) {
-			if(d.getComment_user() == null) System.out.print("like -> "+d.getLike_user());
-			else System.out.print("comment -> "+d.getComment_user());
-			System.out.println("date -> "+d.getLog_date());
-		}
+
 		PrintWriter out;
 		
 		try {

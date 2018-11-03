@@ -7,23 +7,7 @@ public class activelogDTO implements Comparable<activelogDTO>{
 	private String comment_user;
 	private String profile_img;
 	private long log_date;
-	//private String log_date;
-		
-	/*public String getLog_date() {
-		return log_date;
-	}
-	public void setLog_date(String log_date) {
-		this.log_date = log_date;
-	}*/
-		
-	/*public Date getLog_date() {
-		return log_date;
-	}
-	public void setLog_date(Date log_date) {
-		this.log_date = log_date;
-	}*/
-	
-	
+
 		
 	public String getProfile_img() {
 		return profile_img;
